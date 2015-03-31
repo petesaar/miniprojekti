@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-Cobertura</actionName>
+            <displayName>Cobertura</displayName>
+            <goals>
+                <goal>cobertura:cobertura</goal>
+            </goals>
+        </action>
+        
+        <action>
+            <actionName>CUSTOM-Checkstyle</actionName>
+            <displayName>Checkstyle</displayName>
+            <goals>
+                <goal>checkstyle:checkstyle</goal>
+            </goals>
+        </action>
+        
+        <action>
+            <actionName>CUSTOM-Clean</actionName>
+            <displayName>Clean</displayName>
+            <goals>
+                <goal>clean</goal>
+            </goals>
+        </action>
+        
+    </actions>
