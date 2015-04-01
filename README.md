@@ -3,4 +3,6 @@
 
 [Backlogit ja muut hommat](https://docs.google.com/spreadsheets/d/1UCjfnAKt7jOGt85MC1WNCdUmFrzYFvK042kO0DoQLlE/edit?pli=1#gid=0) googledocs:issa 
 
+[CI-palvelin](http://ohtu.jamo.io/job/Jeesusteippaajat-miniprojekti/) Jenkins 
+
 IRC: #jeesusteippaajat

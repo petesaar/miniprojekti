@@ -1,0 +1,3 @@
+Tällä liipaisimella saat komentoriviltä ajettua buildauksen Jenkinsiin:
+
+http://ohtu.jamo.io/job/Jeesusteippaajat-miniprojekti/build?token=TEIPPI
