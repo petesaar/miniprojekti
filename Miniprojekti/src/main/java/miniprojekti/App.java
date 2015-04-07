@@ -1,6 +1,5 @@
 package miniprojekti;
 
-import miniprojekti.GUI.UserWindow;
 import javax.swing.JFrame;
 
 public class App extends JFrame{
@@ -8,7 +7,7 @@ public class App extends JFrame{
     public App() {
         add(new UserWindow());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1200, 800);
+        setSize(1000, 700);
         setLocationRelativeTo(null);
         setTitle("Viitteidenkäsittelijä");
         setResizable(false);
