@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+import miniprojekti.Kontrolleri.Kontrolleri;
 /**
  * Luokka toimii käyttöliittymässä runkona eri välilehtien osioille
  *
@@ -13,14 +14,13 @@ import javax.imageio.ImageIO;
  */
 public class UserWindow extends JPanel {
     
+    static Kontrolleri ohjausOlio = new Kontrolleri();
     public JTabbedPane areena = new JTabbedPane();  //yleinen paneeli, johon muut liitetään
     static JPanel lisaysPaneeli = new JPanel();     //viitteen lisäämiseen
     
-    private BufferedImage taustakuva;
+    //private BufferedImage taustakuva;    
     
-    
-    public UserWindow(){
-        
+    public UserWindow(){        
        
         //anonyymi sisäluokka, jolla tehdään areenasta transparentti 
         areena.setUI(new javax.swing.plaf.basic.BasicTabbedPaneUI(){

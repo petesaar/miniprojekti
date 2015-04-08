@@ -13,8 +13,8 @@ import javax.swing.*;
  * @author Jeesusteippaajat
  */
 public class LisaysPaneeli {
-    
-    Kontrolleri ohjausOlio = new Kontrolleri();
+
+    Kontrolleri ohjausOlio = UserWindow.ohjausOlio;
 
     JButton lisaa = new JButton();    //lisäyspainike
     JLabel otsikko_pakolliset = new JLabel("Pakolliset kentät:");
@@ -29,10 +29,10 @@ public class LisaysPaneeli {
     JLabel otsikko_volume = new JLabel("Volume:");
     JLabel otsikko_number = new JLabel("Number:");
     JLabel otsikko_journal = new JLabel("Journal:");
-    
+
     String[] vaihtoehdot = {"Book", "Article", "Inproceedings"};
     JComboBox kohde_boksi = new JComboBox(vaihtoehdot);
-    
+
     JTextField author_kentta = new JTextField();
     JTextField title_kentta = new JTextField();
     JTextField year_kentta = new JTextField();
@@ -43,12 +43,16 @@ public class LisaysPaneeli {
     JTextField volume_kentta = new JTextField();
     JTextField number_kentta = new JTextField();
     JTextField journal_kentta = new JTextField();
+    
+    JTextPane ilmoitusalue = new JTextPane();
+    JScrollPane ilm = new JScrollPane(ilmoitusalue);
+
 
     String kohde = "Book";
 
     public void piirra() {
 
-        lisaa.setBounds(130, 550, 120, 40);
+        lisaa.setBounds(50, 510, 120, 40);
         lisaa.setText("Lisää viite");
         lisaa.setFont(new Font("Arial", Font.BOLD, 14));
         lisaa.setBackground(Color.green);
@@ -62,7 +66,7 @@ public class LisaysPaneeli {
         otsikko_vapaavalintaiset.setForeground(Color.BLUE);
 
         kohde_boksi.setBounds(40, 100, 150, 30);
-        kohde_boksi.setSelectedIndex(0);       
+        kohde_boksi.setSelectedIndex(0);
         kohde_boksi.setBackground(Color.white);
 
         otsikko_author.setBounds(40, 150, 200, 40);
@@ -72,7 +76,6 @@ public class LisaysPaneeli {
         author_kentta.setBounds(40, 180, 300, 30);
         author_kentta.setFont(new Font("Arial", Font.BOLD, 13));
         author_kentta.setForeground(Color.black);
-        //author_kentta.setText("Author(s)");
 
         otsikko_title.setBounds(40, 220, 200, 40);
         otsikko_title.setFont(new Font("Arial", Font.BOLD, 13));
@@ -81,7 +84,6 @@ public class LisaysPaneeli {
         title_kentta.setBounds(40, 250, 300, 30);
         title_kentta.setFont(new Font("Arial", Font.BOLD, 13));
         title_kentta.setForeground(Color.black);
-        //title_kentta.setText("Title");
 
         otsikko_year.setBounds(40, 290, 200, 40);
         otsikko_year.setFont(new Font("Arial", Font.BOLD, 13));
@@ -90,7 +92,6 @@ public class LisaysPaneeli {
         year_kentta.setBounds(40, 320, 300, 30);
         year_kentta.setFont(new Font("Arial", Font.BOLD, 13));
         year_kentta.setForeground(Color.black);
-        //year_kentta.setText("Year");
 
         otsikko_publisher.setBounds(40, 360, 200, 40);
         otsikko_publisher.setFont(new Font("Arial", Font.BOLD, 13));
@@ -99,7 +100,6 @@ public class LisaysPaneeli {
         publisher_kentta.setBounds(40, 390, 300, 30);
         publisher_kentta.setFont(new Font("Arial", Font.BOLD, 13));
         publisher_kentta.setForeground(Color.black);
-        //publisher_kentta.setText("Publisher");
 
         otsikko_booktitle.setBounds(440, 90, 200, 40);
         otsikko_booktitle.setFont(new Font("Arial", Font.BOLD, 13));
@@ -108,7 +108,6 @@ public class LisaysPaneeli {
         booktitle_kentta.setBounds(440, 120, 300, 30);
         booktitle_kentta.setFont(new Font("Arial", Font.BOLD, 13));
         booktitle_kentta.setForeground(Color.black);
-        //booktitle_kentta.setText("Booktitle");
 
         otsikko_pages.setBounds(440, 150, 200, 40);
         otsikko_pages.setFont(new Font("Arial", Font.BOLD, 13));
@@ -117,7 +116,6 @@ public class LisaysPaneeli {
         pages_kentta.setBounds(440, 180, 300, 30);
         pages_kentta.setFont(new Font("Arial", Font.BOLD, 13));
         pages_kentta.setForeground(Color.black);
-       //pages_kentta.setText("Pages");
 
         otsikko_address.setBounds(440, 220, 200, 40);
         otsikko_address.setFont(new Font("Arial", Font.BOLD, 13));
@@ -126,7 +124,6 @@ public class LisaysPaneeli {
         address_kentta.setBounds(440, 250, 300, 30);
         address_kentta.setFont(new Font("Arial", Font.BOLD, 13));
         address_kentta.setForeground(Color.black);
-        //address_kentta.setText("Address");
 
         otsikko_volume.setBounds(440, 290, 200, 40);
         otsikko_volume.setFont(new Font("Arial", Font.BOLD, 13));
@@ -135,7 +132,6 @@ public class LisaysPaneeli {
         volume_kentta.setBounds(440, 320, 300, 30);
         volume_kentta.setFont(new Font("Arial", Font.BOLD, 13));
         volume_kentta.setForeground(Color.black);
-        //volume_kentta.setText("Volume");
 
         otsikko_number.setBounds(440, 360, 200, 40);
         otsikko_number.setFont(new Font("Arial", Font.BOLD, 13));
@@ -144,7 +140,6 @@ public class LisaysPaneeli {
         number_kentta.setBounds(440, 390, 300, 30);
         number_kentta.setFont(new Font("Arial", Font.BOLD, 13));
         number_kentta.setForeground(Color.black);
-        //number_kentta.setText("Number");
 
         otsikko_journal.setBounds(440, 430, 200, 40);
         otsikko_journal.setFont(new Font("Arial", Font.BOLD, 13));
@@ -153,7 +148,14 @@ public class LisaysPaneeli {
         journal_kentta.setBounds(440, 460, 300, 30);
         journal_kentta.setFont(new Font("Arial", Font.BOLD, 13));
         journal_kentta.setForeground(Color.black);
-        //journal_kentta.setText("Journal");
+        
+        ilm.setBounds(240, 520, 500, 80);
+        ilm.setFont(new Font("Arial", Font.BOLD, 13));
+        ilm.setForeground(Color.black);
+        
+        ilmoitusalue.setBounds(240, 520, 500, 80);
+        ilmoitusalue.setFont(new Font("Arial", Font.BOLD, 13));
+        ilmoitusalue.setForeground(Color.black);
 
         UserWindow.lisaysPaneeli.add(lisaa);         //lisäyspainike
         UserWindow.lisaysPaneeli.add(otsikko_pakolliset);
@@ -179,6 +181,8 @@ public class LisaysPaneeli {
         UserWindow.lisaysPaneeli.add(number_kentta);
         UserWindow.lisaysPaneeli.add(otsikko_journal);
         UserWindow.lisaysPaneeli.add(journal_kentta);
+        //UserWindow.lisaysPaneeli.add(ilmoitusalue);
+        UserWindow.lisaysPaneeli.add(ilm);
 
         //-----------------------kuuntelija lisäyspainikkeelle----------------------------------
         lisaa.addActionListener(new ActionListener() {
@@ -188,8 +192,17 @@ public class LisaysPaneeli {
                 uusi.setPublisher(publisher_kentta.getText());
                 uusi.setTitle(title_kentta.getText());
                 uusi.setYear(year_kentta.getText());
-                System.out.println("valinta: "+kohde);
-                System.out.println("tiedot: "+uusi);
+                uusi.setBooktitle(booktitle_kentta.getText());
+                uusi.setPages(pages_kentta.getText());
+                uusi.setAddress(address_kentta.getText());
+                uusi.setVolume(volume_kentta.getText());
+                uusi.setNumber(number_kentta.getText());
+                uusi.setJournal(journal_kentta.getText());
+                //System.out.println("valinta: " + kohde);
+                //System.out.println("tiedot: " + uusi);
+                String teksti = "Viitteesi on tyypiltään "+kohde+"\r\n";
+                teksti += uusi;                
+                ilmoitusalue.setText(teksti);
             }
         });
 
