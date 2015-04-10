@@ -14,8 +14,9 @@ public class Kontrolleri {
     }
     
     public Kirjaviite luoKirjaviite(){
-        Kirjaviite uusi = new Kirjaviite();
-        return uusi;
+        //Kirjaviite uusi = new Kirjaviite();
+        //return uusi;
+        return null;
     }
     
 }
