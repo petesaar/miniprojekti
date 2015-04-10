@@ -16,7 +16,8 @@ public class UserWindow extends JPanel {
     
     static Kontrolleri ohjausOlio = new Kontrolleri();
     public JTabbedPane areena = new JTabbedPane();  //yleinen paneeli, johon muut liitetään
-    static JPanel lisaysPaneeli = new JPanel();     //viitteen lisäämiseen
+    static JPanel lisaysPaneeli = new JPanel();     //paneeli viitteen lisäämiseen
+    static JPanel listausPaneeli = new JPanel();     //paneeli, jossa voi katsoa kaikkia viitteitä
     
     //private BufferedImage taustakuva;    
     
@@ -32,15 +33,20 @@ public class UserWindow extends JPanel {
         add(areena);
                 
         areena.addTab("Viitteen lisäys", lisaysPaneeli);
+        areena.addTab("Tarkastele viitteitä", listausPaneeli);
         
         //------------------tehdään paneelit-------------------------------------------
         lisaysPaneeli.setLayout(null);
         lisaysPaneeli.setOpaque(false);
+        listausPaneeli.setLayout(null);
+        listausPaneeli.setOpaque(false);
         
         //------------------------------------------------------------------------------
         
         LisaysPaneeli lisaysOlio = new LisaysPaneeli();
         lisaysOlio.piirra();
+        ListausPaneeli listausOlio = new ListausPaneeli();
+        listausOlio.piirra();
 
     }
 
