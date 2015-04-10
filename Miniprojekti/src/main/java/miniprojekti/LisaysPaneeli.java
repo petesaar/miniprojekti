@@ -57,12 +57,12 @@ public class LisaysPaneeli {
         lisaa.setFont(new Font("Arial", Font.BOLD, 14));
         lisaa.setBackground(Color.green);
 
-        otsikko_pakolliset.setBounds(40, 40, 200, 40);
-        otsikko_pakolliset.setFont(new Font("Arial", Font.BOLD, 16));
+        otsikko_pakolliset.setBounds(40, 40, 300, 40);
+        otsikko_pakolliset.setFont(new Font("Arial", Font.BOLD, 18));
         otsikko_pakolliset.setForeground(Color.BLUE);
 
-        otsikko_vapaavalintaiset.setBounds(440, 40, 200, 40);
-        otsikko_vapaavalintaiset.setFont(new Font("Arial", Font.BOLD, 16));
+        otsikko_vapaavalintaiset.setBounds(440, 40, 300, 40);
+        otsikko_vapaavalintaiset.setFont(new Font("Arial", Font.BOLD, 18));
         otsikko_vapaavalintaiset.setForeground(Color.BLUE);
 
         kohde_boksi.setBounds(40, 100, 150, 30);
@@ -156,6 +156,7 @@ public class LisaysPaneeli {
         ilmoitusalue.setBounds(240, 520, 500, 80);
         ilmoitusalue.setFont(new Font("Arial", Font.BOLD, 13));
         ilmoitusalue.setForeground(Color.black);
+        ilmoitusalue.setText("Ilmoitusalue");
 
         UserWindow.lisaysPaneeli.add(lisaa);         //lisäyspainike
         UserWindow.lisaysPaneeli.add(otsikko_pakolliset);
@@ -180,8 +181,7 @@ public class LisaysPaneeli {
         UserWindow.lisaysPaneeli.add(otsikko_number);
         UserWindow.lisaysPaneeli.add(number_kentta);
         UserWindow.lisaysPaneeli.add(otsikko_journal);
-        UserWindow.lisaysPaneeli.add(journal_kentta);
-        //UserWindow.lisaysPaneeli.add(ilmoitusalue);
+        UserWindow.lisaysPaneeli.add(journal_kentta);        
         UserWindow.lisaysPaneeli.add(ilm);
 
         //-----------------------kuuntelija lisäyspainikkeelle----------------------------------
