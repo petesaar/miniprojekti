@@ -18,28 +18,68 @@ public class Kirjaviite {
     private String number;
     private String journal;
     
-    public Kirjaviite(){
-        
+    public Kirjaviite(String author, String title, String year, String booktitle){
+        if(checkArgs(author, title, year, booktitle)){
+            this.author = author;
+            this.title = title;
+            this.year = year;
+            this.booktitle = booktitle;
+        } else {
+            throw new IllegalArgumentException();
+        }        
     }
     
-    public void setAuthor(String author){
-        this.author = author;
+    private boolean checkArgs(String author, String title, String year, String booktitle){
+        boolean ret = true;
+        
+        ret = ret && !author.isEmpty();
+        ret = ret && !title.isEmpty();
+        ret = ret && !booktitle.isEmpty();
+        ret = ret && checkYear(year);
+        
+        return ret;
+    } 
+    
+    private boolean checkYear(String year){
+        if(year.length() == 4)
+            return year.matches("(0-9)*");
+        return false;
+    }
+    
+    public boolean setAuthor(String author){
+        if(!author.isEmpty()){
+            this.author = author;
+            return true;
+        } 
+        return false;
     }
         
-    public void setTitle(String title){
-        this.title = title;
+    public boolean setTitle(String title){
+        if(!title.isEmpty()){
+            this.title = title;
+            return true;
+        } 
+        return false;
     }
         
-    public void setYear(String year){
-        this.year = year;
+    public boolean setYear(String year){
+        if(checkYear(year)){
+            this.year = year;
+            return true;
+        } 
+        return false;
     }
         
     public void setPublisher(String publisher){
         this.publisher = publisher;
     }
         
-    public void setBooktitle(String booktitle){
-        this.booktitle = booktitle;
+    public boolean setBooktitle(String booktitle){
+        if(!booktitle.isEmpty()){
+            this.booktitle = booktitle;
+            return true;
+        } 
+        return false;
     }
             
     public void setPages(String pages){
