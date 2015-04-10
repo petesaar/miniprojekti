@@ -10,14 +10,20 @@ public class Kirjaviite {
     private String author;
     private String title;
     private String year;
-    private String publisher;
+    private String publisher = "";
     private String booktitle;
-    private String pages;
-    private String address;
-    private String volume;
-    private String number;
-    private String journal;
+    private String pages = "";
+    private String address = "";
+    private String volume = "";
+    private String number = "";
+    private String journal = "";
     
+    /**
+     * @param author Must not be empty
+     * @param title Must not be empty.
+     * @param year Must be four-digit number.
+     * @param booktitle Must not be empty.
+     */
     public Kirjaviite(String author, String title, String year, String booktitle){
         if(checkArgs(author, title, year, booktitle)){
             this.author = author;
@@ -41,9 +47,7 @@ public class Kirjaviite {
     } 
     
     private boolean checkYear(String year){
-        if(year.length() == 4)
-            return year.matches("(0-9)*");
-        return false;
+        return year.matches("[0-9][0-9][0-9][0-9]");
     }
     
     public boolean setAuthor(String author){
@@ -146,7 +150,7 @@ public class Kirjaviite {
     }
               
     public String toString(){
-        String viite = "Viite sisältää seuraavat tiedot: ";
+        String viite = "Viite sisÃ¤ltÃ¤Ã¤ seuraavat tiedot: ";
         viite += " Author: "+this.getAuthor()+", Year: "+this.getYear()+", Title: "+this.getTitle()
                 +", Publisher: "+this.getPublisher()+", Booktitle: "+this.getBooktitle()+", Pages: "
                 +this.getPages()+", Address: "+this.getAddress()+", Volume: "+this.getVolume()
