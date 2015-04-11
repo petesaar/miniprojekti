@@ -1,6 +1,8 @@
 package miniprojekti;
 
+import java.awt.EventQueue;
 import javax.swing.JFrame;
+import miniprojekti.Kontrolleri.Kontrolleri;
 /**
  * Käynnistys
  *
@@ -18,7 +20,13 @@ public class App extends JFrame{
         setVisible(true);
     }
     
-    public static void main(String[] args){        
-        new App();
+    public static void main(String[] args){
+        // käyttöliittymän käynnistys event dispatch threadissa
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new App();
+            }
+        });
     }
 }
