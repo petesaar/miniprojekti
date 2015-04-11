@@ -10,7 +10,7 @@ public interface KirjaviiteRajapinta {
 
     String getAuthor();
 
-    int getYear();
+    String getYear();
 
     String getTitle();
 
