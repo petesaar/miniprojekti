@@ -184,8 +184,8 @@ public class LisaysPaneeli {
         lisaa.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (!UserWindow.ohjausOlio.luoKirjaviite("joku_referenssi", author_kentta.getText(), 
-                        title_kentta.getText(), year_kentta.getText(), booktitle_kentta.getText(), 
-                        publisher_kentta.getText(), pages_kentta.getText(), address_kentta.getText(), 
+                        title_kentta.getText(), year_kentta.getText(), publisher_kentta.getText(),
+                        booktitle_kentta.getText(), pages_kentta.getText(), address_kentta.getText(), 
                         volume_kentta.getText(), number_kentta.getText(), journal_kentta.getText())) {
                     ilmoitusalue.setText("Pakollisiin kenttiin ei ole syötetty kunnollista tietoa.");
                     return;

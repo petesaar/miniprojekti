@@ -24,7 +24,7 @@ public class Kirjaviite implements KirjaviiteRajapinta{
      * @param author Must not be empty
      * @param title Must not be empty.
      * @param year Must be four-digit number.
-     * @param booktitle Must not be empty.
+     * @param publisher Must not be empty.
      */
 
     public Kirjaviite () {
