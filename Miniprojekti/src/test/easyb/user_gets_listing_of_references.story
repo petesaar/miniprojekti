@@ -1,23 +1,25 @@
 import miniprojekti.*
+import miniprojekti.IO.*
+import miniprojekti.Kontrolleri.*
+import miniprojekti.Viite.*
+import miniprojekti.console.*
 
 description 'User get a listing of references'
 
-scenario "creation succesfull with correct username and password", {
-    given 'command new user is selected', {
-       userDao = new InMemoryUserDao()
-       auth = new AuthenticationService(userDao)
-       io = new StubIO("Volter Kilpi", "Alastalon salissa", 1933 )
-       io2 = new StubIO("Aleksis Kivi", "Seitsemän veljestä", 1870)
-       app = new App(io, auth)
+scenario "user can get a list of references", {
+    given 'at least one reference with author, title, year and publisher', {
+       io = new StubIO("newbook", "ref", "A. Kivi", "Seitsemän veljestä", "1870", "pub", "", "", "", "", "", "",
+                       "listbooks")
+       app = new Console(io, new Kontrolleri())
     }
  
-    when 'a valid username and password are entered', {
-      app.app()
+    when 'a reference is added', {
+      app.run()
     }
 
-    then 'new user is registered to system', {
-      io.getPrints().shouldHave("new user registered")
-      io2.getPrints().shouldHave("new user registered")
+    then 'prints added references to the command line', {
+      io.getPrints().shouldHave("Seitsemän veljestä")
+      io.getPrints().shouldNotHave("Viitteen lisäys epäonnistui.")
     }
 }
 
