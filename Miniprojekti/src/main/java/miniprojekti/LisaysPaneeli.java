@@ -1,7 +1,5 @@
 package miniprojekti;
 
-import miniprojekti.Viite.Kirjaviite;
-import miniprojekti.Kontrolleri.Kontrolleri;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -185,23 +183,16 @@ public class LisaysPaneeli {
         //-----------------------kuuntelija lisäyspainikkeelle----------------------------------
         lisaa.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                UserWindow.ohjausOlio.setAuthor(author_kentta.getText());
-                UserWindow.ohjausOlio.setPublisher(publisher_kentta.getText());
-                UserWindow.ohjausOlio.setTitle(title_kentta.getText());
-                UserWindow.ohjausOlio.setYear(year_kentta.getText());
-                UserWindow.ohjausOlio.setBooktitle(booktitle_kentta.getText());
-                UserWindow.ohjausOlio.setPages(pages_kentta.getText());
-                UserWindow.ohjausOlio.setAddress(address_kentta.getText());
-                UserWindow.ohjausOlio.setVolume(volume_kentta.getText());
-                UserWindow.ohjausOlio.setNumber(number_kentta.getText());
-                UserWindow.ohjausOlio.setJournal(journal_kentta.getText());
-                UserWindow.ohjausOlio.luoViite(UserWindow.ohjausOlio);
-                //System.out.println("valinta: " + kohde);
-                //System.out.println("tiedot: " + UserWindow.ohjausOlio);
-                String teksti = "Viitteesi on tyypiltään "+kohde+"\r\n";
-                teksti += UserWindow.ohjausOlio;                
+                if (!UserWindow.ohjausOlio.luoKirjaviite("joku_referenssi", author_kentta.getText(), 
+                        title_kentta.getText(), year_kentta.getText(), booktitle_kentta.getText(), 
+                        publisher_kentta.getText(), pages_kentta.getText(), address_kentta.getText(), 
+                        volume_kentta.getText(), number_kentta.getText(), journal_kentta.getText())) {
+                    ilmoitusalue.setText("Pakollisiin kenttiin ei ole syötetty kunnollista tietoa.");
+                    return;
+                }
+                String teksti = "Viitteesi on tyypiltään " + kohde + "\r\n";
+                teksti += UserWindow.ohjausOlio.haeViimeksiLisattyKirjaviite().toString();                
                 ilmoitusalue.setText(teksti);
-                
             }
         });
 
