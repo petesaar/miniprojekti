@@ -36,7 +36,10 @@ public class Kontrolleri {
     
     // palauta viimeksi lisätty kirjaviite
     public Kirjaviite haeViimeksiLisattyKirjaviite() {
-        return kirjaviitteet.get(kirjaviitteet.size() - 1);
+        if (!kirjaviitteet.isEmpty()) {
+            return kirjaviitteet.get(kirjaviitteet.size() - 1);
+        }
+        return null;
     }
     
     // lisätäänkö metodi viitteiden levytallennusta varten
@@ -45,7 +48,7 @@ public class Kontrolleri {
     }
     
     // metodi luokkien lataamiseen levyltä
-    public void haeViitteet () {
-        
+    public List<Kirjaviite> haeViitteet () {
+        return null;
     }
 }
