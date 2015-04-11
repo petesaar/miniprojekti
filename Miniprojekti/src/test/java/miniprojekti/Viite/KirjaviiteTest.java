@@ -18,46 +18,52 @@ public class KirjaviiteTest {
     
     @Before
     public void setUp(){
-        viite = new Kirjaviite("Ref","Author", "Title", "1999", "Bookname");
+        viite = new Kirjaviite("Ref","Author", "Title", "1999", "Publisher");
     }
     
     @Test
     public void nimiEiTyhjaKonstruktorissa(){
-        if (tryConstructor("Author","","1999","Bookname"))
+        if (tryConstructor("Ref","Author","","1999","Publisher"))
             fail("Tyhjän merkkijono title-parametrina tulisi aiheuttaa poikkeus.");
     }
     
     @Test
     public void kirjailijaEiTyhjäKonstruktorissa(){
-        if (tryConstructor("","Title","1999","Bookname"))
+        if (tryConstructor("Ref","","Title","1999","Publisher"))
             fail("Tyhjän merkkijono author-parametrina tulisi aiheuttaa poikkeus.");
     }
     
     @Test 
-    public void kirjannimiEiTyhjäKonstruktorissa(){
-        if (tryConstructor("Author","Title","1999",""))
+    public void julkaisijaEiTyhjäKonstruktorissa(){
+        if (tryConstructor("Ref","Author","Title","1999",""))
             fail("Tyhjän merkkijono bookname-parametrina tulisi aiheuttaa poikkeus.");
     }
     
     @Test 
     public void vuosiluvunTuleeOllaNelinumeroinenLuku(){
         String message = "Virheellisen vuosiluvun tulee aiheuttaa poikkeus";
-        if (tryConstructor("Author","Title","192","Bookname"))
+        if (tryConstructor("Ref","Author","Title","192","Publisher"))
             fail(message);
-        if (tryConstructor("Author","Title","19223","Bookname"))
+        if (tryConstructor("Ref","Author","Title","19223","Publisher"))
             fail(message);
-        if (tryConstructor("Author","Title","19s2","Bookname"))
+        if (tryConstructor("Ref","Author","Title","19s2","Publisher"))
             fail(message);
-        if (tryConstructor("Author","Title","Year","Bookname"))
+        if (tryConstructor("Ref","Author","Title","Year","Publisher"))
             fail(message);
     }
     
     @Test
     public void kirjaviiteOlionLuontiOnnistuuHyväksyttävilläParametreilla(){
-        if(tryConstructor("Author", "Title", "1999", "Booktitle")){
+        if(tryConstructor("Ref","Author", "Title", "1999", "Publisher")){
             return;
         }
-        fail("Olion luominen parametreilla (\"Author\", \"Title\", \"1999\", \"Booktitle\") tulisi onnistua! ");
+        fail("Olion luominen parametreilla (\"Ref\", \"Author\", \"Title\", \"1999\", \"Publisher\") tulisi onnistua! ");
+    }
+    
+    @Test 
+    public void kirjaviitteenLuominenEiOnnistuTyhjälläViitteellä(){
+        if(tryConstructor("","Author", "Title", "1999", "Publisher"))
+            fail("Tyhjän merkkijonon reference-parametrina tulisi aiheuttaa poikkeus.");
     }
     
     
@@ -105,21 +111,21 @@ public class KirjaviiteTest {
     }
     
     @Test
-    public void setBooktitleEiHyväksyTyhjääMerkkijonoa(){
-        if(viite.setBooktitle(""))
-            fail("SetBooktitle: merkkijono ei saa olla tyhjä.");
+    public void setPublisherEiHyväksyTyhjääMerkkijonoa(){
+        if(viite.setPublisher(""))
+            fail("setPublisher: merkkijono ei saa olla tyhjä.");
     }
     
     @Test
-    public void setBooktitleToimiiEpätyhjälläMerkkijonolla(){
-        viite.setBooktitle("Knimi");
-        assertTrue(viite.getBooktitle().equals("Knimi"));
+    public void setPublisherToimiiEpätyhjälläMerkkijonolla(){
+        viite.setPublisher("Knimi");
+        assertTrue(viite.getPublisher().equals("Knimi"));
     }
     
     
-    private boolean tryConstructor(String author, String title, String year, String bookname){
+    private boolean tryConstructor(String reference, String author, String title, String year, String publisher){
         try{
-            Kirjaviite v = new Kirjaviite("Ref",author, title, year, bookname);
+            Kirjaviite v = new Kirjaviite(reference, author, title, year, publisher);
         } catch(IllegalArgumentException e){
             return false;
         }

@@ -11,8 +11,8 @@ public class Kirjaviite implements KirjaviiteRajapinta{
     private String author;
     private String title;
     private String year;
-    private String publisher = "";
-    private String booktitle;
+    private String booktitle = "";
+    private String publisher;
     private String pages = "";
     private String address = "";
     private String volume = "";
@@ -30,15 +30,15 @@ public class Kirjaviite implements KirjaviiteRajapinta{
     public Kirjaviite () {
     }
 
-    public Kirjaviite(String reference, String author, String title, String year, String booktitle){
-        if(!setRequiredFields(reference, author, title, year, booktitle)){
+    public Kirjaviite(String reference, String author, String title, String year, String publisher){
+        if(!setRequiredFields(reference, author, title, year, publisher)){
             throw new IllegalArgumentException();
         }        
     }
     
-    public Kirjaviite(String reference, String author, String title, String year, String booktitle, String publisher, String pages, String address, String volume, String number, String journal){
-        if(setRequiredFields(reference, author, title, year, booktitle)){
-            this.publisher = publisher;
+    public Kirjaviite(String reference, String author, String title, String year, String publisher, String booktitle, String pages, String address, String volume, String number, String journal){
+        if(setRequiredFields(reference, author, title, year, publisher)){
+            this.booktitle = booktitle;
             this.pages = pages;
             this.address = address;
             this.volume = volume;
@@ -53,13 +53,13 @@ public class Kirjaviite implements KirjaviiteRajapinta{
         return year.matches("[0-9][0-9][0-9][0-9]");
     }
     
-    private boolean setRequiredFields(String reference, String author, String title, String year, String booktitle){
+    private boolean setRequiredFields(String reference, String author, String title, String year, String publisher){
    
         boolean ret = setReference(reference);
         ret &= setAuthor(author);
         ret &= setTitle(title);
         ret &= setYear(year);
-        ret &= setBooktitle(booktitle);
+        ret &= setPublisher(publisher);
         
         return ret;
     }
@@ -97,13 +97,13 @@ public class Kirjaviite implements KirjaviiteRajapinta{
         return false;
     }
         
-    public void setPublisher(String publisher){
-        this.publisher = publisher;
+    public void setBooktitle(String booktitle){
+        this.booktitle = booktitle;
     }
         
-    public boolean setBooktitle(String booktitle){
-        if(!booktitle.isEmpty()){
-            this.booktitle = booktitle;
+    public boolean setPublisher(String publisher){
+        if(!publisher.isEmpty()){
+            this.publisher = publisher;
             return true;
         } 
         return false;
@@ -144,12 +144,12 @@ public class Kirjaviite implements KirjaviiteRajapinta{
         return this.title;
     }
             
-    public String getPublisher(){
-        return this.publisher;
-    }
-    
     public String getBooktitle(){
         return this.booktitle;
+    }
+    
+    public String getPublisher(){
+        return this.publisher;
     }
               
     public String getPages(){
