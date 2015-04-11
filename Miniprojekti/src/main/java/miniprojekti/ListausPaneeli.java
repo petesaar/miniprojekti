@@ -14,8 +14,7 @@ import miniprojekti.Viite.Kirjaviite;
  * @author Jeesusteippaajat
  */
 public class ListausPaneeli {
-
-    Kontrolleri ohjausOlio = UserWindow.ohjausOlio;
+ 
     JButton katsele = new JButton();                    //katso tallennetut viitteet
     JTextPane lukualue = new JTextPane();           //tekstialue viitteille
     JScrollPane luku = new JScrollPane(lukualue);    //scrollaava tekstialue
@@ -42,7 +41,7 @@ public class ListausPaneeli {
         //-----------------------kuuntelija katselupainikkeelle----------------------------------
         katsele.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Kirjaviite viite = ohjausOlio.luoKirjaviite();
+                lukualue.setText(UserWindow.ohjausOlio.listaaViitteet().toString());
 
             }
         });        

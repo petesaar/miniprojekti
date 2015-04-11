@@ -14,8 +14,6 @@ import javax.swing.*;
  */
 public class LisaysPaneeli {
 
-    Kontrolleri ohjausOlio = UserWindow.ohjausOlio;
-
     JButton lisaa = new JButton();    //lisäyspainike
     JLabel otsikko_pakolliset = new JLabel("Pakolliset kentät:");
     JLabel otsikko_vapaavalintaiset = new JLabel("Vapaavalintaiset kentät:");
@@ -187,22 +185,23 @@ public class LisaysPaneeli {
         //-----------------------kuuntelija lisäyspainikkeelle----------------------------------
         lisaa.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Kirjaviite uusi = ohjausOlio.luoKirjaviite();
-                uusi.setAuthor(author_kentta.getText());
-                uusi.setPublisher(publisher_kentta.getText());
-                uusi.setTitle(title_kentta.getText());
-                uusi.setYear(year_kentta.getText());
-                uusi.setBooktitle(booktitle_kentta.getText());
-                uusi.setPages(pages_kentta.getText());
-                uusi.setAddress(address_kentta.getText());
-                uusi.setVolume(volume_kentta.getText());
-                uusi.setNumber(number_kentta.getText());
-                uusi.setJournal(journal_kentta.getText());
+                UserWindow.ohjausOlio.setAuthor(author_kentta.getText());
+                UserWindow.ohjausOlio.setPublisher(publisher_kentta.getText());
+                UserWindow.ohjausOlio.setTitle(title_kentta.getText());
+                UserWindow.ohjausOlio.setYear(year_kentta.getText());
+                UserWindow.ohjausOlio.setBooktitle(booktitle_kentta.getText());
+                UserWindow.ohjausOlio.setPages(pages_kentta.getText());
+                UserWindow.ohjausOlio.setAddress(address_kentta.getText());
+                UserWindow.ohjausOlio.setVolume(volume_kentta.getText());
+                UserWindow.ohjausOlio.setNumber(number_kentta.getText());
+                UserWindow.ohjausOlio.setJournal(journal_kentta.getText());
+                UserWindow.ohjausOlio.luoViite(UserWindow.ohjausOlio);
                 //System.out.println("valinta: " + kohde);
-                //System.out.println("tiedot: " + uusi);
+                //System.out.println("tiedot: " + UserWindow.ohjausOlio);
                 String teksti = "Viitteesi on tyypiltään "+kohde+"\r\n";
-                teksti += uusi;                
+                teksti += UserWindow.ohjausOlio;                
                 ilmoitusalue.setText(teksti);
+                
             }
         });
 

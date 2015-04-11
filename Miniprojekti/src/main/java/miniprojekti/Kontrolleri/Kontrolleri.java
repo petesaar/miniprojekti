@@ -1,21 +1,30 @@
 
 package miniprojekti.Kontrolleri;
 
+import java.util.ArrayList;
 import miniprojekti.Viite.Kirjaviite;
 
 /**
  * Luokasta tehdään ohjausolio, joka toimii yhteistyössä muiden luokkien kanssa
  * @author Jeesusteippaajat 
  */
-public class Kontrolleri {
+public class Kontrolleri extends Kirjaviite {
     
-    public Kontrolleri(){
-        
+    private ArrayList <Kirjaviite> kirjaviitteet = new ArrayList();
+    
+    // 
+    public boolean luoViite (Kontrolleri ohjausOlio) {
+        Kirjaviite uusi = ohjausOlio;
+        //
+        kirjaviitteet.add(uusi);
+        return true;
     }
     
-    public Kirjaviite luoKirjaviite(){
-        Kirjaviite uusi = new Kirjaviite();
-        return uusi;
+    // listaa viitteet käyttöliittymää ja tallennusta varten
+    public ArrayList listaaViitteet () {
+        return kirjaviitteet;
     }
     
+    // lisätäänkö metodi viitteiden levytallennusta varten?
+    // public void tallennaViitteet () { }
 }

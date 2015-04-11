@@ -24,6 +24,10 @@ public class Kirjaviite {
      * @param year Must be four-digit number.
      * @param booktitle Must not be empty.
      */
+    
+    public Kirjaviite () {
+    }
+    
     public Kirjaviite(String author, String title, String year, String booktitle){
         if(checkArgs(author, title, year, booktitle)){
             this.author = author;
