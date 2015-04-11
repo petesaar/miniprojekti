@@ -1,12 +1,10 @@
 package miniprojekti;
 
-import miniprojekti.Kontrolleri.Kontrolleri;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import miniprojekti.UserWindow;
 import miniprojekti.Viite.Kirjaviite;
 
 /**
@@ -41,8 +39,11 @@ public class ListausPaneeli {
         //-----------------------kuuntelija katselupainikkeelle----------------------------------
         katsele.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                lukualue.setText(UserWindow.ohjausOlio.listaaViitteet().toString());
-
+                StringBuilder sb = new StringBuilder();
+                for (Kirjaviite viite : UserWindow.ohjausOlio.listaaViitteet()) {
+                    sb.append(viite.toString()).append("\n\n");
+                }
+                lukualue.setText(sb.toString());
             }
         });        
 
