@@ -18,7 +18,7 @@ public class KirjaviiteTest {
     
     @Before
     public void setUp(){
-        viite = new Kirjaviite("Author", "Title", "1999", "Bookname");
+        viite = new Kirjaviite("Ref","Author", "Title", "1999", "Bookname");
     }
     
     @Test
@@ -41,7 +41,7 @@ public class KirjaviiteTest {
     
     @Test 
     public void vuosiluvunTuleeOllaNelinumeroinenLuku(){
-        String message = "Tyhjän merkkijono bookname-parametrina tulisi aiheuttaa poikkeus.";
+        String message = "Virheellisen vuosiluvun tulee aiheuttaa poikkeus";
         if (tryConstructor("Author","Title","192","Bookname"))
             fail(message);
         if (tryConstructor("Author","Title","19223","Bookname"))
@@ -119,7 +119,7 @@ public class KirjaviiteTest {
     
     private boolean tryConstructor(String author, String title, String year, String bookname){
         try{
-            Kirjaviite v = new Kirjaviite(author, title, year, bookname);
+            Kirjaviite v = new Kirjaviite("Ref",author, title, year, bookname);
         } catch(IllegalArgumentException e){
             return false;
         }

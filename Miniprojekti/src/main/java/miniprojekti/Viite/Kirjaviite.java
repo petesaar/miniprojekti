@@ -5,8 +5,9 @@ package miniprojekti.Viite;
  *
  * @author Jeesusteippaajat
  */
-public class Kirjaviite {
+public class Kirjaviite implements KirjaviiteRajapinta{
     
+    private String reference;
     private String author;
     private String title;
     private String year;
@@ -19,40 +20,58 @@ public class Kirjaviite {
     private String journal = "";
     
     /**
+     * @param reference Must not be empty.
      * @param author Must not be empty
      * @param title Must not be empty.
      * @param year Must be four-digit number.
      * @param booktitle Must not be empty.
      */
-    
+
     public Kirjaviite () {
     }
-    
-    public Kirjaviite(String author, String title, String year, String booktitle){
-        if(checkArgs(author, title, year, booktitle)){
-            this.author = author;
-            this.title = title;
-            this.year = year;
-            this.booktitle = booktitle;
-        } else {
+
+    public Kirjaviite(String reference, String author, String title, String year, String booktitle){
+        if(!setRequiredFields(reference, author, title, year, booktitle)){
             throw new IllegalArgumentException();
         }        
     }
     
-    private boolean checkArgs(String author, String title, String year, String booktitle){
-        boolean ret = true;
-        
-        ret = ret && !author.isEmpty();
-        ret = ret && !title.isEmpty();
-        ret = ret && !booktitle.isEmpty();
-        ret = ret && checkYear(year);
-        
-        return ret;
-    } 
+    public Kirjaviite(String reference, String author, String title, String year, String booktitle, String publisher, String pages, String address, String volume, String number, String journal){
+        if(setRequiredFields(reference, author, title, year, booktitle)){
+            this.publisher = publisher;
+            this.pages = pages;
+            this.address = address;
+            this.volume = volume;
+            this.number = number;
+            this.journal = journal;
+        } else {
+            throw new IllegalArgumentException();
+        }
+    }
     
     private boolean checkYear(String year){
         return year.matches("[0-9][0-9][0-9][0-9]");
     }
+    
+    private boolean setRequiredFields(String reference, String author, String title, String year, String booktitle){
+   
+        boolean ret = setReference(reference);
+        ret &= setAuthor(author);
+        ret &= setTitle(title);
+        ret &= setYear(year);
+        ret &= setBooktitle(booktitle);
+        
+        return ret;
+    }
+    
+    public boolean setReference(String reference){
+        if(!reference.isEmpty()){
+            this.reference = reference;
+            return true;
+        } 
+        return false;
+    }
+    
     
     public boolean setAuthor(String author){
         if(!author.isEmpty()){
@@ -161,4 +180,10 @@ public class Kirjaviite {
                 +", Number: "+this.getNumber()+", Journal: "+this.getJournal();
         return viite;
     }
+
+    @Override
+    public String getRefrence() {
+        return reference;
+    }
+
 }

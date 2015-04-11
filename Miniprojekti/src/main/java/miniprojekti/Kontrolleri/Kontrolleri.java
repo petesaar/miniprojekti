@@ -15,7 +15,7 @@ public class Kontrolleri extends Kirjaviite {
     // 
     public boolean luoViite (Kontrolleri ohjausOlio) {
         Kirjaviite uusi = ohjausOlio;
-        //
+        if (uusi == null) return false;
         kirjaviitteet.add(uusi);
         return true;
     }

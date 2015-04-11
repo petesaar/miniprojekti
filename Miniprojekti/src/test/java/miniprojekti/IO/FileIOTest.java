@@ -1,13 +1,14 @@
 package miniprojekti.IO;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.Scanner;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  * @author Jeesusteippaajat
@@ -51,41 +52,6 @@ public final class FileIOTest {
             assertTrue(created.exists());
         } catch (IOException ex) {
             fail();
-        }
-    }
-
-    @Test
-    public void tyhjanTiedostonLuontiLukossaEiOnnistu() {
-        FileInputStream in = null;
-        try {
-            File sattumanvarainenTiedosto = File.createTempFile("testMini", ".Jeesus");
-            String polku = sattumanvarainenTiedosto.getAbsolutePath();
-            in = new FileInputStream(sattumanvarainenTiedosto);
-            FileIO io = new FileIO(polku);
-            fail("Lukkiutuminen ei aiheuta virhettä");
-        } catch (IOException ex) {
-            fail();
-        } catch (IllegalArgumentException ex) {
-        } finally {
-            if (in != null) {
-                try {
-                    in.close();
-                } catch (IOException ex) {
-                }
-            }
-        }
-    }
-
-    @Test
-    public void huonoPolkuErroria() {
-        try {
-            File sattumanvarainenTiedosto = new File("Ö:/");
-            String polku = sattumanvarainenTiedosto.getAbsolutePath();
-            FileIO io = new FileIO(polku);
-            fail("Huono polku ei aiheuta virhettä");
-        } catch (IOException ex) {
-            fail();
-        } catch (IllegalArgumentException ex) {
         }
     }
 
