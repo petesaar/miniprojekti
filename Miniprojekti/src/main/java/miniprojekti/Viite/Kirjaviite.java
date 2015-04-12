@@ -202,7 +202,7 @@ public class Kirjaviite implements KirjaviiteRajapinta{
     }
               
     public String toString(){
-        String viite = "Viite sisÃ¤ltÃ¤Ã¤ seuraavat tiedot: ";
+        String viite = "Viite sisältää seuraavat tiedot: ";
         viite += " Author: "+this.getAuthor()+", Year: "+this.getYear()+", Title: "+this.getTitle()
                 +", Publisher: "+this.getPublisher()+", Booktitle: "+this.getBooktitle()+", Pages: "
                 +this.getPages()+", Address: "+this.getAddress()+", Volume: "+this.getVolume()
