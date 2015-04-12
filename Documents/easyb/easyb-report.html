@@ -1,0 +1,400 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en' lang='en'>
+<head>
+  <meta http-equiv='content-type' content='text/html; charset=utf-8'/>
+  <title>easyb-report</title>
+  <meta name='keywords' content='BDD, behavior driven development, java, java bdd, groovy, groovy bdd, groovy behavior driven development, java behavior driven development, ruby, rspec, easyb, easy bdd'/>
+  <meta name='description' content='easyb is story verification framework built in the spirit of behavior driven development.'/>
+  <link href='easyb_report.css' rel='stylesheet' type='text/css'/>
+  <script src='prototype.js' type='text/javascript'></script>
+  <script type='text/javascript'>
+    function showOnlyContent(contentDiv, linkId) {
+      $('Summaries').hide();
+      $('summary-menu-link').removeClassName('selected-menu-link');
+    
+    
+      $('StoriesList').hide();
+      $('StoriesListPlain').hide();
+      $('stories-list-menu-link').removeClassName('selected-menu-link');
+      $('stories-list-plain-menu-link').removeClassName('selected-menu-link');
+    
+      $(linkId).addClassName('selected-menu-link');
+      $(contentDiv).show();
+    }
+    function toggleScenariosForStory(storyNumber) {
+      $('scenarios_for_story_' + storyNumber).toggle();
+      return false;
+    }
+    function toggleComponentsForSpecification(specificationNumber) {
+      $('components_for_specification_' + specificationNumber).toggle();
+      return false;
+    }
+  </script>
+</head>
+<body>
+<!-- start header -->
+<div id='header'>
+  <h1>
+    <a href='http://www.easyb.org'>
+      <span>easyb</span>
+    </a>
+  </h1>
+  <h2>&nbsp;&nbsp; -- BDD in java can't get any easier</h2>
+</div>
+<!-- end header -->
+
+
+<!-- start page -->
+<div id='page'>
+  <!-- start content -->
+  <div id='content'>
+    <div class='post'>
+      <div class='entry'>
+        <div id='Summaries'>
+          <h2>Summary</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Behaviors</th>
+                <th>Failed</th>
+                <th>Pending</th>
+                <th>Time (sec)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='primaryRow'>
+                <td>6</td>
+                <td class=''>0</td>
+                <td class=''>0</td>
+                <td>0.734</td>
+              </tr>
+            </tbody>
+          </table>
+          <h2>Stories Summary</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Stories</th>
+                <th>Scenarios</th>
+                <th>Failed</th>
+                <th>Pending</th>
+                <th>Time (sec)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='primaryRow'>
+                <td>2</td>
+                <td>6</td>
+                <td class=''>0</td>
+                <td class=''>0</td>
+                <td>0.734</td>
+              </tr>
+            </tbody>
+          </table>
+          <h2>Specifications Summary</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Specifications</th>
+                <th>Failed</th>
+                <th>Pending</th>
+                <th>Time (sec)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='primaryRow'>
+                <td>0</td>
+                <td class=''>0</td>
+                <td class=''>0</td>
+                <td>0.0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        
+<div id='StoriesList' style='display:none;'>
+  <h2>Stories List</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Story</th>
+        <th>Scenarios</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Time (sec)</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr class='primaryRow'>
+        <td>
+         
+          <a href="#" onclick="$('scenarios_for_story_' + 0).toggle(); return false;">add_reference</a>
+         
+        </td>
+        <td>5</td>
+        <td class=''>0</td>
+        <td class=''>0</td>
+        <td>0.702</td>
+      </tr>
+
+       
+      <tr id='scenarios_for_story_0' class='scenariosForStory' style='display:none;'>
+        <td colspan='5'>
+          <table class='scenariosForStoriesTable'>
+            <tbody>
+              
+              <tr class='primaryScenarioRow'>
+                <td title='Scenario'>user can add a reference with scandic letters</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.047</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given book author, title, year and publisher are inserted</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when book title has scandic letters</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then reference is added</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+              <tr class='secondaryScenarioRow'>
+                <td title='Scenario'>user cannot add a reference without author name</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.016</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given book title, year and publisher are inserted</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when author name field is left empty</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then reference is not added</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+              <tr class='primaryScenarioRow'>
+                <td title='Scenario'>user cannot add a reference without title</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.0</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given book author, year and publisher are inserted</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when title field is left empty</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then reference is not added</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+              <tr class='secondaryScenarioRow'>
+                <td title='Scenario'>year must have four numbers</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.0</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given three references wirh book author, title, year and publisher are inserted</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when the other references have 3 and 5 numbers</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then reference with 4 numbers in year is added and the other with 3 and 5 numbers will not be added</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+              <tr class='primaryScenarioRow'>
+                <td title='Scenario'>user cannot add a reference without publisher</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.0</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given book author, title and year are inserted</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when title field is left empty</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then reference is not added</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      
+      
+      <tr class='secondaryRow'>
+        <td>
+         
+          <a href="#" onclick="$('scenarios_for_story_' + 1).toggle(); return false;">user_gets_listing_of_references</a>
+         
+        </td>
+        <td>1</td>
+        <td class=''>0</td>
+        <td class=''>0</td>
+        <td>0.032</td>
+      </tr>
+
+       
+      <tr id='scenarios_for_story_1' class='scenariosForStory' style='display:none;'>
+        <td colspan='5'>
+          <table class='scenariosForStoriesTable'>
+            <tbody>
+              
+              <tr class='primaryScenarioRow'>
+                <td title='Scenario'>user can get a list of references</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.0</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given at least one reference with author, title, year and publisher</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when a reference is added</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then prints added references to the command line</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      
+      
+    </tbody>
+  </table>
+</div>
+
+
+
+
+<div id='StoriesListPlain' style='display:none;'>
+  <h2>Stories Text</h2>
+  
+  <div>6 scenarios executed successfully.</div>
+  <div><br/><br/>&nbsp;&nbsp;Story: add_reference<br/><br/>&nbsp;&nbsp;&nbsp;User can add a reference<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario user can add a reference with scandic letters<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given book author, title, year and publisher are inserted<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when book title has scandic letters<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then reference is added<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario user cannot add a reference without author name<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given book title, year and publisher are inserted<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when author name field is left empty<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then reference is not added<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario user cannot add a reference without title<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given book author, year and publisher are inserted<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when title field is left empty<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then reference is not added<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario year must have four numbers<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given three references wirh book author, title, year and publisher are inserted<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when the other references have 3 and 5 numbers<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then reference with 4 numbers in year is added and the other with 3 and 5 numbers will not be added<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario user cannot add a reference without publisher<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given book author, title and year are inserted<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when title field is left empty<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then reference is not added<br/><br/>&nbsp;&nbsp;Story: user_gets_listing_of_references<br/><br/>&nbsp;&nbsp;&nbsp;User get a listing of references<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario user can get a list of references<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given at least one reference with author, title, year and publisher<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when a reference is added<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then prints added references to the command line</div>
+</div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end content -->
+
+
+  <!-- start sidebar -->
+  <div id='sidebar'>
+    <ul>
+      <li>
+        <h2>Sections</h2>
+        <ul>
+          <li>
+            <a id='summary-menu-link' class='selected-menu-link' href='#' onclick='showOnlyContent("Summaries", "summary-menu-link")'>Summary</a>
+          </li>
+          
+          <li>
+            <a id='stories-list-menu-link' href='#' onclick='showOnlyContent("StoriesList", "stories-list-menu-link")'>Stories</a>
+          </li>
+          <li>
+            <a id='stories-list-plain-menu-link' href='#' onclick='showOnlyContent("StoriesListPlain", "stories-list-plain-menu-link")'>Stories Text</a>
+          </li>
+          
+          
+        </ul>
+      </li>
+    </ul>
+    <div style='clear: both;'>&nbsp;</div>
+  </div>
+  <!-- end sidebar -->
+
+</div>
+<!-- end page -->
+
+<div id='footer'/>
+</body>
+</html>

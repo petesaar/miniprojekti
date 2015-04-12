@@ -5,4 +5,6 @@
 
 [CI-palvelin](http://ohtu.jamo.io/job/Jeesusteippaajat-miniprojekti/) Jenkins 
 
+[Tuorein easyB-raportti](https://github.com/petesaar/miniprojekti/tree/master/Documents/easyb/easyb-report.html)
+
 IRC: #jeesusteippaajat
