@@ -34,7 +34,7 @@ public final class BibtexTallentajaTest {
         when(kirja.getPublisher()).thenReturn("Addison-Wesley Professional");
         when(kirja.getRefrence()).thenReturn("BA04");
         when(kirja.getTitle()).thenReturn("Extreme Programming Explained: Embrace Change (2nd Edition)");
-        when(kirja.getYear()).thenReturn(2004);
+        when(kirja.getYear()).thenReturn("2004");
 
         iteraattori = mock(Iterator.class);
         when(iteraattori.hasNext()).thenReturn(true, false);
@@ -71,7 +71,7 @@ public final class BibtexTallentajaTest {
         when(kirja.getPublisher()).thenReturn("Addison-Wesley Professional", "Prentice Hall");
         when(kirja.getRefrence()).thenReturn("BA04", "Martin09");
         when(kirja.getTitle()).thenReturn("Extreme Programming Explained: Embrace Change (2nd Edition)", "Clean Code: A Handbook of Agile Software Craftsmanship");
-        when(kirja.getYear()).thenReturn(2004, 2008);
+        when(kirja.getYear()).thenReturn("2004", "2008");
 
         iteraattori = mock(Iterator.class);
         when(iteraattori.hasNext()).thenReturn(true, true, false);
