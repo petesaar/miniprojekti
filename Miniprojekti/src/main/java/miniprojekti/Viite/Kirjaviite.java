@@ -202,11 +202,30 @@ public class Kirjaviite implements KirjaviiteRajapinta{
     }
               
     public String toString(){
-        String viite = "Viite sisältää seuraavat tiedot: ";
-        viite += " Author: "+this.getAuthor()+", Year: "+this.getYear()+", Title: "+this.getTitle()
-                +", Publisher: "+this.getPublisher()+", Booktitle: "+this.getBooktitle()+", Pages: "
-                +this.getPages()+", Address: "+this.getAddress()+", Volume: "+this.getVolume()
-                +", Number: "+this.getNumber()+", Journal: "+this.getJournal();
+        String viite = "\n";
+        viite += "Author: "+this.getAuthor()+"\n"+"Year: "+this.getYear()+"\n"+"Title: "+this.getTitle()+"\n"
+                +"Publisher: "+this.getPublisher()+"\n";
+                
+         
+        if(!this.getBooktitle().equals("")){
+            viite += "Booktitle: "+this.getBooktitle()+"\n";
+        }
+        if(!this.getPages().equals("")){
+            viite += "Pages: "+this.getPages()+"\n";
+        }
+        if(!this.getAddress().equals("")){
+            viite += "Address: "+this.getAddress()+"\n";
+        }
+        if(!this.getVolume().equals("")){
+            viite += "Volume: "+this.getVolume()+"\n";
+        } 
+        if(!this.getNumber().equals("")){
+            viite += "Number: "+this.getNumber()+"\n";
+        }
+        if(!this.getJournal().equals("")){
+            viite += "Journal: "+this.getJournal()+"\n";
+        }        
+ 
         return viite;
     }
 

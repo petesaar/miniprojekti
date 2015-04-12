@@ -41,7 +41,7 @@ public class ListausPaneeli {
             public void actionPerformed(ActionEvent e) {
                 StringBuilder sb = new StringBuilder();
                 for (Kirjaviite viite : UserWindow.ohjausOlio.listaaViitteet()) {
-                    sb.append(viite.toString()).append("\n\n");
+                    sb.append(viite.toString()).append("\n");
                 }
                 lukualue.setText(sb.toString());
             }
