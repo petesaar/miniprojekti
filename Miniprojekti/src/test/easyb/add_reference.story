@@ -17,7 +17,7 @@ scenario "user can add a reference with scandic letters", {
     }
 
     then 'reference is added', {
-       io.getPrints().shouldHave("Viite lisättiin onnistuneesti.")
+       io.getPrints().shouldHave("onnistuneesti.")
     }
 }
 
@@ -32,7 +32,7 @@ scenario "user cannot add a reference without author name", {
     }
 
     then 'reference is not added', {
-       io.getPrints().shouldNotHave("Viite lisättiin onnistuneesti.")
+       io.getPrints().shouldNotHave("onnistuneesti.")
     }
 }
 
@@ -47,7 +47,7 @@ scenario "user cannot add a reference without title", {
     }
 
     then 'reference is not added', {
-       io.getPrints().shouldNotHave("Viite lisättiin onnistuneesti.")
+       io.getPrints().shouldNotHave("onnistuneesti.")
     }
 }
 
@@ -82,6 +82,6 @@ scenario "user cannot add a reference without publisher", {
     }
 
     then 'reference is not added', {
-       io.getPrints().shouldNotHave("Viite lisättiin onnistuneesti.")
+       io.getPrints().shouldNotHave("onnistuneesti.")
     }
 }
