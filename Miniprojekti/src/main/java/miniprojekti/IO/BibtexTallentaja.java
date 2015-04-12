@@ -8,11 +8,21 @@ import miniprojekti.Viite.ViiteJoukko;
 
 /**
  * @author Jeesusteippaajat
+ *
+ * Tallentaa ViiteJoukon viitteet BibTeX muodossa annettuun streamiin.
  */
 public final class BibtexTallentaja {
 
     private final ViiteJoukko viitteet;
 
+    /**
+     * Luo uuden instannsin BibTeX tallentajasta. Lukee annetusta VitteJoukosta
+     * viitteet tallennuksen yhteydessä.
+     *
+     * @param viitteet ViiteJoukko, jossa ovat tallennettavaksi tarkoitetut
+     * viiteet.
+     * @throws IllegalArgumentException Jos ViiteJoukko on null.
+     */
     public BibtexTallentaja(ViiteJoukko viitteet) {
         if (viitteet == null) {
             throw new IllegalArgumentException("Vitteet oli null.");
@@ -20,6 +30,15 @@ public final class BibtexTallentaja {
         this.viitteet = viitteet;
     }
 
+    /**
+     * Tallentaa konstruktorissa annetun ViiteJoukon viitteet annettuun
+     * streamiin.
+     *
+     * @param io Streami, johon viitteet tallennetaan.
+     * @throws IOException Kun kirjoituksessa tulee virhe.
+     * @throws IllegalArgumentException Jos annettus streami on null, tai jos
+     * ViiteJoukko palauttaa null arvoisen iteroitavan olion.
+     */
     public void tallennaStream(IOOut io) throws IOException {
         if (io == null) {
             throw new IllegalArgumentException("IOOut oli null.");
@@ -44,6 +63,13 @@ public final class BibtexTallentaja {
         }
     }
 
+    /**
+     * Suorittaa tallennuksen annettuun BufferedWriteriin.
+     *
+     * @param viitteet Tallennettavien viitteiden joukko.
+     * @param writer BufferedWriter olioon viitteet kirjoitetaan.
+     * @throws IOException Kirjoitus virheen sattuessa.
+     */
     private void tallennaTiedot(Iterable<KirjaviiteRajapinta> viitteet, BufferedWriter writer) throws IOException {
         for (KirjaviiteRajapinta viite : viitteet) {
             StringBuilder teksti = new StringBuilder();
