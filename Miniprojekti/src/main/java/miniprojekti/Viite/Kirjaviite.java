@@ -19,23 +19,35 @@ public class Kirjaviite implements KirjaviiteRajapinta{
     private String number = "";
     private String journal = "";
     
-    /**
+    /**Konstruktori vain pakollisilla parametreilla.
+     * 
      * @param reference Must not be empty.
      * @param author Must not be empty
      * @param title Must not be empty.
-     * @param year Must be four-digit number.
+     * @param year Must be a four-digit number.
      * @param publisher Must not be empty.
+     * @throws IllegalArgumentException mikäli jokin pakollisista kentistä on virheellinen.
      */
-
-    public Kirjaviite () {
-    }
-
     public Kirjaviite(String reference, String author, String title, String year, String publisher){
         if(!setRequiredFields(reference, author, title, year, publisher)){
             throw new IllegalArgumentException();
         }        
     }
-    
+    /**Konstruktori kaikilla parametreilla.
+     * 
+     * @param reference Must not be empty.
+     * @param author Must not be empty.
+     * @param title Must not be empty.
+     * @param year Must be a four-digit number.
+     * @param publisher Must not be empty.
+     * @param booktitle
+     * @param pages
+     * @param address
+     * @param volume
+     * @param number
+     * @param journal 
+     * @throws IllegalArgumentException mikäli jokin pakollisista kentistä on virheellinen.
+     */
     public Kirjaviite(String reference, String author, String title, String year, String publisher, String booktitle, String pages, String address, String volume, String number, String journal){
         if(setRequiredFields(reference, author, title, year, publisher)){
             this.booktitle = booktitle;
@@ -48,11 +60,12 @@ public class Kirjaviite implements KirjaviiteRajapinta{
             throw new IllegalArgumentException();
         }
     }
-    
+    //Tarkistaa vuosiluvun oikeellisuuden, siis syötteen tulee olla nelinumeroinen luku.
     private boolean checkYear(String year){
         return year.matches("[0-9][0-9][0-9][0-9]");
     }
     
+    //Asettaa annetut arvot pakollisille kentille. Palauttaa false, jos jokin parametri on virheellinen. Apumetodi konstruktoreille. 
     private boolean setRequiredFields(String reference, String author, String title, String year, String publisher){
    
         boolean ret = setReference(reference);
@@ -63,7 +76,10 @@ public class Kirjaviite implements KirjaviiteRajapinta{
         
         return ret;
     }
-    
+    /**
+     * @param reference String
+     * @return false, jos parametri on tyhjä merkkijono.
+     */
     public boolean setReference(String reference){
         if(!reference.isEmpty()){
             this.reference = reference;
@@ -72,7 +88,10 @@ public class Kirjaviite implements KirjaviiteRajapinta{
         return false;
     }
     
-    
+    /**
+     * @param author String
+     * @return false, jos parametri on tyhjä merkkijono.
+     */
     public boolean setAuthor(String author){
         if(!author.isEmpty()){
             this.author = author;
@@ -80,7 +99,10 @@ public class Kirjaviite implements KirjaviiteRajapinta{
         } 
         return false;
     }
-        
+    /**
+     * @param title String
+     * @return false, jos parametri on tyhjä merkkijono.
+     */    
     public boolean setTitle(String title){
         if(!title.isEmpty()){
             this.title = title;
@@ -88,7 +110,11 @@ public class Kirjaviite implements KirjaviiteRajapinta{
         } 
         return false;
     }
-        
+    
+    /**
+     * @param year String, nelinumeroinen luku
+     * @return false, jos parametri on virheellinen 
+     */    
     public boolean setYear(String year){
         if(checkYear(year)){
             this.year = year;
@@ -100,7 +126,10 @@ public class Kirjaviite implements KirjaviiteRajapinta{
     public void setBooktitle(String booktitle){
         this.booktitle = booktitle;
     }
-        
+    /**
+     * @param publisher
+     * @return false, jos parametri on tyhjä merkkijono.
+     */    
     public boolean setPublisher(String publisher){
         if(!publisher.isEmpty()){
             this.publisher = publisher;
