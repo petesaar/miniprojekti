@@ -92,7 +92,7 @@ public final class BibtexTallentajaTest {
             fail(ex.toString());
         }
     }
-/*
+
     @Test
     public void testTallennus() {
         yksiViite();
@@ -136,7 +136,7 @@ public final class BibtexTallentajaTest {
         yksiViite();
         verify(viitteet, times(1)).getKirjaViitteet();
     }
-*/
+
     @Test
     public void viiteKokoelmaNullVirhe() {
         try {
