@@ -15,7 +15,7 @@ import miniprojekti.Kontrolleri.Kontrolleri;
 public class UserWindow extends JPanel {
     
     static Kontrolleri ohjausOlio = new Kontrolleri();
-    public JTabbedPane areena = new JTabbedPane();  //yleinen paneeli, johon muut liitetään
+    static JTabbedPane areena = new JTabbedPane();  //yleinen paneeli, johon muut liitetään
     static JPanel lisaysPaneeli = new JPanel();     //paneeli viitteen lisäämiseen
     static JPanel listausPaneeli = new JPanel();     //paneeli, jossa voi katsoa kaikkia viitteitä
     
