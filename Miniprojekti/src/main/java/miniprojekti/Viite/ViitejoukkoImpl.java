@@ -10,7 +10,7 @@ import miniprojekti.Viite.validaattorit.Validator;
 
 
 public class ViitejoukkoImpl implements ViiteJoukko{
-
+    
     private ArrayList<KirjaviiteRajapinta> viitteet;
     private String[] errors;
     
@@ -33,11 +33,10 @@ public class ViitejoukkoImpl implements ViiteJoukko{
     public boolean save(KirjaviiteRajapinta viite) {
         Validator validator = viite.getValidator();
         boolean valid = validator.validate();
+        errors = validator.getErrors();
         if(!valid){
-            errors = validator.getErrors();
             return false;
         }
-        errors = null;
         viitteet.add(viite);
         return true;
     }
