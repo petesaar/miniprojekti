@@ -195,7 +195,8 @@ public class LisaysPaneeli {
                     //Optional fields: number, pages, month, note, key
                     UserWindow.lisaysPaneeli.add(lisaa);         //lisäyspainike                    
                     UserWindow.lisaysPaneeli.add(otsikko_referenssi);
-                    UserWindow.lisaysPaneeli.add(referenssi_kentta);                    
+                    UserWindow.lisaysPaneeli.add(referenssi_kentta);
+                    referenssi_kentta.setBackground(new Color(255, 160, 122));
                     UserWindow.lisaysPaneeli.add(otsikko_author);
                     UserWindow.lisaysPaneeli.add(author_kentta);
                     author_kentta.setBackground(new Color(255, 160, 122));
@@ -226,6 +227,7 @@ public class LisaysPaneeli {
                     UserWindow.lisaysPaneeli.add(author_kentta);
                     author_kentta.setBackground(new Color(255, 160, 122));
                     UserWindow.lisaysPaneeli.add(referenssi_kentta);
+                    referenssi_kentta.setBackground(new Color(255, 160, 122));
                     UserWindow.lisaysPaneeli.add(otsikko_title);
                     UserWindow.lisaysPaneeli.add(title_kentta);
                     title_kentta.setBackground(new Color(255, 160, 122));
@@ -249,7 +251,8 @@ public class LisaysPaneeli {
                     //Optional fields: editor, volume/number, series, pages, address, month, organization, publisher, note, key
                     UserWindow.lisaysPaneeli.add(lisaa);         //lisäyspainike                    
                     UserWindow.lisaysPaneeli.add(otsikko_referenssi);
-                    UserWindow.lisaysPaneeli.add(referenssi_kentta);                   
+                    UserWindow.lisaysPaneeli.add(referenssi_kentta); 
+                    referenssi_kentta.setBackground(new Color(255, 160, 122));
                     UserWindow.lisaysPaneeli.add(otsikko_author);
                     UserWindow.lisaysPaneeli.add(author_kentta);
                     author_kentta.setBackground(new Color(255, 160, 122));

@@ -206,7 +206,7 @@ public class Kirjaviite implements KirjaviiteRajapinta{
               
     public String toString(){
         String viite = "\n";
-        viite += "Author: "+this.getAuthor()+"\n"+"Year: "+this.getYear()+"\n"+"Title: "+this.getTitle()+"\n"
+        viite += "Reference: "+this.getRefrence()+"\n"+"Author: "+this.getAuthor()+"\n"+"Year: "+this.getYear()+"\n"+"Title: "+this.getTitle()+"\n"
                 +"Publisher: "+this.getPublisher()+"\n";
                 
          

@@ -20,7 +20,7 @@ public class ListausPaneeli {
     public void piirra() {
 
         katsele.setBounds(640, 20, 180, 40);
-        katsele.setText("Katsele tallenteitasi");
+        katsele.setText("Päivitä luettelo");
         katsele.setFont(new Font("Arial", Font.BOLD, 14));
         katsele.setBackground(Color.green);
         
