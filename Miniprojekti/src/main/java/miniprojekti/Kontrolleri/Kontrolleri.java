@@ -29,20 +29,31 @@ public class Kontrolleri {
         return kirjaviitteet.add(viite);
     }
     
+    // keskeneräinen hakutoiminto (palauttaa myös viitteen, jos hakusana on kentän nimessä)
+    public List<Kirjaviite> haeSanalla (String hakusana) {
+        List<Kirjaviite> hakutulokset = new ArrayList();
+        for (Kirjaviite viite : kirjaviitteet) {
+            // TODO: kun viiteluokkaan tehty getFields-metodi tms. niin hakutomintoa tarkennettava
+            if (viite.toString().contains(hakusana)) hakutulokset.add(viite);
+        }
+        return hakutulokset;
+    }
+    
     // listaa viitteet käyttöliittymää ja tallennusta varten
     public List<Kirjaviite> listaaViitteet () {
         return kirjaviitteet;
     }
     
     // palauta viimeksi lisätty kirjaviite
-    public Kirjaviite haeViimeksiLisattyKirjaviite() {
+    public String haeViimeksiLisattyKirjaviite() {
         if (!kirjaviitteet.isEmpty()) {
-            return kirjaviitteet.get(kirjaviitteet.size() - 1);
+            BibtexMuunnos bibtex = new BibtexMuunnos(kirjaviitteet.get(kirjaviitteet.size() - 1));
+            return bibtex.muunnaBibtexviitteeksi();
         }
         return null;
     }
     
-    // lisätäänkö metodi viitteiden levytallennusta varten
+    // lisätäänkö metodi viitteiden levytallennusta varten?
     public void tallennaViitteet () {
         
     }
