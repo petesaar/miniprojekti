@@ -1,6 +1,7 @@
 package miniprojekti.Kontrolleri;
 
 import miniprojekti.Viite.Kirjaviite;
+import miniprojekti.Viite.KirjaviiteRajapinta;
 
 /**
  *
@@ -12,9 +13,9 @@ import miniprojekti.Viite.Kirjaviite;
  */
 public class BibtexMuunnos {
     
-    private Kirjaviite viite;
+    private KirjaviiteRajapinta viite;
     
-    public BibtexMuunnos (Kirjaviite viite) {
+    public BibtexMuunnos (KirjaviiteRajapinta viite) {
         this.viite = viite;
     }
        

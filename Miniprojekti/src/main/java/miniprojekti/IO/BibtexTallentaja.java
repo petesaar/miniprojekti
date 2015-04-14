@@ -3,6 +3,7 @@ package miniprojekti.IO;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.nio.charset.Charset;
 import miniprojekti.Viite.KirjaviiteRajapinta;
 import miniprojekti.Viite.ViiteJoukko;
 
@@ -13,6 +14,7 @@ import miniprojekti.Viite.ViiteJoukko;
  */
 public final class BibtexTallentaja {
 
+    public static final Charset CHARSET = Charset.forName("UTF-8");
     private final ViiteJoukko viitteet;
 
     /**
@@ -50,7 +52,7 @@ public final class BibtexTallentaja {
         OutputStreamWriter streamiinKirjoittaja = null;
         BufferedWriter tekstinKirjoittaja = null;
         try {
-            streamiinKirjoittaja = new OutputStreamWriter(io.getOutputStream());
+            streamiinKirjoittaja = new OutputStreamWriter(io.getOutputStream(), CHARSET);
             tekstinKirjoittaja = new BufferedWriter(streamiinKirjoittaja);
             tallennaTiedot(viiteIteraatio, tekstinKirjoittaja);
         } finally {

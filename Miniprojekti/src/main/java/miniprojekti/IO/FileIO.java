@@ -31,6 +31,7 @@ public final class FileIO implements IOOut {
         }
         File tiedosto = new File(polku);
         luoTyhjaTiedosto(tiedosto);
+        System.out.println(tiedosto.getAbsolutePath());
         stream = new FileOutputStream(tiedosto);
     }
 

@@ -1,9 +1,14 @@
 
 package miniprojekti.Kontrolleri;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import miniprojekti.IO.BibtexTallentaja;
+import miniprojekti.IO.FileIO;
 import miniprojekti.Viite.Kirjaviite;
+import miniprojekti.Viite.KirjaviiteRajapinta;
+import miniprojekti.Viite.ViiteJoukko;
 
 /**
  * Luokasta tehdään ohjausolio, joka toimii yhteistyössä muiden luokkien kanssa
@@ -11,7 +16,7 @@ import miniprojekti.Viite.Kirjaviite;
  */
 public class Kontrolleri {
     
-    private List<Kirjaviite> kirjaviitteet = new ArrayList();
+    private final List<KirjaviiteRajapinta> kirjaviitteet = new ArrayList<KirjaviiteRajapinta>();
     
     // luodaan uusi kirjaviite
     public boolean luoKirjaviite(String reference, String author, String title, 
@@ -30,9 +35,9 @@ public class Kontrolleri {
     }
     
     // keskeneräinen hakutoiminto (palauttaa myös viitteen, jos hakusana on kentän nimessä)
-    public List<Kirjaviite> haeSanalla (String hakusana) {
-        List<Kirjaviite> hakutulokset = new ArrayList();
-        for (Kirjaviite viite : kirjaviitteet) {
+    public List<KirjaviiteRajapinta> haeSanalla (String hakusana) {
+        List<KirjaviiteRajapinta> hakutulokset = new ArrayList<KirjaviiteRajapinta>();
+        for (KirjaviiteRajapinta viite : kirjaviitteet) {
             // TODO: kun viiteluokkaan tehty getFields-metodi tms. niin hakutomintoa tarkennettava
             if (viite.toString().contains(hakusana)) hakutulokset.add(viite);
         }
@@ -40,7 +45,7 @@ public class Kontrolleri {
     }
     
     // listaa viitteet käyttöliittymää ja tallennusta varten
-    public List<Kirjaviite> listaaViitteet () {
+    public List<KirjaviiteRajapinta> listaaViitteet () {
         return kirjaviitteet;
     }
     
@@ -55,7 +60,33 @@ public class Kontrolleri {
     
     // lisätäänkö metodi viitteiden levytallennusta varten?
     public void tallennaViitteet () {
-        
+        ViiteJoukko viitteet = new ViiteJoukko() {
+            @Override
+            public Iterable<KirjaviiteRajapinta> getKirjaViitteet() {
+                return kirjaviitteet;
+            }
+            @Override
+            public boolean save(KirjaviiteRajapinta viite) { return false; }
+            @Override
+            public ArrayList<KirjaviiteRajapinta> getViitteet() { return null; }
+            @Override
+            public String[] getErrors() { return null; }
+        };
+        FileIO io = null;
+        try {
+            io = new FileIO("target/tallennukset.bib");
+            BibtexTallentaja tallentaja = new BibtexTallentaja(viitteet);
+            tallentaja.tallennaStream(io);
+        } catch (IOException ex) {
+        } catch (IllegalArgumentException ex) {
+        } finally {
+            if (io != null) {
+                try {
+                    io.close();
+                } catch (IOException ex) {
+                }
+            }
+        }
     }
     
     // metodi luokkien lataamiseen levyltä

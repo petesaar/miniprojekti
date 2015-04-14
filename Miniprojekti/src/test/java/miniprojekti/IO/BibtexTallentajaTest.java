@@ -28,13 +28,13 @@ public final class BibtexTallentajaTest {
     private BibtexTallentaja tallentaja;
 
     @SuppressWarnings("unchecked")
-    private void yksiViite() {
+    private void yksiViite(String author, String title, String refrence, String publisher, String year) {
         kirja = mock(KirjaviiteRajapinta.class);
-        when(kirja.getAuthor()).thenReturn("Beck, Kent and Andres, Cynthia");
-        when(kirja.getPublisher()).thenReturn("Addison-Wesley Professional");
-        when(kirja.getRefrence()).thenReturn("BA04");
-        when(kirja.getTitle()).thenReturn("Extreme Programming Explained: Embrace Change (2nd Edition)");
-        when(kirja.getYear()).thenReturn("2004");
+        when(kirja.getAuthor()).thenReturn(author);
+        when(kirja.getPublisher()).thenReturn(publisher);
+        when(kirja.getRefrence()).thenReturn(refrence);
+        when(kirja.getTitle()).thenReturn(title);
+        when(kirja.getYear()).thenReturn(year);
 
         iteraattori = mock(Iterator.class);
         when(iteraattori.hasNext()).thenReturn(true, false);
@@ -54,6 +54,14 @@ public final class BibtexTallentajaTest {
         } catch (IOException ex) {
             fail(ex.toString());
         }
+    }
+
+    private void yksiViiteSpeksistä() {
+        yksiViite("Beck, Kent and Andres, Cynthia",
+                "Extreme Programming Explained: Embrace Change (2nd Edition)",
+                "BA04",
+                "Addison-Wesley Professional",
+                "2004");
     }
 
     /*
@@ -95,8 +103,8 @@ public final class BibtexTallentajaTest {
 
     @Test
     public void testTallennus() {
-        yksiViite();
-        String result = new String(stream.toByteArray(), Charset.forName("UTF-8"));
+        yksiViiteSpeksistä();
+        String result = new String(stream.toByteArray(), BibtexTallentaja.CHARSET);
         String expected = "@book{BA04,\n"
                 + "author = {Beck, Kent and Andres, Cynthia},\n"
                 + "title = {Extreme Programming Explained: Embrace Change (2nd Edition)},\n"
@@ -107,9 +115,27 @@ public final class BibtexTallentajaTest {
     }
 
     @Test
+    public void testTallennusUTF8() {
+        String author = "ÅÖÅÖÄSA DO#¤OASPDO APS";
+        String title = "ASDÅ¤+´´´ökmakwmäeq342¨ö 52 f+d*-- ";
+        String year = "1234";
+        String publisher = "ÅÅÅÅÅ=*-/-+gF KODJFGISHG93425U5 44213%?#&)\"\"\"\"";
+        String refrence = "test";
+        yksiViite(author, title, refrence, publisher, year);
+        String result = new String(stream.toByteArray(), BibtexTallentaja.CHARSET);
+        String expected = "@book{" + refrence + ",\n"
+                + "author = {" + author + "},\n"
+                + "title = {" + title + "},\n"
+                + "year = {" + year + "},\n"
+                + "publisher = {" + publisher + "},\n"
+                + "}\n";
+        assertEquals(expected, result);
+    }
+
+    @Test
     public void kaksiViitettaToimii() {
         kaksiViitetta();
-        String result = new String(stream.toByteArray(), Charset.forName("UTF-8"));
+        String result = new String(stream.toByteArray(), BibtexTallentaja.CHARSET);
         String expected = "@book{BA04,\n"
                 + "author = {Beck, Kent and Andres, Cynthia},\n"
                 + "title = {Extreme Programming Explained: Embrace Change (2nd Edition)},\n"
@@ -127,13 +153,13 @@ public final class BibtexTallentajaTest {
 
     @Test
     public void iOOutKutsutaan() {
-        yksiViite();
+        yksiViiteSpeksistä();
         verify(out, times(1)).getOutputStream();
     }
 
     @Test
     public void viiteKokoelmaaKutsutaan() {
-        yksiViite();
+        yksiViiteSpeksistä();
         verify(viitteet, times(1)).getKirjaViitteet();
     }
 
