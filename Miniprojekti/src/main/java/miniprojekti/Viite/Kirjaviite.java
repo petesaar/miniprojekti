@@ -1,6 +1,9 @@
 
 package miniprojekti.Viite;
 
+import miniprojekti.Viite.validaattorit.KirjaviiteValidator;
+import miniprojekti.Viite.validaattorit.Validator;
+
 /**
  *
  * @author Jeesusteippaajat
@@ -233,5 +236,11 @@ public class Kirjaviite implements KirjaviiteRajapinta{
     public String getRefrence() {
         return reference;
     }
+
+    @Override
+    public Validator getValidator() {
+        return new KirjaviiteValidator(this);
+    }
+
 
 }
