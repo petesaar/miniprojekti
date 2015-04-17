@@ -20,7 +20,7 @@ public class BibtexMuunnos {
         this.viite = viite;
     }
        
-    // TODO: tämä on nyt kopiotu ja muokattu metodi BibtexTallentajasta
+    // Toimii: kääntää minkä tahansa viitetyypin bibtexiksi, mutta testit puuttuvat!
     public String muunnaBibtexviitteeksi() {
             StringBuilder teksti = new StringBuilder();
             teksti.append("@"+viite.getType()+"{");
