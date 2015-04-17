@@ -1,6 +1,7 @@
 
 package miniprojekti.Viite;
 
+import java.util.HashMap;
 import miniprojekti.Viite.validaattorit.KirjaviiteValidator;
 import miniprojekti.Viite.validaattorit.Validator;
 
@@ -8,19 +9,7 @@ import miniprojekti.Viite.validaattorit.Validator;
  *
  * @author Jeesusteippaajat
  */
-public class Kirjaviite implements KirjaviiteRajapinta{
-    
-    private String reference;
-    private String author;
-    private String title;
-    private String year;
-    private String booktitle = "";
-    private String publisher;
-    private String pages = "";
-    private String address = "";
-    private String volume = "";
-    private String number = "";
-    private String journal = "";
+public class Kirjaviite extends Viite{
     
     /**Konstruktori vain pakollisilla parametreilla.
      * 
@@ -32,9 +21,20 @@ public class Kirjaviite implements KirjaviiteRajapinta{
      * @throws IllegalArgumentException mikäli jokin pakollisista kentistä on virheellinen.
      */
     public Kirjaviite(String reference, String author, String title, String year, String publisher){
-        if(!setRequiredFields(reference, author, title, year, publisher)){
-            throw new IllegalArgumentException();
-        }        
+        super("book",reference,new HashMap<String, String>());
+        HashMap<String, String> fields = new HashMap<String, String>();
+        fields.put("author",author);
+        fields.put("year", year);
+        fields.put("title",title);
+        fields.put("publisher",publisher);
+        fields.put("booktitle", "");
+        fields.put("pages", "");
+        fields.put("address", "");
+        fields.put("volume", "");
+        fields.put("number", "");
+        fields.put("journal", "");
+        setFields(fields);
+        
     }
     /**Konstruktori kaikilla parametreilla.
      * 
@@ -49,159 +49,62 @@ public class Kirjaviite implements KirjaviiteRajapinta{
      * @param volume
      * @param number
      * @param journal 
-     * @throws IllegalArgumentException mikäli jokin pakollisista kentistä on virheellinen.
      */
     public Kirjaviite(String reference, String author, String title, String year, String publisher, String booktitle, String pages, String address, String volume, String number, String journal){
-        if(setRequiredFields(reference, author, title, year, publisher)){
-            this.booktitle = booktitle;
-            this.pages = pages;
-            this.address = address;
-            this.volume = volume;
-            this.number = number;
-            this.journal = journal;
-        } else {
-            throw new IllegalArgumentException();
-        }
+        super("book",reference,new HashMap<String, String>());
+        HashMap<String, String> fields = new HashMap<String, String>();
+        fields.put("author",author);
+        fields.put("year", year);
+        fields.put("title",title);
+        fields.put("publisher",publisher);
+        fields.put("booktitle",booktitle);
+        fields.put("pages", pages);
+        fields.put("address", address);
+        fields.put("volume",volume);
+        fields.put("number",number);
+        fields.put("journal",journal);
+        setFields(fields);
     }
-    //Tarkistaa vuosiluvun oikeellisuuden, siis syötteen tulee olla nelinumeroinen luku.
-    private boolean checkYear(String year){
-        return year.matches("[0-9][0-9][0-9][0-9]");
-    }
-    
-    //Asettaa annetut arvot pakollisille kentille. Palauttaa false, jos jokin parametri on virheellinen. Apumetodi konstruktoreille. 
-    private boolean setRequiredFields(String reference, String author, String title, String year, String publisher){
-   
-        boolean ret = setReference(reference);
-        ret &= setAuthor(author);
-        ret &= setTitle(title);
-        ret &= setYear(year);
-        ret &= setPublisher(publisher);
-        
-        return ret;
-    }
-    /**
-     * @param reference String
-     * @return false, jos parametri on tyhjä merkkijono.
-     */
-    public boolean setReference(String reference){
-        if(!reference.isEmpty()){
-            this.reference = reference;
-            return true;
-        } 
-        return false;
-    }
-    
-    /**
-     * @param author String
-     * @return false, jos parametri on tyhjä merkkijono.
-     */
-    public boolean setAuthor(String author){
-        if(!author.isEmpty()){
-            this.author = author;
-            return true;
-        } 
-        return false;
-    }
-    /**
-     * @param title String
-     * @return false, jos parametri on tyhjä merkkijono.
-     */    
-    public boolean setTitle(String title){
-        if(!title.isEmpty()){
-            this.title = title;
-            return true;
-        } 
-        return false;
-    }
-    
-    /**
-     * @param year String, nelinumeroinen luku
-     * @return false, jos parametri on virheellinen 
-     */    
-    public boolean setYear(String year){
-        if(checkYear(year)){
-            this.year = year;
-            return true;
-        } 
-        return false;
-    }
-        
-    public void setBooktitle(String booktitle){
-        this.booktitle = booktitle;
-    }
-    /**
-     * @param publisher
-     * @return false, jos parametri on tyhjä merkkijono.
-     */    
-    public boolean setPublisher(String publisher){
-        if(!publisher.isEmpty()){
-            this.publisher = publisher;
-            return true;
-        } 
-        return false;
-    }
-            
-    public void setPages(String pages){
-        this.pages = pages;
-    }
-            
-    public void setAddress(String address){
-        this.address = address;
-    }
-            
-    public void setVolume(String volume){
-        this.volume = volume;
-    }
-            
-    public void setNumber(String number){
-        this.number = number;
-    }
-            
-    public void setJournal(String journal){
-        this.journal = journal;
-    }
-    
-    
-    
+
     
     public String getAuthor(){
-        return this.author;
+        return getFieldValue("author");
     }
             
     public String getYear(){
-        return this.year;
+        return getFieldValue("year");
     }
             
     public String getTitle(){
-        return this.title;
+        return getFieldValue("title");
     }
             
     public String getBooktitle(){
-        return this.booktitle;
+        return getFieldValue("booktitle");
     }
     
     public String getPublisher(){
-        return this.publisher;
+        return getFieldValue("publisher");
     }
               
     public String getPages(){
-        return this.pages;
+        return getFieldValue("pages");
     }
               
     public String getAddress(){
-        return this.address;
+        return getFieldValue("address");
     }
               
     public String getVolume(){
-        return this.volume;
+        return getFieldValue("volume");
     }
               
     public String getNumber(){
-        return this.number;
+        return getFieldValue("number");
     }
               
     public String getJournal(){
-        return this.journal;
+        return getFieldValue("journal");
     }
               
     public String toString(){
@@ -234,7 +137,7 @@ public class Kirjaviite implements KirjaviiteRajapinta{
 
     @Override
     public String getRefrence() {
-        return reference;
+        return getBibtexkey();
     }
 
     @Override

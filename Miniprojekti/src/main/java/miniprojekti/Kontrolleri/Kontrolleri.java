@@ -38,7 +38,7 @@ public class Kontrolleri {
         return kirjaviitteet.add(viite);
     }
     
-    /* TÄMÄ ON VANHA VERSIO, VOI PALAUTTAA
+
     // luodaan uusi kirjaviite
     public boolean luoKirjaviite(String reference, String author, String title, 
             String year, String booktitle, String publisher, String pages, String address, 
@@ -54,7 +54,7 @@ public class Kontrolleri {
         }
         return kirjaviitteet.add(viite);
     }
-    */
+
     
     // keskeneräinen hakutoiminto (palauttaa myös viitteen, jos hakusana on kentän nimessä)
     public List<KirjaviiteRajapinta> haeSanalla (String hakusana) {

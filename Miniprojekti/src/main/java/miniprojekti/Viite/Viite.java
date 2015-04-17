@@ -62,6 +62,10 @@ public class Viite implements KirjaviiteRajapinta {
         return this.fields;
     }
     
+    protected void setFields(Map<String, String> fields){
+        this.fields = fields;
+    }
+    
     public String toString(){
         String viite = "\n";
         
