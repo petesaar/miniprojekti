@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 import javax.swing.*;
 
 /**
@@ -169,6 +170,24 @@ public class LisaysPaneeli {
         //-----------------------kuuntelija lisäyspainikkeelle----------------------------------
         lisaa.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                
+                HashMap <String, String> kentat = new HashMap();
+                if (!title_kentta.getText().equals("")) kentat.put("title", title_kentta.getText());
+                if (!year_kentta.getText().equals("")) kentat.put("year", year_kentta.getText());
+                if (!publisher_kentta.getText().equals("")) kentat.put("publisher", publisher_kentta.getText());
+                if (!booktitle_kentta.getText().equals("")) kentat.put("book title", booktitle_kentta.getText());
+                if (!pages_kentta.getText().equals("")) kentat.put("pages", pages_kentta.getText());
+                if (!address_kentta.getText().equals("")) kentat.put("address", address_kentta.getText());
+                if (!volume_kentta.getText().equals("")) kentat.put("volume", volume_kentta.getText());
+                if (!journal_kentta.getText().equals("")) kentat.put("journal", journal_kentta.getText());
+                if (!number_kentta.getText().equals("")) kentat.put("number", number_kentta.getText());
+  
+                if (!UserWindow.ohjausOlio.luoViite(tyyppi_boksi.getSelectedItem().toString(), referenssi_kentta.getText(), kentat))  {
+                    ilmoitusalue.setText("Pakollisiin kenttiin ei ole syötetty kunnollista tietoa.");
+                    return;
+                }
+       
+                /*  VANHA VERSIO:
                 if (!UserWindow.ohjausOlio.luoKirjaviite(referenssi_kentta.getText(), author_kentta.getText(),
                         title_kentta.getText(), year_kentta.getText(), publisher_kentta.getText(),
                         booktitle_kentta.getText(), pages_kentta.getText(), address_kentta.getText(),
@@ -176,6 +195,7 @@ public class LisaysPaneeli {
                     ilmoitusalue.setText("Pakollisiin kenttiin ei ole syötetty kunnollista tietoa.");
                     return;
                 }
+                */
                 String teksti = "Viitteesi on tyypiltään " + tyyppi + "\r\n";
                 teksti += UserWindow.ohjausOlio.haeViimeksiLisattyKirjaviite().toString();
                 ilmoitusalue.setText(teksti);

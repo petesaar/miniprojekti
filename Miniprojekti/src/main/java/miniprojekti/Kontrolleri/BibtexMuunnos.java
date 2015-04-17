@@ -1,6 +1,7 @@
 package miniprojekti.Kontrolleri;
 
-import miniprojekti.Viite.Kirjaviite;
+import java.util.Map;
+import miniprojekti.Viite.Viite;
 import miniprojekti.Viite.KirjaviiteRajapinta;
 
 /**
@@ -13,26 +14,24 @@ import miniprojekti.Viite.KirjaviiteRajapinta;
  */
 public class BibtexMuunnos {
     
-    private KirjaviiteRajapinta viite;
+    private Viite viite;
     
-    public BibtexMuunnos (KirjaviiteRajapinta viite) {
+    public BibtexMuunnos (Viite viite) {
         this.viite = viite;
     }
        
     // TODO: tämä on nyt kopiotu ja muokattu metodi BibtexTallentajasta
     public String muunnaBibtexviitteeksi() {
             StringBuilder teksti = new StringBuilder();
-            teksti.append("@book{");
-            teksti.append(viite.getRefrence());
-            teksti.append(",\nauthor = {");
-            teksti.append(viite.getAuthor());
-            teksti.append("},\ntitle = {");
-            teksti.append(viite.getTitle());
-            teksti.append("},\nyear = {");
-            teksti.append(viite.getYear());
-            teksti.append("},\npublisher = {");
-            teksti.append(viite.getPublisher());
-            teksti.append("},\n}\n");
+            teksti.append("@"+viite.getType()+"{");
+            teksti.append(viite.getBibtexkey()+",\n");
+            Map<String, String> fields = viite.getFields();
+            for (Map.Entry<String, String> entry : fields.entrySet()) {
+                teksti.append(entry.getKey()+" = {");
+                teksti.append(entry.getValue()+",\n");
+        }  
+            
+            teksti.append("}\n");
 	    return teksti.toString();
         
     }
