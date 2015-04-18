@@ -10,7 +10,7 @@ import miniprojekti.Viite.validaattorit.Validator;
  * @author Jeesusteippaajat
  */
 
-public class Viite implements KirjaviiteRajapinta {
+public class Viite extends KirjaviiteRajapinta {
     
     private Map<String, String> fields; // kenttien nimet ja arvot tallennetaan HashMap-rakenteeseen
     private String type; // viitetyyppi
