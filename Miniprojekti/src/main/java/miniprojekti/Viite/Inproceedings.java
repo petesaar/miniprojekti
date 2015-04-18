@@ -12,21 +12,21 @@ import miniprojekti.Viite.validaattorit.Validator;
  * @author Jeesusteippaajat
  */
 public class Inproceedings extends Viite{
-    private String bibtexkey;
-    private String author;
-    private String title;
-    private String year;
-    private String booktitle;
-    private String editor;
-    private String volnum;
-    private String series; 
-    private String pages; 
-    private String address; 
-    private String month; 
-    private String organisation; 
-    private String publisher; 
-    private String note; 
-    private String key;
+    
+    protected String author;
+    protected String title;
+    protected String year;
+    protected String booktitle;
+    protected String editor;
+    protected String volnum;
+    protected String series; 
+    protected String pages; 
+    protected String address; 
+    protected String month; 
+    protected String organisation; 
+    protected String publisher; 
+    protected String note; 
+    protected String key;
 
     public Inproceedings(String bibtexkey, String author, String title, String year, String booktitle, String editor, String volnum, String series, String pages, String address, String month, String organisation, String publisher, String note, String key) {
         this.bibtexkey = bibtexkey;
