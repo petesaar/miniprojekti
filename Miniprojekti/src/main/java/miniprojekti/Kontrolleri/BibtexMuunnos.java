@@ -1,7 +1,6 @@
 package miniprojekti.Kontrolleri;
 
 import java.util.Map;
-import miniprojekti.Viite.Viite;
 import miniprojekti.Viite.KirjaviiteRajapinta;
 
 /**
