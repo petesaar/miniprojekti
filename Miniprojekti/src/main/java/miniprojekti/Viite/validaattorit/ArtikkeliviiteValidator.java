@@ -6,17 +6,17 @@
 package miniprojekti.Viite.validaattorit;
 
 import java.util.ArrayList;
-import miniprojekti.Viite.Inproceedings;
+import miniprojekti.Viite.Artikkeliviite;
 
 /**
  *
  * @author Iiro
  */
-public class InproceedingsValidator extends Validator{
-    
-    Inproceedings viite;
-    
-    public InproceedingsValidator(Inproceedings viite){
+public class ArtikkeliviiteValidator extends Validator{
+
+    private final Artikkeliviite viite;
+
+    public ArtikkeliviiteValidator(Artikkeliviite viite) {
         this.viite = viite;
     }
     
@@ -33,8 +33,11 @@ public class InproceedingsValidator extends Validator{
         } if(viite.getTitle().isEmpty()){
             errors.add("Artikkelin nimi ei saa olla tyhjä.");
             ret = false;
-        } if(viite.getBooktitle().isEmpty()){
-            errors.add("Kirjan nimi ei saa olla tyhjä.");
+        } if(viite.getJournal().isEmpty()){
+            errors.add("Julkaisu ei saa olla tyhjä.");
+            ret = false;
+        } if(viite.getVolume().isEmpty()){
+            errors.add("Numero ei saa olla tyhjä.");
             ret = false;
         } if(!checkYear(viite.getYear())){
             errors.add("Vuosiluvun tulee olla nelinumeroinen luku.");
@@ -42,6 +45,7 @@ public class InproceedingsValidator extends Validator{
         }
         
         if(ret) errors = new ArrayList<String>();
-        return ret;    
+        return ret;   
     }
+    
 }

@@ -30,8 +30,6 @@ public abstract class KirjaviiteRajapinta {
     public abstract String getYear();
 
     public abstract String getTitle();
-
-    public abstract String getPublisher();
     
     public abstract Validator getValidator();
     

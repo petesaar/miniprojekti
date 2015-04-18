@@ -4,10 +4,6 @@
  * and open the template in the editor.
  */
 package miniprojekti.Viite;
-
-import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.Map;
 import miniprojekti.Viite.validaattorit.InproceedingsValidator;
 import miniprojekti.Viite.validaattorit.Validator;
 
