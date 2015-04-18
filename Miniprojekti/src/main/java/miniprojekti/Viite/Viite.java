@@ -33,10 +33,14 @@ public abstract class Viite {
         HashMap<String, String> fields = new HashMap<String, String>();
         for(Field field: this.getClass().getDeclaredFields()){
             try {
-                fields.put(field.getName(), field.get(this).toString());
+                Object value;
+                if ((value = field.get(this)) != null && field.getType().equals(String.class)) {
+                    fields.put(field.getName(), value.toString());
+                }
             } catch (Exception ex) {
-                return null;
+                ex.printStackTrace();
             }
+            
         }
         return fields;
     }
