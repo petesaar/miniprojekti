@@ -3,9 +3,12 @@ package miniprojekti.Kontrolleri;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import miniprojekti.IO.FileIO;
 import miniprojekti.IO.MuuntavaTallentaja;
 import miniprojekti.IO.StreamKirjoittaja;
+import miniprojekti.Viite.Artikkeliviite;
+import miniprojekti.Viite.Inproceedings;
 import miniprojekti.Viite.Kirjaviite;
 import miniprojekti.Viite.Viite;
 import miniprojekti.Viite.ViiteJoukko;
@@ -25,6 +28,28 @@ public class Kontrolleri {
     private final StreamKirjoittaja tallentaja = new MuuntavaTallentaja(kirjaviitteet, bibtexMuuntaja);
 
 
+    public boolean luoViite(String tyyppi, String reference, Map<String, String> kentat) {
+        if (tyyppi.equals("book")) {
+            return kirjaviitteet.save(new Kirjaviite(reference, kentat.get("author"), kentat.get("title"), kentat.get("year"), 
+                    kentat.get("publisher"), kentat.get("booktitle"), kentat.get("pages"), kentat.get("address"), kentat.get("number"), 
+                    kentat.get("volume"), kentat.get("journal")));
+        } else if (tyyppi.equals("article")) {
+            return kirjaviitteet.save(new Artikkeliviite(reference, kentat.get("author"), kentat.get("title"), kentat.get("journal"), 
+                    kentat.get("year"), kentat.get("volume"), kentat.get("number"), kentat.get("pages"), kentat.get("month"), 
+                    kentat.get("note"), kentat.get("key")));
+        } else if (tyyppi.equals("inproceedings")) {
+            return kirjaviitteet.save(new Inproceedings(reference, kentat.get("author"), kentat.get("title"), kentat.get("year"), 
+                    kentat.get("booktitle"), kentat.get("editor"), kentat.get("volume"), kentat.get("series"), kentat.get("pages"), 
+                    kentat.get("address"), kentat.get("month"), kentat.get("orgnanisation"), kentat.get("publisher"), kentat.get("note"), 
+                    kentat.get("key")));
+        }
+        return false;
+    }
+    
+    public String[] getErrors() {
+        return kirjaviitteet.getErrors();
+    }
+    
     // luodaan uusi kirjaviite
     public boolean luoKirjaviite(String reference, String author, String title,
             String year, String booktitle, String publisher, String pages, String address,
