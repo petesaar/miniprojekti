@@ -4,7 +4,6 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
-import java.util.Objects;
 import miniprojekti.Kontrolleri.Muuntaja;
 import miniprojekti.Viite.KirjaviiteRajapinta;
 import miniprojekti.Viite.ViiteJoukko;
@@ -30,10 +29,10 @@ public final class MuuntavaTallentaja implements StreamKirjoittaja {
      * @throws IllegalArgumentException Jos ViiteJoukko on null.
      */
     public MuuntavaTallentaja(ViiteJoukko viitteet, Muuntaja muuntaja) {
-        if (Objects.isNull(viitteet)) {
+        if (viitteet == null) {
             throw new IllegalArgumentException("Vitteet oli null.");
         }
-        if (Objects.isNull(muuntaja)) {
+        if (muuntaja == null) {
             throw new IllegalArgumentException("Muuntaja oli null.");
         }
         this.viitteet = viitteet;
@@ -51,11 +50,11 @@ public final class MuuntavaTallentaja implements StreamKirjoittaja {
      */
     @Override
     public void tallennaStream(IOOut io) throws IOException {
-        if (Objects.isNull(io)) {
+        if (io == null) {
             throw new IllegalArgumentException("IOOut oli null.");
         }
         Iterable<KirjaviiteRajapinta> viiteIteraatio = viitteet.getKirjaViitteet();
-        if (Objects.isNull(viiteIteraatio)) {
+        if (viiteIteraatio == null) {
             throw new IllegalArgumentException("Viiteiteraatio oli null.");
         }
         OutputStreamWriter streamiinKirjoittaja = null;
