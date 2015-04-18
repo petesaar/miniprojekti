@@ -27,8 +27,10 @@ public class BibtexMuunnos {
             teksti.append(viite.getBibtexkey()+",\n");
             Map<String, String> fields = viite.getFields();
             for (Map.Entry<String, String> entry : fields.entrySet()) {
-                teksti.append(entry.getKey()+" = {");
-                teksti.append(entry.getValue()+",\n");
+                if(!entry.getValue().isEmpty()){
+                    teksti.append(entry.getKey()+" = {");
+                    teksti.append(entry.getValue()+",\n");
+                }
         }  
             
             teksti.append("}\n");

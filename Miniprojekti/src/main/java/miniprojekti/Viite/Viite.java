@@ -72,8 +72,10 @@ public class Viite implements KirjaviiteRajapinta {
         viite += "Reference: "+this.getBibtexkey();
                 
         for (Map.Entry<String, String> entry : fields.entrySet()) {
-            viite += "\n"+entry.getKey()+": ";
-            viite += entry.getValue();
+            if(!entry.getValue().equals("")){
+                viite += "\n"+entry.getKey()+": ";
+                viite += entry.getValue();
+            }
         }            
  
         return viite;

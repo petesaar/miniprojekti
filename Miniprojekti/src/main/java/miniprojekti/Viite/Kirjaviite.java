@@ -11,6 +11,9 @@ import miniprojekti.Viite.validaattorit.Validator;
  */
 public class Kirjaviite extends Viite{
     
+    
+    
+    
     /**Konstruktori vain pakollisilla parametreilla.
      * 
      * @param reference Must not be empty.
@@ -106,34 +109,7 @@ public class Kirjaviite extends Viite{
     public String getJournal(){
         return getFieldValue("journal");
     }
-              
-    public String toString(){
-        String viite = "\n";
-        viite += "Reference: "+this.getRefrence()+"\n"+"Author: "+this.getAuthor()+"\n"+"Year: "+this.getYear()+"\n"+"Title: "+this.getTitle()+"\n"
-                +"Publisher: "+this.getPublisher()+"\n";
-                
-         
-        if(!this.getBooktitle().equals("")){
-            viite += "Booktitle: "+this.getBooktitle()+"\n";
-        }
-        if(!this.getPages().equals("")){
-            viite += "Pages: "+this.getPages()+"\n";
-        }
-        if(!this.getAddress().equals("")){
-            viite += "Address: "+this.getAddress()+"\n";
-        }
-        if(!this.getVolume().equals("")){
-            viite += "Volume: "+this.getVolume()+"\n";
-        } 
-        if(!this.getNumber().equals("")){
-            viite += "Number: "+this.getNumber()+"\n";
-        }
-        if(!this.getJournal().equals("")){
-            viite += "Journal: "+this.getJournal()+"\n";
-        }        
- 
-        return viite;
-    }
+    
 
     @Override
     public String getRefrence() {

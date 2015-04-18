@@ -5,13 +5,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import miniprojekti.IO.BibtexTallentaja;
 import miniprojekti.IO.FileIO;
 import miniprojekti.Viite.Kirjaviite;
 import miniprojekti.Viite.KirjaviiteRajapinta;
 import miniprojekti.Viite.Viite;
 import miniprojekti.Viite.ViiteJoukko;
+import miniprojekti.Viite.ViitejoukkoImpl;
 
 /**
  * Luokasta tehdÃ¤Ã¤n ohjausolio, joka toimii yhteistyÃ¶ssÃ¤ muiden luokkien kanssa
@@ -20,22 +20,14 @@ import miniprojekti.Viite.ViiteJoukko;
 public class Kontrolleri {
     
     // 
-    private final ArrayList<KirjaviiteRajapinta> kirjaviitteet = new ArrayList<KirjaviiteRajapinta>();
-    /* TÃ„MÃ„ ON VANHA VERSIO, VOI PALAUTTAA 
-    private final List<KirjaviiteRajapinta> kirjaviitteet = new ArrayList<KirjaviiteRajapinta>();
-    */
+    private final ViitejoukkoImpl kirjaviitteet = new ViitejoukkoImpl();
     
     // uusi Okon/part-a ehdotus:
     public boolean luoViite(String type, String bibtexkey, HashMap fields) {
         Viite viite;
-        try {
-            // jos viitteen luominen epÃ¤onnistuu nÃ¤yttÃ¤Ã¤ kontrolleri nÃ¤kymÃ¤lle virheen
-            viite = new Viite(type, bibtexkey, fields);
-        } catch (Exception e) {
-            // TODO: kirjaviite voisi antaa lisÃ¤tietoa syÃ¶tteen epÃ¤onnistuessa
-            return false;
-        }
-        return kirjaviitteet.add(viite);
+        viite = new Viite(type, bibtexkey, fields);
+
+        return kirjaviitteet.save(viite);
     }
     
 
@@ -44,22 +36,16 @@ public class Kontrolleri {
             String year, String booktitle, String publisher, String pages, String address, 
             String volume, String number, String journal) {
         Kirjaviite viite;
-        try {
-            // jos viitteen luominen epÃ¤onnistuu nÃ¤yttÃ¤Ã¤ kontrolleri nÃ¤kymÃ¤lle virheen
-            viite = new Kirjaviite(reference, author, title, year, booktitle, 
+        viite = new Kirjaviite(reference, author, title, year, booktitle, 
                         publisher, pages, address, volume, number, journal);
-        } catch (Exception e) {
-            // TODO: kirjaviite voisi antaa lisÃ¤tietoa syÃ¶tteen epÃ¤onnistuessa
-            return false;
-        }
-        return kirjaviitteet.add(viite);
+        return kirjaviitteet.save(viite);
     }
 
     
     // keskenerÃ¤inen hakutoiminto (palauttaa myÃ¶s viitteen, jos hakusana on kentÃ¤n nimessÃ¤)
     public List<KirjaviiteRajapinta> haeSanalla (String hakusana) {
         List<KirjaviiteRajapinta> hakutulokset = new ArrayList<KirjaviiteRajapinta>();
-        for (KirjaviiteRajapinta viite : kirjaviitteet) {
+        for (KirjaviiteRajapinta viite : kirjaviitteet.getViitteet()) {
             // TODO: kun viiteluokkaan tehty getFields-metodi tms. niin hakutomintoa tarkennettava
             if (viite.toString().contains(hakusana)) hakutulokset.add(viite);
         }
@@ -69,13 +55,13 @@ public class Kontrolleri {
     // listaa viitteet kÃ¤yttÃ¶liittymÃ¤Ã¤ ja tallennusta varten
     // VANHA VERSIO: public List<KirjaviiteRajapinta> listaaViitteet () {
     public List<KirjaviiteRajapinta> listaaViitteet () {
-        return kirjaviitteet;
+        return kirjaviitteet.getViitteet();
     }
     
     // palauta viimeksi lisÃ¤tty kirjaviite
     public String haeViimeksiLisattyKirjaviite() {
-        if (!kirjaviitteet.isEmpty()) {
-            BibtexMuunnos bibtex = new BibtexMuunnos(kirjaviitteet.get(kirjaviitteet.size() - 1));
+        if (!kirjaviitteet.getViitteet().isEmpty()) {
+            BibtexMuunnos bibtex = new BibtexMuunnos(kirjaviitteet.getViitteet().get(kirjaviitteet.getViitteet().size() - 1));
             return bibtex.muunnaBibtexviitteeksi();
         }
         return null;
@@ -86,7 +72,7 @@ public class Kontrolleri {
         ViiteJoukko viitteet = new ViiteJoukko() {
             @Override
             public Iterable<KirjaviiteRajapinta> getKirjaViitteet() {
-                return kirjaviitteet;
+                return kirjaviitteet.getKirjaViitteet();
             }
             @Override
             public boolean save(KirjaviiteRajapinta viite) { return false; }
