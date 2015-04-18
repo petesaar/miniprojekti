@@ -1,5 +1,6 @@
 package miniprojekti.Viite;
 
+import java.util.Map;
 import miniprojekti.Viite.validaattorit.Validator;
 
 /**
@@ -9,6 +10,8 @@ import miniprojekti.Viite.validaattorit.Validator;
 public interface KirjaviiteRajapinta {
 
     String getRefrence();
+    
+    String getBibtexkey();
 
     String getAuthor();
 
@@ -19,4 +22,8 @@ public interface KirjaviiteRajapinta {
     String getPublisher();
     
     Validator getValidator();
+    
+    String getType();
+    
+    Map<String, String> getFields();
 }

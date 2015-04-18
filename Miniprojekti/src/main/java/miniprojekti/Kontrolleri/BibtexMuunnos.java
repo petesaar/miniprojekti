@@ -14,9 +14,9 @@ import miniprojekti.Viite.KirjaviiteRajapinta;
  */
 public class BibtexMuunnos {
     
-    private Viite viite;
+    private KirjaviiteRajapinta viite;
     
-    public BibtexMuunnos (Viite viite) {
+    public BibtexMuunnos (KirjaviiteRajapinta viite) {
         this.viite = viite;
     }
        

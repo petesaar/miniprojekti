@@ -14,14 +14,14 @@ import miniprojekti.Viite.Viite;
 import miniprojekti.Viite.ViiteJoukko;
 
 /**
- * Luokasta tehdään ohjausolio, joka toimii yhteistyössä muiden luokkien kanssa
+ * Luokasta tehdÃ¤Ã¤n ohjausolio, joka toimii yhteistyÃ¶ssÃ¤ muiden luokkien kanssa
  * @author Jeesusteippaajat 
  */
 public class Kontrolleri {
     
     // 
-    private final List<Viite> kirjaviitteet = new ArrayList<Viite>();
-    /* TÄMÄ ON VANHA VERSIO, VOI PALAUTTAA 
+    private final ArrayList<KirjaviiteRajapinta> kirjaviitteet = new ArrayList<KirjaviiteRajapinta>();
+    /* TÃ„MÃ„ ON VANHA VERSIO, VOI PALAUTTAA 
     private final List<KirjaviiteRajapinta> kirjaviitteet = new ArrayList<KirjaviiteRajapinta>();
     */
     
@@ -29,10 +29,10 @@ public class Kontrolleri {
     public boolean luoViite(String type, String bibtexkey, HashMap fields) {
         Viite viite;
         try {
-            // jos viitteen luominen epäonnistuu näyttää kontrolleri näkymälle virheen
+            // jos viitteen luominen epÃ¤onnistuu nÃ¤yttÃ¤Ã¤ kontrolleri nÃ¤kymÃ¤lle virheen
             viite = new Viite(type, bibtexkey, fields);
         } catch (Exception e) {
-            // TODO: kirjaviite voisi antaa lisätietoa syötteen epäonnistuessa
+            // TODO: kirjaviite voisi antaa lisÃ¤tietoa syÃ¶tteen epÃ¤onnistuessa
             return false;
         }
         return kirjaviitteet.add(viite);
@@ -45,18 +45,18 @@ public class Kontrolleri {
             String volume, String number, String journal) {
         Kirjaviite viite;
         try {
-            // jos viitteen luominen epäonnistuu näyttää kontrolleri näkymälle virheen
+            // jos viitteen luominen epÃ¤onnistuu nÃ¤yttÃ¤Ã¤ kontrolleri nÃ¤kymÃ¤lle virheen
             viite = new Kirjaviite(reference, author, title, year, booktitle, 
                         publisher, pages, address, volume, number, journal);
         } catch (Exception e) {
-            // TODO: kirjaviite voisi antaa lisätietoa syötteen epäonnistuessa
+            // TODO: kirjaviite voisi antaa lisÃ¤tietoa syÃ¶tteen epÃ¤onnistuessa
             return false;
         }
         return kirjaviitteet.add(viite);
     }
 
     
-    // keskeneräinen hakutoiminto (palauttaa myös viitteen, jos hakusana on kentän nimessä)
+    // keskenerÃ¤inen hakutoiminto (palauttaa myÃ¶s viitteen, jos hakusana on kentÃ¤n nimessÃ¤)
     public List<KirjaviiteRajapinta> haeSanalla (String hakusana) {
         List<KirjaviiteRajapinta> hakutulokset = new ArrayList<KirjaviiteRajapinta>();
         for (KirjaviiteRajapinta viite : kirjaviitteet) {
@@ -66,13 +66,13 @@ public class Kontrolleri {
         return hakutulokset;
     }
     
-    // listaa viitteet käyttöliittymää ja tallennusta varten
+    // listaa viitteet kÃ¤yttÃ¶liittymÃ¤Ã¤ ja tallennusta varten
     // VANHA VERSIO: public List<KirjaviiteRajapinta> listaaViitteet () {
-    public List<Viite> listaaViitteet () {
+    public ArrayList<KirjaviiteRajapinta> listaaViitteet () {
         return kirjaviitteet;
     }
     
-    // palauta viimeksi lisätty kirjaviite
+    // palauta viimeksi lisÃ¤tty kirjaviite
     public String haeViimeksiLisattyKirjaviite() {
         if (!kirjaviitteet.isEmpty()) {
             BibtexMuunnos bibtex = new BibtexMuunnos(kirjaviitteet.get(kirjaviitteet.size() - 1));
@@ -81,8 +81,7 @@ public class Kontrolleri {
         return null;
     }
     
-    /* POISTIN TALLENNUKSEN KÄYTÖSTÄ, KUN LISÄSIN VIITELUOKAN
-    // lisätäänkö metodi viitteiden levytallennusta varten?
+    // lisÃ¤tÃ¤Ã¤nkÃ¶ metodi viitteiden levytallennusta varten?
     public void tallennaViitteet () {
         ViiteJoukko viitteet = new ViiteJoukko() {
             @Override
@@ -112,9 +111,10 @@ public class Kontrolleri {
             }
         }
     }
-    */
+
+
     
-    // metodi luokkien lataamiseen levyltä
+    // metodi luokkien lataamiseen levyltÃ¤
     public List<Kirjaviite> haeViitteet () {
         return null;
     }

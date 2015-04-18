@@ -6,7 +6,6 @@ import miniprojekti.Viite.Kirjaviite;
 
 public class KirjaviiteValidator extends Validator{
     
-    private ArrayList<String> errors;
     private Kirjaviite viite;
     
     public KirjaviiteValidator(Kirjaviite viite){
@@ -37,14 +36,6 @@ public class KirjaviiteValidator extends Validator{
         
         if(ret) errors = new ArrayList<String>();
         return ret;    
-    }
-
-    @Override
-    public String[] getErrors() {
-        return errors.toArray(new String[errors.size()]);
-    }
-
-
-    
+    }    
     
 }
