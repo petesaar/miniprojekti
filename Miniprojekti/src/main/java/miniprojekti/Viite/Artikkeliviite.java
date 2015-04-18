@@ -5,6 +5,7 @@
  */
 package miniprojekti.Viite;
 
+import miniprojekti.Viite.validaattorit.ArtikkeliviiteValidator;
 import miniprojekti.Viite.validaattorit.Validator;
 
 /**
@@ -125,7 +126,7 @@ public class Artikkeliviite extends Viite {
 
     @Override
     public Validator getValidator() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new ArtikkeliviiteValidator(this);
     }
 
     @Override
