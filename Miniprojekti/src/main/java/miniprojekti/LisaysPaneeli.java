@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.Map;
 import javax.swing.*;
 
 /**
@@ -171,34 +172,50 @@ public class LisaysPaneeli {
         lisaa.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 
-//                HashMap <String, String> kentat = new HashMap();
-//                if (!title_kentta.getText().equals("")) kentat.put("title", title_kentta.getText());
-//                if (!year_kentta.getText().equals("")) kentat.put("year", year_kentta.getText());
-//                if (!publisher_kentta.getText().equals("")) kentat.put("publisher", publisher_kentta.getText());
-//                if (!booktitle_kentta.getText().equals("")) kentat.put("book title", booktitle_kentta.getText());
-//                if (!pages_kentta.getText().equals("")) kentat.put("pages", pages_kentta.getText());
-//                if (!address_kentta.getText().equals("")) kentat.put("address", address_kentta.getText());
-//                if (!volume_kentta.getText().equals("")) kentat.put("volume", volume_kentta.getText());
-//                if (!journal_kentta.getText().equals("")) kentat.put("journal", journal_kentta.getText());
-//                if (!number_kentta.getText().equals("")) kentat.put("number", number_kentta.getText());
-//  
-//                if (!UserWindow.ohjausOlio.luoViite(tyyppi_boksi.getSelectedItem().toString(), referenssi_kentta.getText(), kentat))  {
-//                    ilmoitusalue.setText("Pakollisiin kenttiin ei ole syötetty kunnollista tietoa.");
-//                    return;
-//                }
-       
+                String tyyppi = tyyppi_boksi.getSelectedItem().toString().toLowerCase();
+                Map<String, String> kentat = new HashMap();
                 
-                if (!UserWindow.ohjausOlio.luoKirjaviite(referenssi_kentta.getText(), author_kentta.getText(),
-                        title_kentta.getText(), year_kentta.getText(), publisher_kentta.getText(),
-                        booktitle_kentta.getText(), pages_kentta.getText(), address_kentta.getText(),
-                        volume_kentta.getText(), number_kentta.getText(), journal_kentta.getText())) {
-                    ilmoitusalue.setText("Pakollisiin kenttiin ei ole syötetty kunnollista tietoa.");
-                    return;
+                if (tyyppi.equals("book")) {
+                    kentat.put("author", author_kentta.getText());
+                    kentat.put("title", title_kentta.getText());
+                    kentat.put("year", year_kentta.getText());
+                    kentat.put("publisher", publisher_kentta.getText());
+                    kentat.put("address", address_kentta.getText());
+                    kentat.put("volume", volume_kentta.getText());
+                    kentat.put("number", number_kentta.getText());
+                    UserWindow.ohjausOlio.luoViite(tyyppi, referenssi_kentta.getText(), kentat);
+                } else if (tyyppi.equals("article")) {
+                    kentat.put("author", author_kentta.getText());
+                    kentat.put("title", title_kentta.getText());
+                    kentat.put("year", year_kentta.getText());
+                    kentat.put("pages", pages_kentta.getText());
+                    kentat.put("volume", volume_kentta.getText());
+                    kentat.put("number", number_kentta.getText());
+                    kentat.put("journal", journal_kentta.getText());
+                    UserWindow.ohjausOlio.luoViite(tyyppi, referenssi_kentta.getText(), kentat);
+                } else if (tyyppi.equals("inproceedings")) {
+                    kentat.put("author", author_kentta.getText());
+                    kentat.put("title", title_kentta.getText());
+                    kentat.put("year", year_kentta.getText());
+                    kentat.put("publisher", publisher_kentta.getText());
+                    kentat.put("booktitle", booktitle_kentta.getText());
+                    kentat.put("pages", pages_kentta.getText());
+                    kentat.put("address", address_kentta.getText());
+                    kentat.put("volume", volume_kentta.getText());
+                    kentat.put("number", number_kentta.getText());
+                    UserWindow.ohjausOlio.luoViite(tyyppi, referenssi_kentta.getText(), kentat);
                 }
                 
-                String teksti = "Viitteesi on tyypiltään " + tyyppi + "\r\n";
-                teksti += UserWindow.ohjausOlio.haeViimeksiLisattyKirjaviite().toString();
-                ilmoitusalue.setText(teksti);
+                String[] errors = UserWindow.ohjausOlio.getErrors();
+                if (errors.length != 0) {
+                    StringBuilder tuloste = new StringBuilder();
+                    for (String error : errors) {
+                        tuloste.append(error).append("\n");
+                    }
+                    ilmoitusalue.setText(tuloste.toString().substring(0, tuloste.toString().length() - 2));
+                    return;
+                }
+                ilmoitusalue.setText( UserWindow.ohjausOlio.haeViimeksiLisattyKirjaviite());
             }
         });
 
