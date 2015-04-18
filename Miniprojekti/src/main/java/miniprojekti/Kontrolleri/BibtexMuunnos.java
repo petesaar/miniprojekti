@@ -1,41 +1,45 @@
 package miniprojekti.Kontrolleri;
 
 import java.util.Map;
-import miniprojekti.Viite.Viite;
 import miniprojekti.Viite.KirjaviiteRajapinta;
 
 /**
- *
  * @author Jeesusteippaajat
+ *
+ * Luokka viiteolioiden muuntamiseksi bibtex-viitteiksi tallennuksen ja
+ * käyttöliittymään (esikatselu bibtex-muodossa).
  */
+public final class BibtexMuunnos implements Muuntaja {
 
-/** luokka viite-olioiden/-olion muuntamiseksi bibtex-viitteiksi
- *  tallennuksen ja käyttöliittymään (esikatselu bibtex-muodossa)
- */
-public class BibtexMuunnos {
-    
-    private KirjaviiteRajapinta viite;
-    
-    public BibtexMuunnos (KirjaviiteRajapinta viite) {
-        this.viite = viite;
+    /**
+     * Muuntaa viiteen BibTeX muotoon, ja kirjoittaa sen annettuun
+     * StringBuilderiin.
+     *
+     * @param viite Muunnettava viite.
+     * @param teksti StringBuilder, johon viite kirjoitetaan.
+     */
+    @Override
+    public void muunnaViite(StringBuilder teksti, KirjaviiteRajapinta viite) {
+        teksti.append("@").append(viite.getType()).append("{").append(viite.getBibtexkey()).append(",\n");
+        Map<String, String> fields = viite.getFields();
+        for (Map.Entry<String, String> entry : fields.entrySet()) {
+            if (!entry.getValue().isEmpty()) {
+                teksti.append(entry.getKey()).append(" = {").append(entry.getValue()).append("},\n");
+            }
+        }
+        teksti.append("}\n");
     }
-       
-    // Toimii: kääntää minkä tahansa viitetyypin bibtexiksi, mutta testit puuttuvat!
-    public String muunnaBibtexviitteeksi() {
-            StringBuilder teksti = new StringBuilder();
-            teksti.append("@"+viite.getType()+"{");
-            teksti.append(viite.getBibtexkey()+",\n");
-            Map<String, String> fields = viite.getFields();
-            for (Map.Entry<String, String> entry : fields.entrySet()) {
-                if(!entry.getValue().isEmpty()){
-                    teksti.append(entry.getKey()+" = {");
-                    teksti.append(entry.getValue()+",\n");
-                }
-        }  
-            
-            teksti.append("}\n");
-	    return teksti.toString();
-        
+
+    /**
+     * Muuntaa yksittäisen viitteen BibTeX muotoon.
+     *
+     * @param viite Muunnettava viite.
+     * @return Annettu viite BibTeX muodossa.
+     */
+    @Override
+    public String muunnaViite(KirjaviiteRajapinta viite) {
+        StringBuilder teksti = new StringBuilder();
+        muunnaViite(teksti, viite);
+        return teksti.toString();
     }
-    
 }

@@ -2,39 +2,67 @@ package miniprojekti.IO;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
+import miniprojekti.Kontrolleri.Muuntaja;
 import miniprojekti.Viite.KirjaviiteRajapinta;
 import miniprojekti.Viite.ViiteJoukko;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 
 /**
  * @author Jeesusteippaajat
  */
-public final class BibtexTallentajaTest {
+public final class MuuntavaTallentajaTest {
 
+    private Muuntaja muuntaja;
     private Iterator<KirjaviiteRajapinta> iteraattori;
     private KirjaviiteRajapinta kirja;
+    private KirjaviiteRajapinta kirja2;
     private Iterable<KirjaviiteRajapinta> viitteetIteraatio;
     private ViiteJoukko viitteet;
     private IOOut out;
     private ByteArrayOutputStream stream;
-    private BibtexTallentaja tallentaja;
+    private MuuntavaTallentaja tallentaja;
+
+    @Before
+    public void beforeClass() {
+        muuntaja = mock(Muuntaja.class);
+        //Nulleja turhaan?
+        Mockito.doAnswer(new Answer<Void>() {
+            @Override
+            public Void answer(InvocationOnMock invocation) {
+                Object[] args = invocation.getArguments();
+                StringBuilder sb = (StringBuilder) args[0];
+                KirjaviiteRajapinta viite = (KirjaviiteRajapinta) args[1];
+                sb.append("Args").append(viite);
+                return null;
+            }
+        }).when(muuntaja).muunnaViite(null, null);
+    }
+
+    private String expected() {
+        StringBuilder sb = new StringBuilder();
+        muuntaja.muunnaViite(sb, kirja);
+        return sb.toString();
+    }
 
     @SuppressWarnings("unchecked")
-    private void yksiViite(String author, String title, String refrence, String publisher, String year) {
+    private void yksiViite(String author, String title, String publisher, String year) {
+        Map<String, String> arvot = luoMap(author, title, publisher, year);
+
         kirja = mock(KirjaviiteRajapinta.class);
-        when(kirja.getAuthor()).thenReturn(author);
-        when(kirja.getPublisher()).thenReturn(publisher);
-        when(kirja.getRefrence()).thenReturn(refrence);
-        when(kirja.getTitle()).thenReturn(title);
-        when(kirja.getYear()).thenReturn(year);
+        when(kirja.getFields()).thenReturn(arvot);
 
         iteraattori = mock(Iterator.class);
         when(iteraattori.hasNext()).thenReturn(true, false);
@@ -48,7 +76,7 @@ public final class BibtexTallentajaTest {
         stream = new ByteArrayOutputStream();
         out = mock(IOOut.class);
         when(out.getOutputStream()).thenReturn(stream);
-        tallentaja = new BibtexTallentaja(viitteet);
+        tallentaja = new MuuntavaTallentaja(viitteet, muuntaja);
         try {
             tallentaja.tallennaStream(out);
         } catch (IOException ex) {
@@ -59,31 +87,39 @@ public final class BibtexTallentajaTest {
     private void yksiViiteSpeksistä() {
         yksiViite("Beck, Kent and Andres, Cynthia",
                 "Extreme Programming Explained: Embrace Change (2nd Edition)",
-                "BA04",
                 "Addison-Wesley Professional",
                 "2004");
     }
 
-    /*
-     @book{Martin09,
-     author = {Martin, Robert},
-     title = {Clean Code: A Handbook of Agile Software Craftsmanship},
-     year = {2008},
-     publisher = {Prentice Hall},
-     }
-     */
+    private static Map<String, String> luoMap(String author, String title, String publisher, String year) {
+        Map<String, String> arvot = new HashMap<String, String>();
+        arvot.put("author", author);
+        arvot.put("year", year);
+        arvot.put("title", title);
+        arvot.put("publisher", publisher);
+        return arvot;
+    }
+
     @SuppressWarnings("unchecked")
     private void kaksiViitetta() {
+        Map<String, String> arvot1 = luoMap("Beck, Kent and Andres, Cynthia",
+                "Extreme Programming Explained: Embrace Change (2nd Edition)",
+                "Addison-Wesley Professional",
+                "2004"
+        );
+        Map<String, String> arvot2 = luoMap("Martin, Robert",
+                "Clean Code: A Handbook of Agile Software Craftsmanship",
+                "Prentice Hall",
+                "2008"
+        );
         kirja = mock(KirjaviiteRajapinta.class);
-        when(kirja.getAuthor()).thenReturn("Beck, Kent and Andres, Cynthia", "Martin, Robert");
-        when(kirja.getPublisher()).thenReturn("Addison-Wesley Professional", "Prentice Hall");
-        when(kirja.getRefrence()).thenReturn("BA04", "Martin09");
-        when(kirja.getTitle()).thenReturn("Extreme Programming Explained: Embrace Change (2nd Edition)", "Clean Code: A Handbook of Agile Software Craftsmanship");
-        when(kirja.getYear()).thenReturn("2004", "2008");
+        when(kirja.getFields()).thenReturn(arvot1);
+        kirja2 = mock(KirjaviiteRajapinta.class);
+        when(kirja.getFields()).thenReturn(arvot2);
 
         iteraattori = mock(Iterator.class);
         when(iteraattori.hasNext()).thenReturn(true, true, false);
-        when(iteraattori.next()).thenReturn(kirja, kirja);
+        when(iteraattori.next()).thenReturn(kirja, kirja2);
 
         viitteetIteraatio = mock(Iterable.class);
         when(viitteetIteraatio.iterator()).thenReturn(iteraattori);
@@ -93,7 +129,7 @@ public final class BibtexTallentajaTest {
         stream = new ByteArrayOutputStream();
         out = mock(IOOut.class);
         when(out.getOutputStream()).thenReturn(stream);
-        tallentaja = new BibtexTallentaja(viitteet);
+        tallentaja = new MuuntavaTallentaja(viitteet, muuntaja);
         try {
             tallentaja.tallennaStream(out);
         } catch (IOException ex) {
@@ -104,13 +140,8 @@ public final class BibtexTallentajaTest {
     @Test
     public void testTallennus() {
         yksiViiteSpeksistä();
-        String result = new String(stream.toByteArray(), BibtexTallentaja.CHARSET);
-        String expected = "@book{BA04,\n"
-                + "author = {Beck, Kent and Andres, Cynthia},\n"
-                + "title = {Extreme Programming Explained: Embrace Change (2nd Edition)},\n"
-                + "year = {2004},\n"
-                + "publisher = {Addison-Wesley Professional},\n"
-                + "}\n";
+        String result = new String(stream.toByteArray(), MuuntavaTallentaja.CHARSET);
+        String expected = expected();
         assertEquals(expected, result);
     }
 
@@ -121,33 +152,17 @@ public final class BibtexTallentajaTest {
         String year = "1234";
         String publisher = "ÅÅÅÅÅ=*-/-+gF KODJFGISHG93425U5 44213%?#&)\"\"\"\"";
         String refrence = "test";
-        yksiViite(author, title, refrence, publisher, year);
-        String result = new String(stream.toByteArray(), BibtexTallentaja.CHARSET);
-        String expected = "@book{" + refrence + ",\n"
-                + "author = {" + author + "},\n"
-                + "title = {" + title + "},\n"
-                + "year = {" + year + "},\n"
-                + "publisher = {" + publisher + "},\n"
-                + "}\n";
+        yksiViite(author, title, publisher, year);
+        String result = new String(stream.toByteArray(), MuuntavaTallentaja.CHARSET);
+        String expected = expected();
         assertEquals(expected, result);
     }
 
     @Test
     public void kaksiViitettaToimii() {
         kaksiViitetta();
-        String result = new String(stream.toByteArray(), BibtexTallentaja.CHARSET);
-        String expected = "@book{BA04,\n"
-                + "author = {Beck, Kent and Andres, Cynthia},\n"
-                + "title = {Extreme Programming Explained: Embrace Change (2nd Edition)},\n"
-                + "year = {2004},\n"
-                + "publisher = {Addison-Wesley Professional},\n"
-                + "}\n"
-                + "@book{Martin09,\n"
-                + "author = {Martin, Robert},\n"
-                + "title = {Clean Code: A Handbook of Agile Software Craftsmanship},\n"
-                + "year = {2008},\n"
-                + "publisher = {Prentice Hall},\n"
-                + "}\n";
+        String result = new String(stream.toByteArray(), MuuntavaTallentaja.CHARSET);
+        String expected = expected();
         assertEquals(expected, result);
     }
 
@@ -166,16 +181,40 @@ public final class BibtexTallentajaTest {
     @Test
     public void viiteKokoelmaNullVirhe() {
         try {
-            new BibtexTallentaja(null);
+            new MuuntavaTallentaja(null, mock(Muuntaja.class));
             fail("Null argumentti tallentajaan.");
         } catch (IllegalArgumentException ex) {
+            if (!"Vitteet oli null.".equals(ex.getMessage())) {
+                fail("Väärä virhe");
+            }
+        }
+    }
+
+    @Test
+    public void muuntajaNullVirhe() {
+        try {
+            new MuuntavaTallentaja(mock(ViiteJoukko.class), null);
+            fail("Null argumentti tallentajaan.");
+        } catch (IllegalArgumentException ex) {
+            if (!"Muuntaja oli null.".equals(ex.getMessage())) {
+                fail("Väärä virhe");
+            }
+        }
+    }
+
+    @Test
+    public void asdVirhe() {
+        try {
+            new MuuntavaTallentaja(mock(ViiteJoukko.class), mock(Muuntaja.class));
+        } catch (IllegalArgumentException ex) {
+            fail(ex.toString());
         }
     }
 
     @Test
     public void iOutNullVirhe() {
         ViiteJoukko tyhjatViitteet = mock(ViiteJoukko.class);
-        BibtexTallentaja bibtexTallentaja = new BibtexTallentaja(tyhjatViitteet);
+        MuuntavaTallentaja bibtexTallentaja = new MuuntavaTallentaja(tyhjatViitteet, muuntaja);
         try {
             bibtexTallentaja.tallennaStream(null);
             fail("Null argumentti tallenna streamiin.");
@@ -188,7 +227,7 @@ public final class BibtexTallentajaTest {
     public void viitteetIteraatioNullVirhe() {
         ViiteJoukko nullViitteet = mock(ViiteJoukko.class);
         when(nullViitteet.getKirjaViitteet()).thenReturn(null);
-        BibtexTallentaja bibtexTallentaja = new BibtexTallentaja(nullViitteet);
+        MuuntavaTallentaja bibtexTallentaja = new MuuntavaTallentaja(nullViitteet, mock(Muuntaja.class));
         IOOut outTyhja = mock(IOOut.class);
         try {
             bibtexTallentaja.tallennaStream(outTyhja);

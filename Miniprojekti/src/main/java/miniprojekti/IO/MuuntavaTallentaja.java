@@ -4,32 +4,40 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
+import java.util.Objects;
+import miniprojekti.Kontrolleri.Muuntaja;
 import miniprojekti.Viite.KirjaviiteRajapinta;
 import miniprojekti.Viite.ViiteJoukko;
 
 /**
  * @author Jeesusteippaajat
  *
- * Tallentaa ViiteJoukon viitteet BibTeX muodossa annettuun streamiin.
+ * Tallentaa ViiteJoukon viitteet muuntajan muodossa annettuun streamiin.
  */
-public final class BibtexTallentaja {
+public final class MuuntavaTallentaja implements StreamKirjoittaja {
 
     public static final Charset CHARSET = Charset.forName("UTF-8");
     private final ViiteJoukko viitteet;
+    private final Muuntaja muuntaja;
 
     /**
-     * Luo uuden instannsin BibTeX tallentajasta. Lukee annetusta VitteJoukosta
-     * viitteet tallennuksen yhteydessä.
+     * Luo uuden instannsin muuntavasta tallentajasta. Lukee annetusta
+     * VitteJoukosta viitteet tallennuksen yhteydessä.
      *
      * @param viitteet ViiteJoukko, jossa ovat tallennettavaksi tarkoitetut
      * viiteet.
+     * @param muuntaja Muunnoksessa käytettävä muuntaja.
      * @throws IllegalArgumentException Jos ViiteJoukko on null.
      */
-    public BibtexTallentaja(ViiteJoukko viitteet) {
-        if (viitteet == null) {
+    public MuuntavaTallentaja(ViiteJoukko viitteet, Muuntaja muuntaja) {
+        if (Objects.isNull(viitteet)) {
             throw new IllegalArgumentException("Vitteet oli null.");
         }
+        if (Objects.isNull(muuntaja)) {
+            throw new IllegalArgumentException("Muuntaja oli null.");
+        }
         this.viitteet = viitteet;
+        this.muuntaja = muuntaja;
     }
 
     /**
@@ -41,12 +49,13 @@ public final class BibtexTallentaja {
      * @throws IllegalArgumentException Jos annettus streami on null, tai jos
      * ViiteJoukko palauttaa null arvoisen iteroitavan olion.
      */
+    @Override
     public void tallennaStream(IOOut io) throws IOException {
-        if (io == null) {
+        if (Objects.isNull(io)) {
             throw new IllegalArgumentException("IOOut oli null.");
         }
         Iterable<KirjaviiteRajapinta> viiteIteraatio = viitteet.getKirjaViitteet();
-        if (viiteIteraatio == null) {
+        if (Objects.isNull(viiteIteraatio)) {
             throw new IllegalArgumentException("Viiteiteraatio oli null.");
         }
         OutputStreamWriter streamiinKirjoittaja = null;
@@ -55,6 +64,7 @@ public final class BibtexTallentaja {
             streamiinKirjoittaja = new OutputStreamWriter(io.getOutputStream(), CHARSET);
             tekstinKirjoittaja = new BufferedWriter(streamiinKirjoittaja);
             tallennaTiedot(viiteIteraatio, tekstinKirjoittaja);
+
         } finally {
             if (tekstinKirjoittaja != null) {
                 tekstinKirjoittaja.close();
@@ -73,20 +83,10 @@ public final class BibtexTallentaja {
      * @throws IOException Kirjoitus virheen sattuessa.
      */
     private void tallennaTiedot(Iterable<KirjaviiteRajapinta> viitteet, BufferedWriter writer) throws IOException {
+        StringBuilder teksti = new StringBuilder();
         for (KirjaviiteRajapinta viite : viitteet) {
-            StringBuilder teksti = new StringBuilder();
-            teksti.append("@book{");
-            teksti.append(viite.getRefrence());
-            teksti.append(",\nauthor = {");
-            teksti.append(viite.getAuthor());
-            teksti.append("},\ntitle = {");
-            teksti.append(viite.getTitle());
-            teksti.append("},\nyear = {");
-            teksti.append(viite.getYear());
-            teksti.append("},\npublisher = {");
-            teksti.append(viite.getPublisher());
-            teksti.append("},\n}\n");
-            writer.write(teksti.toString());
+            muuntaja.muunnaViite(teksti, viite);
         }
+        writer.append(teksti);
     }
 }
