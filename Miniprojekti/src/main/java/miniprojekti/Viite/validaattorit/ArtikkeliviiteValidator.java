@@ -18,6 +18,7 @@ public class ArtikkeliviiteValidator extends Validator{
 
     public ArtikkeliviiteValidator(Artikkeliviite viite) {
         this.viite = viite;
+        errors = new ArrayList<String>();
     }
     
     @Override

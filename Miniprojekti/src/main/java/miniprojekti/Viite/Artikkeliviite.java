@@ -25,17 +25,22 @@ public class Artikkeliviite extends Viite {
     protected String note;
     protected String key;
 
-    public Artikkeliviite(String author, String title, String journal, String year, String volume, String number, String pages, String month, String note, String key) {
-        this.author = author;
-        this.title = title;
-        this.journal = journal;
-        this.year = year;
-        this.volume = volume;
-        this.number = number;
-        this.pages = pages;
-        this.month = month;
-        this.note = note;
-        this.key = key;
+    public Artikkeliviite(String bibtexkey, String author, String title, String journal, String year, String volume, String number, String pages, String month, String note, String key) {
+        this.bibtexkey = bibtexkey;
+        setFields(author, title, journal, year, volume, number, pages, month, note, key);
+    }
+
+    public final void setFields(String author1, String title1, String journal1, String year1, String volume1, String number1, String pages1, String month1, String note1, String key1) {
+        this.author = author1;
+        this.title = title1;
+        this.journal = journal1;
+        this.year = year1;
+        this.volume = volume1;
+        this.number = number1;
+        this.pages = pages1;
+        this.month = month1;
+        this.note = note1;
+        this.key = key1;
     }
 
     public String getAuthor() {

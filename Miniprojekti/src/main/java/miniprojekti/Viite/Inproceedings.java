@@ -30,20 +30,24 @@ public class Inproceedings extends Viite{
 
     public Inproceedings(String bibtexkey, String author, String title, String year, String booktitle, String editor, String volnum, String series, String pages, String address, String month, String organisation, String publisher, String note, String key) {
         this.bibtexkey = bibtexkey;
-        this.author = author;
-        this.title = title;
-        this.year = year;
-        this.booktitle = booktitle;
-        this.editor = editor;
-        this.volnum = volnum;
-        this.series = series;
-        this.pages = pages;
-        this.address = address;
-        this.month = month;
-        this.organisation = organisation;
-        this.publisher = publisher;
-        this.note = note;
-        this.key = key;
+        setFields(author, title, year, booktitle, editor, volnum, series, pages, address, month, organisation, publisher, note, key);
+    }
+
+    public final void setFields(String author1, String title1, String year1, String booktitle1, String editor1, String volnum1, String series1, String pages1, String address1, String month1, String organisation1, String publisher1, String note1, String key1) {
+        this.author = author1;
+        this.title = title1;
+        this.year = year1;
+        this.booktitle = booktitle1;
+        this.editor = editor1;
+        this.volnum = volnum1;
+        this.series = series1;
+        this.pages = pages1;
+        this.address = address1;
+        this.month = month1;
+        this.organisation = organisation1;
+        this.publisher = publisher1;
+        this.note = note1;
+        this.key = key1;
     }
     
     public String getBibtexkey() {

@@ -20,16 +20,20 @@ public class Kirjaviite extends Viite {
 
     public Kirjaviite(String bibtexkey, String author, String title, String year, String publisher, String booktitle, String pages, String address, String volume, String number, String journal) {
         this.bibtexkey = bibtexkey;
-        this.author = author;
-        this.title = title;
-        this.year = year;
-        this.publisher = publisher;
-        this.booktitle = booktitle;
-        this.pages = pages;
-        this.address = address;
-        this.volume = volume;
-        this.number = number;
-        this.journal = journal;
+        setFields(author, title, year, publisher, booktitle, pages, address, volume, number, journal);
+    }
+
+    public final void setFields(String author1, String title1, String year1, String publisher1, String booktitle1, String pages1, String address1, String volume1, String number1, String journal1) {
+        this.author = author1;
+        this.title = title1;
+        this.year = year1;
+        this.publisher = publisher1;
+        this.booktitle = booktitle1;
+        this.pages = pages1;
+        this.address = address1;
+        this.volume = volume1;
+        this.number = number1;
+        this.journal = journal1;
     }
     
     @Override

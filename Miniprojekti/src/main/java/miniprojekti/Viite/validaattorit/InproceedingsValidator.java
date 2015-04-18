@@ -18,6 +18,7 @@ public class InproceedingsValidator extends Validator{
     
     public InproceedingsValidator(Inproceedings viite){
         this.viite = viite;
+        errors = new ArrayList<String>();
     }
     
     @Override
