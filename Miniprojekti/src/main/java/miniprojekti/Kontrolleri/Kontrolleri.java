@@ -68,7 +68,7 @@ public class Kontrolleri {
     
     // listaa viitteet kÃ¤yttÃ¶liittymÃ¤Ã¤ ja tallennusta varten
     // VANHA VERSIO: public List<KirjaviiteRajapinta> listaaViitteet () {
-    public ArrayList<KirjaviiteRajapinta> listaaViitteet () {
+    public List<KirjaviiteRajapinta> listaaViitteet () {
         return kirjaviitteet;
     }
     
