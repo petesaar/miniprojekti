@@ -90,26 +90,5 @@ public class Viite extends KirjaviiteRajapinta {
     public Validator getValidator() {
         return null;
         // new KirjaviiteValidator(this);
-    }
-
-    @Override
-    public String getAuthor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getYear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getTitle() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-
-    
-
-       
-        
+    }        
 }

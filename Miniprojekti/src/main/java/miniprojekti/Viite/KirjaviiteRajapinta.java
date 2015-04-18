@@ -24,12 +24,6 @@ public abstract class KirjaviiteRajapinta {
     public void setBibtexkey(String bibtexkey) {
         this.bibtexkey = bibtexkey;
     }
-
-    public abstract String getAuthor();
-
-    public abstract String getYear();
-
-    public abstract String getTitle();
     
     public abstract Validator getValidator();
     
