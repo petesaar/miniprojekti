@@ -3,8 +3,6 @@ package miniprojekti.Viite;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import miniprojekti.Viite.validaattorit.Validator;
 
 /**
@@ -49,5 +47,16 @@ public abstract class KirjaviiteRajapinta {
             }
         }
         return fields;
+    }
+    
+    @Override
+    public String toString(){
+        Map<String, String> fields = this.getFields();
+        String teksti = "Reference "+bibtexkey+":\n";
+        for(String key : fields.keySet()){
+            if(!fields.get(key).isEmpty())
+                teksti += key+": "+fields.get(key)+"\n";
+        }
+        return teksti;
     }
 }

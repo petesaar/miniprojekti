@@ -31,6 +31,16 @@ public class Kirjaviite extends KirjaviiteRajapinta {
         this.number = number;
         this.journal = journal;
     }
+    
+    @Override
+    public Validator getValidator() {
+        return new KirjaviiteValidator(this);
+    }
+
+    @Override
+    public String getType() {
+        return "book";
+    }
 
     public String getAuthor() {
         return author;
@@ -112,15 +122,7 @@ public class Kirjaviite extends KirjaviiteRajapinta {
         this.journal = journal;
     }
 
-    @Override
-    public Validator getValidator() {
-        return new KirjaviiteValidator(this);
-    }
-
-    @Override
-    public String getType() {
-        return "book";
-    }
+    
     
     
 }
