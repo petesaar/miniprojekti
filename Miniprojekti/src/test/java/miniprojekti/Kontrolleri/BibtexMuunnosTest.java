@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import miniprojekti.Viite.KirjaviiteRajapinta;
+import miniprojekti.Viite.Viite;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import static org.mockito.Mockito.mock;
@@ -38,8 +38,8 @@ public final class BibtexMuunnosTest {
         return arvot;
     }
 
-    private KirjaviiteRajapinta luoViite(Map<String, String> arvot, String bibTeXKey, String type) {
-        KirjaviiteRajapinta kirja = mock(KirjaviiteRajapinta.class);
+    private Viite luoViite(Map<String, String> arvot, String bibTeXKey, String type) {
+        Viite kirja = mock(Viite.class);
         when(kirja.getFields()).thenReturn(arvot);
         when(kirja.getBibtexkey()).thenReturn(bibTeXKey);
         when(kirja.getType()).thenReturn(type);
@@ -56,7 +56,7 @@ public final class BibtexMuunnosTest {
      */
     @Test
     public void testmuunnaViite() {
-        KirjaviiteRajapinta kirja = luoViite(luoMap("Martin, Robert",
+        Viite kirja = luoViite(luoMap("Martin, Robert",
                 "Clean Code: A Handbook of Agile Software Craftsmanship",
                 "Prentice Hall",
                 "2008"), "Martin09", "book");
@@ -73,7 +73,7 @@ public final class BibtexMuunnosTest {
     @Test
     public void testmuunnaViiteStringBuilderilla() {
         StringBuilder builder = new StringBuilder();
-        KirjaviiteRajapinta kirja = luoViite(luoMap("Martin, Robert",
+        Viite kirja = luoViite(luoMap("Martin, Robert",
                 "Clean Code: A Handbook of Agile Software Craftsmanship",
                 "Prentice Hall",
                 "2008"), "Martin09", "book");
@@ -92,7 +92,7 @@ public final class BibtexMuunnosTest {
     public void testmuunnaViiteUTF8() {
         String author = "ÅPSEATA?S E=?R\"#¤? SAÄ ÄDÖ*f n.n,fgJH;FTY";
         String title = "asdå¨åp788¨6¨578ä'75¨8ÅÄÖÅ6578¨'8765-*-*/*/-/*6 5,+";
-        KirjaviiteRajapinta kirja = luoViite(luoMap(author,
+        Viite kirja = luoViite(luoMap(author,
                 title,
                 "Prentice Hall",
                 "2008"), "Martin09", "book");

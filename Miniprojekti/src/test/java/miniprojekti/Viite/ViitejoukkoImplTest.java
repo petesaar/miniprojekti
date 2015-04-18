@@ -13,8 +13,8 @@ import static org.mockito.Mockito.when;
 
 public class ViitejoukkoImplTest {
     
-    KirjaviiteRajapinta virheellinen;
-    KirjaviiteRajapinta kunnollinen;
+    Viite virheellinen;
+    Viite kunnollinen;
     Validator virhe;
     Validator ok;
     ViitejoukkoImpl joukko;
@@ -24,8 +24,8 @@ public class ViitejoukkoImplTest {
     
     @Before
     public void setUp() {
-        virheellinen = mock(KirjaviiteRajapinta.class);
-        kunnollinen = mock(KirjaviiteRajapinta.class);
+        virheellinen = mock(Viite.class);
+        kunnollinen = mock(Viite.class);
         virhe = mock(Validator.class);
         when(virhe.validate()).thenReturn(false);
         when(virhe.getErrors()).thenReturn(new String[1]);

@@ -11,16 +11,16 @@ import miniprojekti.Viite.validaattorit.Validator;
 
 public class ViitejoukkoImpl implements ViiteJoukko{
     
-    private ArrayList<KirjaviiteRajapinta> viitteet;
+    private ArrayList<Viite> viitteet;
     private String[] errors;
     
     public ViitejoukkoImpl(){
-        viitteet = new ArrayList<KirjaviiteRajapinta>();
+        viitteet = new ArrayList<Viite>();
         errors = null;
     }
     
     @Override
-    public Iterable<KirjaviiteRajapinta> getKirjaViitteet() {
+    public Iterable<Viite> getKirjaViitteet() {
         return viitteet;
     }
 
@@ -30,7 +30,7 @@ public class ViitejoukkoImpl implements ViiteJoukko{
      * @return false jos viitettä ei tallennettu virheellisenä.
      */
     @Override
-    public boolean save(KirjaviiteRajapinta viite) {
+    public boolean save(Viite viite) {
         Validator validator = viite.getValidator();
         boolean valid = validator.validate();
         errors = validator.getErrors();
@@ -42,7 +42,7 @@ public class ViitejoukkoImpl implements ViiteJoukko{
     }
 
     @Override
-    public ArrayList<KirjaviiteRajapinta> getViitteet() {
+    public ArrayList<Viite> getViitteet() {
         return viitteet;
     }
 

@@ -11,7 +11,7 @@ import miniprojekti.Viite.validaattorit.Validator;
  *
  * @author Iiro
  */
-public class Artikkeliviite extends KirjaviiteRajapinta {
+public class Artikkeliviite extends Viite {
     
     protected String author;
     protected String title;

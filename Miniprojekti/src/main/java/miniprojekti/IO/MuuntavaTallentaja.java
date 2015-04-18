@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
 import miniprojekti.Kontrolleri.Muuntaja;
-import miniprojekti.Viite.KirjaviiteRajapinta;
+import miniprojekti.Viite.Viite;
 import miniprojekti.Viite.ViiteJoukko;
 
 /**
@@ -53,7 +53,7 @@ public final class MuuntavaTallentaja implements StreamKirjoittaja {
         if (io == null) {
             throw new IllegalArgumentException("IOOut oli null.");
         }
-        Iterable<KirjaviiteRajapinta> viiteIteraatio = viitteet.getKirjaViitteet();
+        Iterable<Viite> viiteIteraatio = viitteet.getKirjaViitteet();
         if (viiteIteraatio == null) {
             throw new IllegalArgumentException("Viiteiteraatio oli null.");
         }
@@ -81,9 +81,9 @@ public final class MuuntavaTallentaja implements StreamKirjoittaja {
      * @param writer BufferedWriter olioon viitteet kirjoitetaan.
      * @throws IOException Kirjoitus virheen sattuessa.
      */
-    private void tallennaTiedot(Iterable<KirjaviiteRajapinta> viitteet, BufferedWriter writer) throws IOException {
+    private void tallennaTiedot(Iterable<Viite> viitteet, BufferedWriter writer) throws IOException {
         StringBuilder teksti = new StringBuilder();
-        for (KirjaviiteRajapinta viite : viitteet) {
+        for (Viite viite : viitteet) {
             muuntaja.muunnaViite(teksti, viite);
         }
         writer.append(teksti);

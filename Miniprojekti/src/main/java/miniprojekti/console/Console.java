@@ -3,7 +3,7 @@ package miniprojekti.console;
 
 import miniprojekti.Kontrolleri.Kontrolleri;
 import miniprojekti.Viite.Kirjaviite;
-import miniprojekti.Viite.KirjaviiteRajapinta;
+import miniprojekti.Viite.Viite;
 
 /**
  *
@@ -68,7 +68,7 @@ public class Console {
     }
     
     private void haeKirjaviitteet() {
-        for (KirjaviiteRajapinta viite : kontrolleri.listaaViitteet()) {
+        for (Viite viite : kontrolleri.listaaViitteet()) {
             io.print(viite.toString() + "\n");
         }
     }

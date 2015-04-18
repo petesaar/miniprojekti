@@ -5,7 +5,7 @@ import miniprojekti.Viite.validaattorit.KirjaviiteValidator;
 import miniprojekti.Viite.validaattorit.Validator;
 
 
-public class Kirjaviite extends KirjaviiteRajapinta {
+public class Kirjaviite extends Viite {
  
     protected String author;
     protected String title;

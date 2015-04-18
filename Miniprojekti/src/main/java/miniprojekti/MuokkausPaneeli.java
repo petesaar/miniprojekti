@@ -6,7 +6,7 @@ import java.util.*;
 import javax.swing.text.*;
 import java.awt.event.*;
 import java.awt.*;
-import miniprojekti.Viite.KirjaviiteRajapinta;
+import miniprojekti.Viite.Viite;
 
 /**
  *
@@ -51,7 +51,7 @@ public class MuokkausPaneeli {
                 int j = 0;
 
                 //lisätään viitteiden tekstiesitykset ja luodaan nappeja niiden referenssien mukaan nimettyinä
-                for (KirjaviiteRajapinta viite : UserWindow.ohjausOlio.listaaViitteet()) {
+                for (Viite viite : UserWindow.ohjausOlio.listaaViitteet()) {
                     viiteLista.add(viite.toString());
                     poistoNappi[j] = new JButton("Poista " + viite.getRefrence());
                     muokkaaNappi[j] = new JButton("Muokkaa " + viite.getRefrence());

@@ -11,7 +11,7 @@ import miniprojekti.Viite.validaattorit.Validator;
  *
  * @author Jeesusteippaajat
  */
-public class Inproceedings extends KirjaviiteRajapinta{
+public class Inproceedings extends Viite{
     private String bibtexkey;
     private String author;
     private String title;

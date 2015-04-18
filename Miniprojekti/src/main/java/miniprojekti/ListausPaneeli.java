@@ -5,7 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import miniprojekti.Viite.KirjaviiteRajapinta;
+import miniprojekti.Viite.Viite;
 
 /**
  *
@@ -48,7 +48,7 @@ public class ListausPaneeli {
         katsele.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 StringBuilder sb = new StringBuilder();
-                for (KirjaviiteRajapinta viite : UserWindow.ohjausOlio.listaaViitteet()) {
+                for (Viite viite : UserWindow.ohjausOlio.listaaViitteet()) {
                     sb.append(viite.toString()).append("\n");
                 }
                 lukualue.setText(sb.toString());

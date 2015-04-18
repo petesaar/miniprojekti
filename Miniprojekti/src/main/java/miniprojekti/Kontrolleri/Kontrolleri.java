@@ -2,13 +2,11 @@ package miniprojekti.Kontrolleri;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import miniprojekti.IO.FileIO;
 import miniprojekti.IO.MuuntavaTallentaja;
 import miniprojekti.IO.StreamKirjoittaja;
 import miniprojekti.Viite.Kirjaviite;
-import miniprojekti.Viite.KirjaviiteRajapinta;
 import miniprojekti.Viite.Viite;
 import miniprojekti.Viite.ViiteJoukko;
 import miniprojekti.Viite.ViitejoukkoImpl;
@@ -26,13 +24,6 @@ public class Kontrolleri {
     private final Muuntaja bibtexMuuntaja = new BibtexMuunnos();
     private final StreamKirjoittaja tallentaja = new MuuntavaTallentaja(kirjaviitteet, bibtexMuuntaja);
 
-    // uusi Okon/part-a ehdotus:
-    public boolean luoViite(String type, String bibtexkey, HashMap fields) {
-        Viite viite;
-        viite = new Viite(type, bibtexkey, fields);
-
-        return kirjaviitteet.save(viite);
-    }
 
     // luodaan uusi kirjaviite
     public boolean luoKirjaviite(String reference, String author, String title,
@@ -45,9 +36,9 @@ public class Kontrolleri {
     }
 
     // keskenerÃ¤inen hakutoiminto (palauttaa myÃ¶s viitteen, jos hakusana on kentÃ¤n nimessÃ¤)
-    public List<KirjaviiteRajapinta> haeSanalla(String hakusana) {
-        List<KirjaviiteRajapinta> hakutulokset = new ArrayList<KirjaviiteRajapinta>();
-        for (KirjaviiteRajapinta viite : kirjaviitteet.getViitteet()) {
+    public List<Viite> haeSanalla(String hakusana) {
+        List<Viite> hakutulokset = new ArrayList<Viite>();
+        for (Viite viite : kirjaviitteet.getViitteet()) {
             // TODO: kun viiteluokkaan tehty getFields-metodi tms. niin hakutomintoa tarkennettava
             if (viite.toString().contains(hakusana)) {
                 hakutulokset.add(viite);
@@ -58,7 +49,7 @@ public class Kontrolleri {
 
     // listaa viitteet kÃ¤yttÃ¶liittymÃ¤Ã¤ ja tallennusta varten
     // VANHA VERSIO: public List<KirjaviiteRajapinta> listaaViitteet () {
-    public List<KirjaviiteRajapinta> listaaViitteet() {
+    public List<Viite> listaaViitteet() {
         return kirjaviitteet.getViitteet();
     }
 

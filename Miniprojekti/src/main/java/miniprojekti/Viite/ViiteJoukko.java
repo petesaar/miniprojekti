@@ -8,11 +8,11 @@ import java.util.ArrayList;
  */
 public interface ViiteJoukko {
 
-    Iterable<KirjaviiteRajapinta> getKirjaViitteet();
+    Iterable<Viite> getKirjaViitteet();
     
-    boolean save(KirjaviiteRajapinta viite);
+    boolean save(Viite viite);
     
-    ArrayList<KirjaviiteRajapinta> getViitteet();
+    ArrayList<Viite> getViitteet();
     
     String[] getErrors();
 }

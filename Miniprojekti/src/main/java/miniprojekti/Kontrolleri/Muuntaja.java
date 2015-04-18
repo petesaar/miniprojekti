@@ -1,6 +1,6 @@
 package miniprojekti.Kontrolleri;
 
-import miniprojekti.Viite.KirjaviiteRajapinta;
+import miniprojekti.Viite.Viite;
 
 /**
  * Määrittää viitteen muunnoksen.
@@ -15,7 +15,7 @@ public interface Muuntaja {
      * @param teksti Kirjoittaa muunnetun viitteen annettuun StringBuidleriin.
      * @param viite Kirjoitettava viite.
      */
-    public void muunnaViite(StringBuilder teksti, KirjaviiteRajapinta viite);
+    public void muunnaViite(StringBuilder teksti, Viite viite);
 
     /**
      * Muuttaa viitten toteutetulla muuntajalla.
@@ -23,5 +23,5 @@ public interface Muuntaja {
      * @param viite Muunnettava viite.
      * @return Viite String muodossa.
      */
-    public String muunnaViite(KirjaviiteRajapinta viite);
+    public String muunnaViite(Viite viite);
 }

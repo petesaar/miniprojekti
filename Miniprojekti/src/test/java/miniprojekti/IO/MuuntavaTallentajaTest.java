@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import miniprojekti.Kontrolleri.Muuntaja;
-import miniprojekti.Viite.KirjaviiteRajapinta;
+import miniprojekti.Viite.Viite;
 import miniprojekti.Viite.ViiteJoukko;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -26,10 +26,10 @@ import org.mockito.stubbing.Answer;
 public final class MuuntavaTallentajaTest {
 
     private Muuntaja muuntaja;
-    private Iterator<KirjaviiteRajapinta> iteraattori;
-    private KirjaviiteRajapinta kirja;
-    private KirjaviiteRajapinta kirja2;
-    private Iterable<KirjaviiteRajapinta> viitteetIteraatio;
+    private Iterator<Viite> iteraattori;
+    private Viite kirja;
+    private Viite kirja2;
+    private Iterable<Viite> viitteetIteraatio;
     private ViiteJoukko viitteet;
     private IOOut out;
     private ByteArrayOutputStream stream;
@@ -44,7 +44,7 @@ public final class MuuntavaTallentajaTest {
             public Void answer(InvocationOnMock invocation) {
                 Object[] args = invocation.getArguments();
                 StringBuilder sb = (StringBuilder) args[0];
-                KirjaviiteRajapinta viite = (KirjaviiteRajapinta) args[1];
+                Viite viite = (Viite) args[1];
                 sb.append("Args").append(viite);
                 return null;
             }
@@ -61,7 +61,7 @@ public final class MuuntavaTallentajaTest {
     private void yksiViite(String author, String title, String publisher, String year) {
         Map<String, String> arvot = luoMap(author, title, publisher, year);
 
-        kirja = mock(KirjaviiteRajapinta.class);
+        kirja = mock(Viite.class);
         when(kirja.getFields()).thenReturn(arvot);
 
         iteraattori = mock(Iterator.class);
@@ -112,9 +112,9 @@ public final class MuuntavaTallentajaTest {
                 "Prentice Hall",
                 "2008"
         );
-        kirja = mock(KirjaviiteRajapinta.class);
+        kirja = mock(Viite.class);
         when(kirja.getFields()).thenReturn(arvot1);
-        kirja2 = mock(KirjaviiteRajapinta.class);
+        kirja2 = mock(Viite.class);
         when(kirja.getFields()).thenReturn(arvot2);
 
         iteraattori = mock(Iterator.class);

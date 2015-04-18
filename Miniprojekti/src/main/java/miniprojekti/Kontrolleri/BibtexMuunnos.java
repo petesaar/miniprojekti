@@ -1,7 +1,7 @@
 package miniprojekti.Kontrolleri;
 
 import java.util.Map;
-import miniprojekti.Viite.KirjaviiteRajapinta;
+import miniprojekti.Viite.Viite;
 
 /**
  * @author Jeesusteippaajat
@@ -19,7 +19,7 @@ public final class BibtexMuunnos implements Muuntaja {
      * @param teksti StringBuilder, johon viite kirjoitetaan.
      */
     @Override
-    public void muunnaViite(StringBuilder teksti, KirjaviiteRajapinta viite) {
+    public void muunnaViite(StringBuilder teksti, Viite viite) {
         teksti.append("@").append(viite.getType()).append("{").append(viite.getBibtexkey()).append(",\n");
         Map<String, String> fields = viite.getFields();
         for (Map.Entry<String, String> entry : fields.entrySet()) {
@@ -37,7 +37,7 @@ public final class BibtexMuunnos implements Muuntaja {
      * @return Annettu viite BibTeX muodossa.
      */
     @Override
-    public String muunnaViite(KirjaviiteRajapinta viite) {
+    public String muunnaViite(Viite viite) {
         StringBuilder teksti = new StringBuilder();
         muunnaViite(teksti, viite);
         return teksti.toString();
