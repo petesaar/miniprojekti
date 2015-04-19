@@ -85,7 +85,6 @@ public class Kontrolleri {
             tallentaja.tallennaStream(io);
             return true;
         } catch (IOException ex) {
-        } catch (IllegalArgumentException ex) {
         } finally {
             if (io != null) {
                 try {

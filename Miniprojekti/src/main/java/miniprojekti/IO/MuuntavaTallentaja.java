@@ -28,7 +28,7 @@ public final class MuuntavaTallentaja implements StreamKirjoittaja {
      * @param muuntaja Muunnoksessa käytettävä muuntaja.
      * @throws IllegalArgumentException Jos ViiteJoukko on null.
      */
-    public MuuntavaTallentaja(ViiteJoukko viitteet, Muuntaja muuntaja) {
+    public MuuntavaTallentaja(ViiteJoukko viitteet, Muuntaja muuntaja) throws IllegalArgumentException {
         if (viitteet == null) {
             throw new IllegalArgumentException("Vitteet oli null.");
         }
@@ -49,7 +49,7 @@ public final class MuuntavaTallentaja implements StreamKirjoittaja {
      * ViiteJoukko palauttaa null arvoisen iteroitavan olion.
      */
     @Override
-    public void tallennaStream(IOOut io) throws IOException {
+    public void tallennaStream(IOOut io) throws IOException, IllegalArgumentException {
         if (io == null) {
             throw new IllegalArgumentException("IOOut oli null.");
         }
