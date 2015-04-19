@@ -175,36 +175,18 @@ public class LisaysPaneeli {
                 String tyyppi = tyyppi_boksi.getSelectedItem().toString().toLowerCase();
                 Map<String, String> kentat = new HashMap();
                 
-                if (tyyppi.equals("book")) {
-                    kentat.put("author", author_kentta.getText());
-                    kentat.put("title", title_kentta.getText());
-                    kentat.put("year", year_kentta.getText());
-                    kentat.put("publisher", publisher_kentta.getText());
-                    kentat.put("address", address_kentta.getText());
-                    kentat.put("volume", volume_kentta.getText());
-                    kentat.put("number", number_kentta.getText());
-                    UserWindow.ohjausOlio.luoViite(tyyppi, referenssi_kentta.getText(), kentat);
-                } else if (tyyppi.equals("article")) {
-                    kentat.put("author", author_kentta.getText());
-                    kentat.put("title", title_kentta.getText());
-                    kentat.put("year", year_kentta.getText());
-                    kentat.put("pages", pages_kentta.getText());
-                    kentat.put("volume", volume_kentta.getText());
-                    kentat.put("number", number_kentta.getText());
-                    kentat.put("journal", journal_kentta.getText());
-                    UserWindow.ohjausOlio.luoViite(tyyppi, referenssi_kentta.getText(), kentat);
-                } else if (tyyppi.equals("inproceedings")) {
-                    kentat.put("author", author_kentta.getText());
-                    kentat.put("title", title_kentta.getText());
-                    kentat.put("year", year_kentta.getText());
-                    kentat.put("publisher", publisher_kentta.getText());
-                    kentat.put("booktitle", booktitle_kentta.getText());
-                    kentat.put("pages", pages_kentta.getText());
-                    kentat.put("address", address_kentta.getText());
-                    kentat.put("volume", volume_kentta.getText());
-                    kentat.put("number", number_kentta.getText());
-                    UserWindow.ohjausOlio.luoViite(tyyppi, referenssi_kentta.getText(), kentat);
-                }
+                // kontrolleri on vastuussa hashmapin käsittelystä; voi lisätä kaikki kentät
+                kentat.put("author", author_kentta.getText());
+                kentat.put("title", title_kentta.getText());
+                kentat.put("year", year_kentta.getText());
+                kentat.put("publisher", publisher_kentta.getText());
+                kentat.put("address", address_kentta.getText());
+                kentat.put("volume", volume_kentta.getText());
+                kentat.put("number", number_kentta.getText());
+                kentat.put("journal", journal_kentta.getText());
+                kentat.put("booktitle", booktitle_kentta.getText());
+                kentat.put("pages", pages_kentta.getText());
+                UserWindow.ohjausOlio.luoViite(tyyppi, referenssi_kentta.getText(), kentat);
                 
                 String[] errors = UserWindow.ohjausOlio.getErrors();
                 if (errors.length != 0) {
