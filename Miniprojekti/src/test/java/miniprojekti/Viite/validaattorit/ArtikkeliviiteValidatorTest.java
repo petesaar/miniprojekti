@@ -35,29 +35,29 @@ public class ArtikkeliviiteValidatorTest {
     
     @Test
     public void validateEiHyväksyJosTitleTyhjä() {
-        expectFalse("auth","auth","","1234","jour","vol");
+        expectFalse("ref","auth","","1234","jour","vol");
     }
     
     @Test
     public void validateEiHyväksyJosJournalTyhjä(){
-        expectFalse("auth","auth","title","1234","","vol");
+        expectFalse("ref","auth","title","1234","","vol");
     }
     
     @Test
     public void validateEiHyväksyJosVolumeTyhjä(){
-        expectFalse("auth","auth","title","1234","jour","");
+        expectFalse("ref","auth","title","1234","jour","");
     }
     
     @Test
     public void validateEiHyväksyJosYearVirheellinen(){
-        expectFalse("auth","auth","title","123","jour","vol");
-        expectFalse("auth","auth","title","123a","jour","vol");
-        expectFalse("auth","auth","title","12345","jour","vol");
+        expectFalse("ref","auth","title","123","jour","vol");
+        expectFalse("ref","auth","title","123a","jour","vol");
+        expectFalse("ref","auth","title","12345","jour","vol");
     }
     
     @Test
     public void validateHyväksyyHyvilläArvoilla(){
-        setReturnValues("auth","auth","title","1234","jour","vol");
+        setReturnValues("ref","auth","title","1234","jour","vol");
         
         ArtikkeliviiteValidator validator = new ArtikkeliviiteValidator(viite);
         assertTrue(validator.validate());
@@ -65,7 +65,9 @@ public class ArtikkeliviiteValidatorTest {
     
     @Test
     public void getErrorsPalauttaaOikeanMääränErroreita(){
-        
+        expectErrors("ref","auth","title","1234","jour","vol",0);
+        expectErrors("ref","auth","title","1234","jour","",1);
+        expectErrors("ref","auth","title","123","jour","",2);
     }
     
     
