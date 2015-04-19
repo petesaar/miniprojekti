@@ -1,37 +1,114 @@
-<easyb time='Sun Apr 12 16:57:00 EEST 2015' totalbehaviors='6' totalfailedbehaviors='0' totalpendingbehaviors='0' executionTime='734'>
-  <stories scenarios='6' failedscenarios='0' pendingscenarios='0' executionTime='734'>
-    <story name='add_reference' scenarios='5' failedscenarios='0' pendingscenarios='0' executionTime='702'>
-      <description name='User can add a reference' />
-      <scenario name='user can add a reference with scandic letters' result='success' executionTime='47'>
+<easyb time='Sun Apr 19 16:31:22 EEST 2015' totalbehaviors='19' totalfailedbehaviors='0' totalpendingbehaviors='0' executionTime='792'>
+  <stories scenarios='19' failedscenarios='0' pendingscenarios='0' executionTime='792'>
+    <story name='add_article_reference' scenarios='6' failedscenarios='0' pendingscenarios='0' executionTime='520'>
+      <description name='User can add an article reference' />
+      <scenario name='user can add an article reference with scandic letters' result='success' executionTime='40'>
+        <given name='article author, title, year, volume and journal are inserted' result='success' />
+        <when name='article journal has scandic letters' result='success' />
+        <then name='reference is added' result='success' />
+      </scenario>
+      <scenario name='user cannot add an article reference without author name' result='success' executionTime='0'>
+        <given name='article title, year, volume and journal are inserted' result='success' />
+        <when name='author field is left empty' result='success' />
+        <then name='reference is not added' result='success' />
+      </scenario>
+      <scenario name='user cannot add an article reference without title' result='success' executionTime='10'>
+        <given name='article author, year, volume and journal are inserted' result='success' />
+        <when name='title field is left empty' result='success' />
+        <then name='reference is not added' result='success' />
+      </scenario>
+      <scenario name='year must have four numbers' result='success' executionTime='0'>
+        <given name='three references with article author, title, year, volume and journal are inserted' result='success' />
+        <when name='the other references have 3 and 5 numbers' result='success' />
+        <then name='reference with 4 numbers in year is added and the other with 3 and 5 numbers will not be added' result='success' />
+      </scenario>
+      <scenario name='user cannot add an article reference without volume' result='success' executionTime='0'>
+        <given name='article author, title, year and journal are inserted' result='success' />
+        <when name='volume field is left empty' result='success' />
+        <then name='reference is not added' result='success' />
+      </scenario>
+      <scenario name='user cannot add an article reference without journal' result='success' executionTime='0'>
+        <given name='article author, title, year and volume are inserted' result='success' />
+        <when name='journal field is left empty' result='success' />
+        <then name='reference is not added' result='success' />
+      </scenario>
+    </story>
+    <story name='add_book_reference' scenarios='5' failedscenarios='0' pendingscenarios='0' executionTime='92'>
+      <description name='User can add a book reference' />
+      <scenario name='user can add a book reference with scandic letters' result='success' executionTime='3'>
         <given name='book author, title, year and publisher are inserted' result='success' />
         <when name='book title has scandic letters' result='success' />
         <then name='reference is added' result='success' />
       </scenario>
-      <scenario name='user cannot add a reference without author name' result='success' executionTime='16'>
+      <scenario name='user cannot add a book reference without author name' result='success' executionTime='2'>
         <given name='book title, year and publisher are inserted' result='success' />
         <when name='author name field is left empty' result='success' />
         <then name='reference is not added' result='success' />
       </scenario>
-      <scenario name='user cannot add a reference without title' result='success' executionTime='0'>
+      <scenario name='user cannot add a book reference without title' result='success' executionTime='2'>
         <given name='book author, year and publisher are inserted' result='success' />
         <when name='title field is left empty' result='success' />
         <then name='reference is not added' result='success' />
       </scenario>
       <scenario name='year must have four numbers' result='success' executionTime='0'>
-        <given name='three references wirh book author, title, year and publisher are inserted' result='success' />
+        <given name='three references with book author, title, year and publisher are inserted' result='success' />
         <when name='the other references have 3 and 5 numbers' result='success' />
         <then name='reference with 4 numbers in year is added and the other with 3 and 5 numbers will not be added' result='success' />
       </scenario>
-      <scenario name='user cannot add a reference without publisher' result='success' executionTime='0'>
+      <scenario name='user cannot add a book reference without publisher' result='success' executionTime='0'>
         <given name='book author, title and year are inserted' result='success' />
-        <when name='title field is left empty' result='success' />
+        <when name='publisher field is left empty' result='success' />
         <then name='reference is not added' result='success' />
       </scenario>
     </story>
-    <story name='user_gets_listing_of_references' scenarios='1' failedscenarios='0' pendingscenarios='0' executionTime='32'>
+    <story name='add_inproceedings_reference' scenarios='5' failedscenarios='0' pendingscenarios='0' executionTime='100'>
+      <description name='User can add an inproceedings reference' />
+      <scenario name='user can add an inproceedings reference with scandic letters' result='success' executionTime='0'>
+        <given name='inproceedings author, title, year, volume and journal are inserted' result='success' />
+        <when name='inproceedings title has scandic letters' result='success' />
+        <then name='reference is added' result='success' />
+      </scenario>
+      <scenario name='user cannot add an inproceedings reference without author name' result='success' executionTime='0'>
+        <given name='inproceedings title, year and booktitle are inserted' result='success' />
+        <when name='author field is left empty' result='success' />
+        <then name='reference is not added' result='success' />
+      </scenario>
+      <scenario name='user cannot add an inproceedings reference without title' result='success' executionTime='0'>
+        <given name='inproceedings author, year and booktitle are inserted' result='success' />
+        <when name='title field is left empty' result='success' />
+        <then name='reference is not added' result='success' />
+      </scenario>
+      <scenario name='year must have four numbers' result='success' executionTime='10'>
+        <given name='three references with article author, title, year, volume and journal are inserted' result='success' />
+        <when name='the other references have 3 and 5 numbers' result='success' />
+        <then name='reference with 4 numbers in year is added and the other with 3 and 5 numbers will not be added' result='success' />
+      </scenario>
+      <scenario name='user cannot add an inproceedings reference without booktitle' result='success' executionTime='0'>
+        <given name='inproceedings author, title, year and journal are inserted' result='success' />
+        <when name='booktitle field is left empty' result='success' />
+        <then name='reference is not added' result='success' />
+      </scenario>
+    </story>
+    <story name='user_can_review_reference_in_bibtex' scenarios='1' failedscenarios='0' pendingscenarios='0' executionTime='30'>
+      <description name='User can review a reference in bibtex format' />
+      <scenario name='user can review a reference in bibtex format' result='success' executionTime='0'>
+        <given name='a successfully created reference' result='success' />
+        <when name='a book reference has been made' result='success' />
+        <then name='a reference is printed in bibtex format' result='success' />
+      </scenario>
+    </story>
+    <story name='user_can_save_references' scenarios='1' failedscenarios='0' pendingscenarios='0' executionTime='20'>
+      <description name='User can save a reference' />
+      <scenario name='user can save a reference' result='success' executionTime='0'>
+        <given name='a successfully created reference' result='success' />
+        <when name='a reference has been made' result='success' />
+        <then name='reference is saved to the disk' result='success' />
+      </scenario>
+    </story>
+    <story name='user_gets_listing_of_references' scenarios='1' failedscenarios='0' pendingscenarios='0' executionTime='30'>
       <description name='User get a listing of references' />
       <scenario name='user can get a list of references' result='success' executionTime='0'>
-        <given name='at least one reference with author, title, year and publisher' result='success' />
+        <given name='some successfully created references' result='success' />
         <when name='a reference is added' result='success' />
         <then name='prints added references to the command line' result='success' />
       </scenario>
