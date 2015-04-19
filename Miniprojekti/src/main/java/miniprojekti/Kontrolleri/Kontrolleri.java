@@ -1,5 +1,6 @@
 package miniprojekti.Kontrolleri;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -90,7 +91,7 @@ public class Kontrolleri {
     public void tallennaViitteet() {
         FileIO io = null;
         try {
-            io = new FileIO("target/tallennukset.bib");
+            io = new FileIO("target" + File.separatorChar + "tallennukset.bib");
             tallentaja.tallennaStream(io);
         } catch (IOException ex) {
         } catch (IllegalArgumentException ex) {
