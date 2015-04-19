@@ -8,6 +8,7 @@ import java.util.Map;
 import miniprojekti.Kontrolleri.Muuntaja;
 import miniprojekti.Viite.Viite;
 import miniprojekti.Viite.ViiteJoukko;
+import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import org.junit.Before;
@@ -35,8 +36,15 @@ public final class MuuntavaTallentajaTest {
     private ByteArrayOutputStream stream;
     private MuuntavaTallentaja tallentaja;
 
+    @After
+    public void after() throws IOException {
+        if (stream != null) {
+            stream.close();
+        }
+    }
+
     @Before
-    public void beforeClass() {
+    public void before() {
         muuntaja = mock(Muuntaja.class);
         //Nulleja turhaan?
         Mockito.doAnswer(new Answer<Void>() {
@@ -151,7 +159,6 @@ public final class MuuntavaTallentajaTest {
         String title = "ASDÅ¤+´´´ökmakwmäeq342¨ö 52 f+d*-- ";
         String year = "1234";
         String publisher = "ÅÅÅÅÅ=*-/-+gF KODJFGISHG93425U5 44213%?#&)\"\"\"\"";
-        String refrence = "test";
         yksiViite(author, title, publisher, year);
         String result = new String(stream.toByteArray(), MuuntavaTallentaja.CHARSET);
         String expected = expected();

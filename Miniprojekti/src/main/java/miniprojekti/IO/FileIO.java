@@ -25,13 +25,12 @@ public final class FileIO implements IOOut {
      * tiedosto jota ei voida poistaa, tai polkuun ei voida luoda uutta
      * tiedostoa.
      */
-    public FileIO(String polku) throws IOException {
+    public FileIO(String polku) throws IOException, IllegalArgumentException {
         if (polku == null) {
             throw new IllegalArgumentException("Polku oli null.");
         }
         File tiedosto = new File(polku);
         luoTyhjaTiedosto(tiedosto);
-        System.out.println(tiedosto.getAbsolutePath());
         stream = new FileOutputStream(tiedosto);
     }
 
@@ -40,7 +39,7 @@ public final class FileIO implements IOOut {
      *
      * @param tiedosto Joka poistetaan ja luodaan.
      */
-    private void luoTyhjaTiedosto(File tiedosto) {
+    private void luoTyhjaTiedosto(File tiedosto) throws IllegalArgumentException {
         if (tiedosto.exists()) {
             if (!tiedosto.delete()) {
                 throw new IllegalArgumentException("Edellistä tiedostoa ei voida korvata.");
