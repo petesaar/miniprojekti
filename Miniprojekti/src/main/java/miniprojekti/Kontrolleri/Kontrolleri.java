@@ -50,16 +50,6 @@ public class Kontrolleri {
     public String[] getErrors() {
         return kirjaviitteet.getErrors();
     }
-    
-    // luodaan uusi kirjaviite
-    public boolean luoKirjaviite(String reference, String author, String title,
-            String year, String booktitle, String publisher, String pages, String address,
-            String volume, String number, String journal) {
-        Kirjaviite viite;
-        viite = new Kirjaviite(reference, author, title, year, booktitle,
-                publisher, pages, address, volume, number, journal);
-        return kirjaviitteet.save(viite);
-    }
 
     // keskenerÃ¤inen hakutoiminto (palauttaa myÃ¶s viitteen, jos hakusana on kentÃ¤n nimessÃ¤)
     public List<Viite> haeSanalla(String hakusana) {
@@ -88,11 +78,12 @@ public class Kontrolleri {
     }
 
     // lisÃ¤tÃ¤Ã¤nkÃ¶ metodi viitteiden levytallennusta varten?
-    public void tallennaViitteet() {
+    public boolean tallennaViitteet() {
         FileIO io = null;
         try {
             io = new FileIO("tallennukset.bib");
             tallentaja.tallennaStream(io);
+            return true;
         } catch (IOException ex) {
         } catch (IllegalArgumentException ex) {
         } finally {
@@ -103,6 +94,7 @@ public class Kontrolleri {
                 }
             }
         }
+        return false;
     }
 
     // metodi luokkien lataamiseen levyltÃ¤

@@ -1,8 +1,9 @@
 
 package miniprojekti.console;
 
+import java.util.HashMap;
+import java.util.Map;
 import miniprojekti.Kontrolleri.Kontrolleri;
-import miniprojekti.Viite.Kirjaviite;
 import miniprojekti.Viite.Viite;
 
 /**
@@ -21,56 +22,106 @@ public class Console {
         this.kontrolleri = kontrolleri;
     }
     
-    /* Komentorivin testaamiseen
-    public static void main(String[] args) {
-        new Console(new ConsoleIO(), new Kontrolleri()).run();
-    }
-    */
-    
     /*
-     * Nykyiset komennot:
-     * 
-     * -- newbook: luo uuden kirjaviitteen
-     * -- listbooks: tulostaa kirjaviitteet
-     * -- tyhjä syöte: lopettaa suorituksen
+     * book: luo uuden kirjaviitteen
+     * article: luo uuden artikkeliviitteen
+     * inproceedings: luo uuden inproceedings-viitteen
+     * list: tulostaa kirjaviitteet
+     * quit: lopettaa suorituksen
      */
     public void run() {
         while (true) {
             String input = io.readLine("> ");
-            if (input.isEmpty()) {
+            if (input.equals("quit")) {
                 break;
-            } else if (input.equals("newbook")) {
-                luoKirjaviite();
-            } else if (input.equals("listbooks")) {
-                haeKirjaviitteet();
-            }
-        }
-    }
-
-    private void luoKirjaviite() {
-        String reference = io.readLine("reference: ");
-        String author = io.readLine("author: ");
-        String title = io.readLine("title: ");
-        String year = io.readLine("year: ");
-        String publisher = io.readLine("publisher: ");
-        String booktitle = io.readLine("booktitle: ");
-        String pages = io.readLine("pages: ");
-        String address = io.readLine("address: ");
-        String volume = io.readLine("volume: ");
-        String number = io.readLine("number: ");
-        String journal  = io.readLine("journal: ");
-        if (kontrolleri.luoKirjaviite(reference, author, title, year, publisher, booktitle, 
-                                       pages, address, volume, number, journal)) {
-            io.print("Viite lisättiin onnistuneesti.\n");
-        } else {
-            io.print("Viitteen lisäys epäonnistui.\n");
+            } else if (input.equals("book")) {
+                luoKirjaViite();
+            } else if (input.equals("article")) {
+                luoArticleViite();
+            } else if (input.equals("inproceedings")) {
+                luoInproceedingsViite();
+            } else if (input.equals("list")) {
+                haeViitteet();
+            } else if (input.equals("save")) {
+                tallennaViitteet();
+            } else if (input.equals("bibtex")) {
+                tulostaBibtexMuodossa();
+            } 
         }
     }
     
-    private void haeKirjaviitteet() {
+    private Map<String, String> yhteisetAttribuutit() {
+        Map<String, String> attrs = new HashMap<String, String>();
+        attrs.put("reference", io.readLine("reference: "));
+        attrs.put("author", io.readLine("author: "));
+        attrs.put("title", io.readLine("title: "));
+        attrs.put("year", io.readLine("year: "));
+        return attrs;
+    }
+
+    private void luoKirjaViite() {
+        Map<String, String> attrs = yhteisetAttribuutit();
+        attrs.put("publisher", io.readLine("publisher: "));
+        attrs.put("address", io.readLine("address: "));
+        attrs.put("volume", io.readLine("volume: "));
+        attrs.put("number", io.readLine("number: "));
+        if (kontrolleri.luoViite("book", attrs.get("reference"), attrs)) {
+            io.print("Viite lisattiin onnistuneesti\n");
+        } else {
+            tulostaVirheet();
+        }
+    }
+    
+    private void luoArticleViite() {
+        Map<String, String> attrs = yhteisetAttribuutit();
+        attrs.put("volume", io.readLine("volume: "));
+        attrs.put("journal", io.readLine("journal: "));
+        attrs.put("pages", io.readLine("pages: "));
+        attrs.put("number", io.readLine("number: "));
+        if (kontrolleri.luoViite("article", attrs.get("reference"), attrs)) {
+            io.print("Viite lisattiin onnistuneesti\n");
+        } else {
+            tulostaVirheet();
+        }
+    }
+
+    private void luoInproceedingsViite() {
+        Map<String, String> attrs = yhteisetAttribuutit();
+        attrs.put("booktitle", io.readLine("booktitle: "));
+        attrs.put("publisher", io.readLine("publisher: "));
+        attrs.put("pages", io.readLine("pages: "));
+        attrs.put("address", io.readLine("address: "));
+        attrs.put("volume", io.readLine("volume: "));
+        attrs.put("number", io.readLine("number: "));
+        if (kontrolleri.luoViite("inproceedings", attrs.get("reference"), attrs)) {
+            io.print("Viite lisattiin onnistuneesti\n");
+        } else {
+            tulostaVirheet();
+        }
+    }
+    
+    private void tulostaVirheet() {
+        for (String error : kontrolleri.getErrors()) {
+            io.print(error + "\n");
+        }
+    }
+    
+    private void haeViitteet() {
         for (Viite viite : kontrolleri.listaaViitteet()) {
             io.print(viite.toString() + "\n");
         }
     }
-    
+
+    private void tallennaViitteet() {
+        if (kontrolleri.tallennaViitteet()) {
+            io.print("Viitteiden tallennus onnistui");
+        } else {
+            io.print("Viitteiden tallennus ei onnistunut");
+        }
+    }
+
+    private void tulostaBibtexMuodossa() {
+        io.print(kontrolleri.haeViimeksiLisattyKirjaviite());
+    }
+
 }

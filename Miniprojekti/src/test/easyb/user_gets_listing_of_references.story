@@ -7,9 +7,10 @@ import miniprojekti.console.*
 description 'User get a listing of references'
 
 scenario "user can get a list of references", {
-    given 'at least one reference with author, title, year and publisher', {
-       io = new StubIO("newbook", "ref", "A. Kivi", "Seitsemän veljestä", "1870", "pub", "", "", "", "", "", "",
-                       "listbooks")
+    given 'some successfully created references', {
+       io = new StubIO("book", "ref", "A. Kivi", "Seitsemän veljestä", "1870", "pub", "", "", "",
+                       "article", "ref", "Joku media", "Seiska", "2011", "5", "Nykänen taas jurrissa", "", "", 
+                       "list", "quit")
        app = new Console(io, new Kontrolleri())
     }
  
@@ -19,7 +20,8 @@ scenario "user can get a list of references", {
 
     then 'prints added references to the command line', {
       io.getPrints().shouldHave("Seitsemän veljestä")
-      io.getPrints().shouldNotHave("Viitteen lisäys epäonnistui.")
+      io.getPrints().shouldHave("Nykänen taas jurrissa")
+      io.getPrints().shouldNotHave("Viitteen lisays epäonnistui")
     }
 }
 
