@@ -91,7 +91,7 @@ public class Kontrolleri {
     public void tallennaViitteet() {
         FileIO io = null;
         try {
-            io = new FileIO("target" + File.separatorChar + "tallennukset.bib");
+            io = new FileIO("tallennukset.bib");
             tallentaja.tallennaStream(io);
         } catch (IOException ex) {
         } catch (IllegalArgumentException ex) {
