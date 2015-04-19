@@ -1,15 +1,24 @@
 \begin{thebibliography}{1}
 
-\bibitem{HM06}
-Marko Hassinen and Hannu M\"{a}yr\"{a}.
-\newblock Learning programming by programming: a case study.
-\newblock In {\em Baltic Sea '06: Proceedings of the 6th Baltic Sea conference
-  on Computing education research: Koli Calling 2006}, pages 117--119. ACM,
-  2006.
+\bibitem{BA04}
+Kent Beck and Cynthia Andres.
+\newblock {\em Extreme Programming Explained: Embrace Change (2nd Edition)}.
+\newblock Addison-Wesley Professional, 2004.
 
-\bibitem{K}
-Yrjö Kääriäinen.
-\newblock {\em test}.
-\newblock safasf, 1212.
+\bibitem{VPL11}
+Arto Vihavainen, Matti Paksula, and Matti Luukkainen.
+\newblock Extreme apprenticeship method in teaching programming for beginners.
+\newblock In {\em SIGCSE '11: Proceedings of the 42nd SIGCSE technical
+  symposium}, 2011.
+
+\bibitem{TEST}
+Kyösti Väänänen.
+\newblock {\em Ääkköstestit}.
+\newblock Jeesusteippaajat, 2015.
+
+\bibitem{W04}
+Keith~J. Whittington.
+\newblock Infusing active learning into introductory programming courses.
+\newblock {\em J. Comput. Small Coll}, 19(5):249--259, 2004.
 
 \end{thebibliography}
