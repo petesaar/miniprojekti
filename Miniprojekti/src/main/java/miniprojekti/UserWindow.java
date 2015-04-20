@@ -32,10 +32,12 @@ public class UserWindow extends JPanel {
         
         setLayout(new GridLayout(1, 1));    //areenan muotoiluja      
         add(areena);
-                
-        areena.addTab("Viitteen lisäys", lisaysPaneeli);
-        areena.addTab("Tarkastele viitteitä", listausPaneeli);
-        areena.addTab("Muokkaa viitteitä", muokkausPaneeli);
+          
+        areena.addTab("     Käsittele viitteitä     ", listausPaneeli);
+        areena.addTab("     Lisää uusi viite     ", lisaysPaneeli);
+        
+        
+        //areena.addTab("Muokkaa viitteitä", muokkausPaneeli);
         
         //------------------tehdään paneelit-------------------------------------------
         lisaysPaneeli.setLayout(null);

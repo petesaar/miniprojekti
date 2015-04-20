@@ -26,15 +26,15 @@ public class MuokkausPaneeli {
 
         paivita.setBounds(640, 20, 180, 40);
         paivita.setText("Päivitä luettelo");
-        paivita.setFont(new Font("Arial", Font.BOLD, 14));
+        paivita.setFont(new Font("Verdana", Font.BOLD, 14));
         paivita.setBackground(Color.green);
 
         luku.setBounds(20, 20, 550, 650);
-        luku.setFont(new Font("Arial", Font.BOLD, 13));
+        luku.setFont(new Font("Verdana", Font.BOLD, 13));
         luku.setForeground(Color.black);
 
         lukualue.setBounds(20, 20, 550, 650);
-        lukualue.setFont(new Font("Arial", Font.BOLD, 13));
+        lukualue.setFont(new Font("Verdana", Font.BOLD, 13));
         lukualue.setForeground(Color.black);
         lukualue.setText("Lukualue");
 
@@ -50,7 +50,7 @@ public class MuokkausPaneeli {
                 JButton[] muokkaaNappi = new JButton[UserWindow.ohjausOlio.listaaViitteet().size()];
                 int j = 0;
 
-                //lisätään viitteiden tekstiesitykset ja luodaan nappeja niiden referenssien mukaan nimettyinä
+                //lisätään viitteiden tekstiesitykset ja luodaan nappeja niiden bibtexkeyn mukaan nimettyinä
                 for (Viite viite : UserWindow.ohjausOlio.listaaViitteet()) {
                     viiteLista.add(viite.toString());
                     poistoNappi[j] = new JButton("Poista " + viite.getRefrence());

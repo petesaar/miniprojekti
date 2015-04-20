@@ -48,7 +48,7 @@ public abstract class Viite {
     @Override
     public String toString(){
         Map<String, String> fields = this.getFields();
-        String teksti = "Reference "+bibtexkey+":\n";
+        String teksti = "Bibtex Key: "+bibtexkey+"\n";
         for(String key : fields.keySet()){
             if(!fields.get(key).isEmpty())
                 teksti += key+": "+fields.get(key)+"\n";
