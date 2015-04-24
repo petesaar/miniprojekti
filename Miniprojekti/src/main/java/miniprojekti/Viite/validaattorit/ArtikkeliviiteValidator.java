@@ -27,7 +27,7 @@ public class ArtikkeliviiteValidator extends Validator{
         
         if(viite.getRefrence().isEmpty()){
             errors.add("BibTexKey ei saa olla tyhjä.");
-            ret = false;   
+            ret = false;
         } if(viite.getAuthor().isEmpty()){
             errors.add("Tekijä ei saa olla tyhjä.");
             ret = false;

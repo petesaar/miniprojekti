@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import miniprojekti.Viite.Viite;
+import miniprojekti.Viite.ViiteJoukko;
+import miniprojekti.Viite.ViitejoukkoImpl;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import static org.mockito.Mockito.mock;
@@ -15,9 +17,9 @@ import static org.mockito.Mockito.when;
  *
  * @author Jeesusteippaajat
  */
-public final class BibtexMuunnosTest {
+public final class KontrolleriTest {
 
-    private final BibtexMuunnos muuntaja = new BibtexMuunnos();
+    private final ViiteJoukko kirjaviitteet = new ViitejoukkoImpl();
 
     @SuppressWarnings("unchecked")
     private static Map<String, String> luoMap(String author, String title, String publisher, String year) {
@@ -54,57 +56,6 @@ public final class BibtexMuunnosTest {
      publisher = {Prentice Hall},
      }
      */
-    @Test
-    public void testmuunnaViite() {
-        Viite kirja = luoViite(luoMap("Martin, Robert",
-                "Clean Code: A Handbook of Agile Software Craftsmanship",
-                "Prentice Hall",
-                "2008"), "Martin09", "book");
-        String result = muuntaja.muunnaViite(kirja);
-        String expected = "@book{Martin09,\n"
-                + "author = {Martin, Robert},\n"
-                + "title = {Clean Code: A Handbook of Agile Software Craftsmanship},\n"
-                + "year = {2008},\n"
-                + "publisher = {Prentice Hall},\n"
-                + "}\n";
-        assertEquals(expected, result);
-    }
-
-    @Test
-    public void testmuunnaViiteStringBuilderilla() {
-        StringBuilder builder = new StringBuilder();
-        Viite kirja = luoViite(luoMap("Martin, Robert",
-                "Clean Code: A Handbook of Agile Software Craftsmanship",
-                "Prentice Hall",
-                "2008"), "Martin09", "book");
-        muuntaja.muunnaViite(builder, kirja);
-        String result = builder.toString();
-        String expected = "@book{Martin09,\n"
-                + "author = {Martin, Robert},\n"
-                + "title = {Clean Code: A Handbook of Agile Software Craftsmanship},\n"
-                + "year = {2008},\n"
-                + "publisher = {Prentice Hall},\n"
-                + "}\n";
-        assertEquals(expected, result);
-    }
-
-    @Test
-    public void testmuunnaViiteUTF8() {
-        String author = "ÅPSEATA?S E=?R\"#¤? SAÄ ÄDÖ*f n.n,fgJH;FTY";
-        String title = "asdå¨åp788¨6¨578ä'75¨8ÅÄÖÅ6578¨'8765-*-*/*/-/*6 5,+";
-        Viite kirja = luoViite(luoMap(author,
-                title,
-                "Prentice Hall",
-                "2008"), "Martin09", "book");
-        String result = muuntaja.muunnaViite(kirja);
-        String expected = "@book{Martin09,\n"
-                + "author = {" + author + "},\n"
-                + "title = {" + title + "},\n"
-                + "year = {2008},\n"
-                + "publisher = {Prentice Hall},\n"
-                + "}\n";
-        assertEquals(expected, result);
-    }
     
     @Test
     public void testbibtexkeytUniikkeja() {
@@ -116,6 +67,7 @@ public final class BibtexMuunnosTest {
                 "Kootut",
                 "Semic",
                 "2009"), "Martin09", "book");
+
         String result = toinenkirja.getBibtexkey();
         String expected = "Martin09";
         assertEquals(expected, result);

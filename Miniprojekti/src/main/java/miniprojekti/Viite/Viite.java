@@ -13,10 +13,10 @@ public abstract class Viite {
 
     protected String bibtexkey;
     
-     public String getBibtexkey() {
+    public String getBibtexkey() {
         return bibtexkey;
     }
-    
+     
     public String getRefrence(){
         return bibtexkey;
     }

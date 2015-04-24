@@ -27,9 +27,15 @@ public class Kontrolleri {
     private final ViiteJoukko kirjaviitteet = new ViitejoukkoImpl();
     private final Muuntaja bibtexMuuntaja = new BibtexMuunnos();
     private final StreamKirjoittaja tallentaja = new MuuntavaTallentaja(kirjaviitteet, bibtexMuuntaja);
-
+    private String virheilmoitus;
 
     public boolean luoViite(String tyyppi, String reference, Map<String, String> kentat) {
+        boolean unique = onkoBibtexkeyOlemassa(reference);
+        if (!unique) {
+            virheilmoitus = "BibTexKey on jo käytössä.";
+            return false;
+        }
+        virheilmoitus = "";
         if (tyyppi.equals("book")) {
             return kirjaviitteet.save(new Kirjaviite(reference, kentat.get("author"), kentat.get("title"), kentat.get("year"), 
                     kentat.get("publisher"), kentat.get("booktitle"), kentat.get("pages"), kentat.get("address"), kentat.get("number"), 
@@ -47,21 +53,30 @@ public class Kontrolleri {
         return false;
     }
     
-    public String[] getErrors() {
-        return kirjaviitteet.getErrors();
+    public List<String> getErrors() {
+        List<String> virheilmoitukset = new ArrayList();
+        if (virheilmoitus.length() > 0) virheilmoitukset.add(virheilmoitus);
+        for(String teksti: kirjaviitteet.getErrors()) {
+            virheilmoitukset.add(teksti);
+        }
+        
+        return virheilmoitukset;
     }
 
-    // keskenerÃ¤inen hakutoiminto (palauttaa myÃ¶s viitteen, jos hakusana on kentÃ¤n nimessÃ¤)
-    public List<Viite> haeSanalla(String hakusana) {
-        List<Viite> hakutulokset = new ArrayList<Viite>();
+    public boolean onkoBibtexkeyOlemassa (String bibtexkey) {
         for (Viite viite : kirjaviitteet.getViitteet()) {
-            // TODO: kun viiteluokkaan tehty getFields-metodi tms. niin hakutomintoa tarkennettava
-            if (viite.toString().contains(hakusana)) {
-                hakutulokset.add(viite);
+            if (viite.getBibtexkey().equals(bibtexkey)) {           
+                return false;              
             }
         }
-        return hakutulokset;
+        return true;
     }
+    
+    /* keskeneräinen toiminto, joka poistaa yksittäisen viitteen
+    public poistaViite(String indeksi) {
+        kirjaviitteet.remove(indeksi);
+    }
+    */
 
     // listaa viitteet kÃ¤yttÃ¶liittymÃ¤Ã¤ ja tallennusta varten
     // VANHA VERSIO: public List<KirjaviiteRajapinta> listaaViitteet () {

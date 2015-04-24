@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.swing.*;
 
@@ -189,8 +190,8 @@ public class LisaysPaneeli {
                 kentat.put("pages", pages_kentta.getText());
                 UserWindow.ohjausOlio.luoViite(tyyppi, bibtexkey_kentta.getText(), kentat);
                 
-                String[] errors = UserWindow.ohjausOlio.getErrors();
-                if (errors.length != 0) {
+                List<String> errors = UserWindow.ohjausOlio.getErrors();
+                if (errors.size() != 0) {
                     StringBuilder tuloste = new StringBuilder();
                     for (String error : errors) {
                         tuloste.append(error).append("\n");
