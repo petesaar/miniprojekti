@@ -67,8 +67,13 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
             <version>${org.springframework.version}</version>
-        </dependency>  
-        
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20080701</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
