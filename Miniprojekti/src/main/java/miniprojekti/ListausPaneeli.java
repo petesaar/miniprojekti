@@ -35,7 +35,7 @@ public class ListausPaneeli {
         
         sinullaOn.setBounds(600, 20, 300, 40);
         sinullaOn.setFont(new Font("Verdana", Font.BOLD, 16));
-        sinullaOn.setForeground(Color.BLUE);
+        sinullaOn.setForeground(Color.white);
 
         paivita.setBounds(600, 120, 220, 40);
         paivita.setText("Päivitä luettelo");
@@ -60,6 +60,7 @@ public class ListausPaneeli {
         lukualue.setFont(new Font("Verdana", Font.BOLD, 13));
         lukualue.setForeground(Color.black);
         lukualue.setText("Lukualue");
+        lukualue.setBackground( new Color(220, 220, 220));
         
         UserWindow.listausPaneeli.add(sinullaOn);
         UserWindow.listausPaneeli.add(paivita);        

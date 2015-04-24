@@ -62,19 +62,19 @@ public class LisaysPaneeli {
 
         otsikko_bibtexkey.setBounds(40, 90, 300, 40);
         otsikko_bibtexkey.setFont(new Font("Verdana", Font.BOLD, 13));
-        otsikko_bibtexkey.setForeground(Color.BLUE);
+        otsikko_bibtexkey.setForeground(Color.white);
 
         otsikko_vapaavalintaiset.setBounds(440, 40, 300, 40);
         otsikko_vapaavalintaiset.setFont(new Font("Verdana", Font.BOLD, 18));
-        otsikko_vapaavalintaiset.setForeground(Color.BLUE);
+        otsikko_vapaavalintaiset.setForeground(Color.white);
 
         tyyppi_boksi.setBounds(40, 570, 150, 30);
         tyyppi_boksi.setSelectedIndex(0);
-        tyyppi_boksi.setBackground(Color.white);
+        tyyppi_boksi.setBackground(new Color(220, 220, 220));
 
         otsikko_author.setBounds(40, 150, 200, 40);
         otsikko_author.setFont(new Font("Verdana", Font.BOLD, 13));
-        otsikko_author.setForeground(Color.BLUE);
+        otsikko_author.setForeground(Color.white);
 
         author_kentta.setBounds(40, 180, 300, 30);
         author_kentta.setFont(new Font("Verdana", Font.BOLD, 13));
@@ -86,7 +86,7 @@ public class LisaysPaneeli {
 
         otsikko_title.setBounds(40, 220, 200, 40);
         otsikko_title.setFont(new Font("Verdana", Font.BOLD, 13));
-        otsikko_title.setForeground(Color.BLUE);
+        otsikko_title.setForeground(Color.white);
 
         title_kentta.setBounds(40, 250, 300, 30);
         title_kentta.setFont(new Font("Verdana", Font.BOLD, 13));
@@ -94,7 +94,7 @@ public class LisaysPaneeli {
 
         otsikko_year.setBounds(40, 290, 200, 40);
         otsikko_year.setFont(new Font("Verdana", Font.BOLD, 13));
-        otsikko_year.setForeground(Color.BLUE);
+        otsikko_year.setForeground(Color.white);
 
         year_kentta.setBounds(40, 320, 300, 30);
         year_kentta.setFont(new Font("Verdana", Font.BOLD, 13));
@@ -102,7 +102,7 @@ public class LisaysPaneeli {
 
         otsikko_publisher.setBounds(40, 360, 200, 40);
         otsikko_publisher.setFont(new Font("Verdana", Font.BOLD, 13));
-        otsikko_publisher.setForeground(Color.BLUE);
+        otsikko_publisher.setForeground(Color.white);
 
         publisher_kentta.setBounds(40, 390, 300, 30);
         publisher_kentta.setFont(new Font("Verdana", Font.BOLD, 13));
@@ -110,7 +110,7 @@ public class LisaysPaneeli {
 
         otsikko_booktitle.setBounds(440, 90, 200, 40);
         otsikko_booktitle.setFont(new Font("Verdana", Font.BOLD, 13));
-        otsikko_booktitle.setForeground(Color.BLUE);
+        otsikko_booktitle.setForeground(Color.white);
 
         booktitle_kentta.setBounds(440, 120, 300, 30);
         booktitle_kentta.setFont(new Font("Verdana", Font.BOLD, 13));
@@ -118,7 +118,7 @@ public class LisaysPaneeli {
 
         otsikko_pages.setBounds(440, 150, 200, 40);
         otsikko_pages.setFont(new Font("Verdana", Font.BOLD, 13));
-        otsikko_pages.setForeground(Color.BLUE);
+        otsikko_pages.setForeground(Color.white);
 
         pages_kentta.setBounds(440, 180, 300, 30);
         pages_kentta.setFont(new Font("Verdana", Font.BOLD, 13));
@@ -126,7 +126,7 @@ public class LisaysPaneeli {
 
         otsikko_address.setBounds(440, 220, 200, 40);
         otsikko_address.setFont(new Font("Verdana", Font.BOLD, 13));
-        otsikko_address.setForeground(Color.BLUE);
+        otsikko_address.setForeground(Color.white);
 
         address_kentta.setBounds(440, 250, 300, 30);
         address_kentta.setFont(new Font("Verdana", Font.BOLD, 13));
@@ -134,7 +134,7 @@ public class LisaysPaneeli {
 
         otsikko_volume.setBounds(440, 290, 200, 40);
         otsikko_volume.setFont(new Font("Verdana", Font.BOLD, 13));
-        otsikko_volume.setForeground(Color.BLUE);
+        otsikko_volume.setForeground(Color.white);
 
         volume_kentta.setBounds(440, 320, 300, 30);
         volume_kentta.setFont(new Font("Verdana", Font.BOLD, 13));
@@ -142,7 +142,7 @@ public class LisaysPaneeli {
 
         otsikko_number.setBounds(440, 360, 200, 40);
         otsikko_number.setFont(new Font("Verdana", Font.BOLD, 13));
-        otsikko_number.setForeground(Color.BLUE);
+        otsikko_number.setForeground(Color.white);
 
         number_kentta.setBounds(440, 390, 300, 30);
         number_kentta.setFont(new Font("Verdana", Font.BOLD, 13));
@@ -150,7 +150,7 @@ public class LisaysPaneeli {
 
         otsikko_journal.setBounds(440, 430, 200, 40);
         otsikko_journal.setFont(new Font("Verdana", Font.BOLD, 13));
-        otsikko_journal.setForeground(Color.BLUE);
+        otsikko_journal.setForeground(Color.white);
 
         journal_kentta.setBounds(440, 460, 300, 30);
         journal_kentta.setFont(new Font("Verdana", Font.BOLD, 13));
@@ -164,6 +164,7 @@ public class LisaysPaneeli {
         ilmoitusalue.setFont(new Font("Verdana", Font.BOLD, 13));
         ilmoitusalue.setForeground(Color.black);
         ilmoitusalue.setText("Valitse ensin viitteen tyyppi pudotusvalikosta");
+        ilmoitusalue.setBackground( new Color(220, 220, 220));
 
         UserWindow.lisaysPaneeli.add(ilm);
         UserWindow.lisaysPaneeli.add(tyyppi_boksi);

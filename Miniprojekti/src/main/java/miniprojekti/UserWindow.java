@@ -6,37 +6,46 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+import java.io.InputStream;
+import java.net.*;
 import miniprojekti.Kontrolleri.Kontrolleri;
+
 /**
  * Luokka toimii käyttöliittymässä runkona eri välilehtien osioille
  *
- * @author Jeesusteippaajat 
+ * @author Jeesusteippaajat
  */
 public class UserWindow extends JPanel {
-    
+
     static Kontrolleri ohjausOlio = new Kontrolleri();
     static JTabbedPane areena = new JTabbedPane();  //yleinen paneeli, johon muut liitetään
     static JPanel lisaysPaneeli = new JPanel();     //paneeli viitteen lisäämiseen
     static JPanel listausPaneeli = new JPanel();     //paneeli, jossa voi katsoa kaikkia viitteitä
     static JPanel muokkausPaneeli = new JPanel();     //paneeli, jossa voi käsitellä viitteitä
+
+    private BufferedImage taustakuva;    
     
-    //private BufferedImage taustakuva;    
-    
-    public UserWindow(){        
-       
+    public UserWindow() { 
+        
+        try{
+            taustakuva = ImageIO.read(getClass().getClassLoader().getResource("kirjasto_2.png")); 
+        }catch(Exception e){
+                //pistä poikkeus tähän, jos siltä tuntuu...
+        }
+        
         //anonyymi sisäluokka, jolla tehdään areenasta transparentti 
-        areena.setUI(new javax.swing.plaf.basic.BasicTabbedPaneUI(){
-            protected void paintContentBorder(Graphics g, int tabPlacement, int selectedIndex){}            
+        areena.setUI(new javax.swing.plaf.basic.BasicTabbedPaneUI() {
+            protected void paintContentBorder(Graphics g, int tabPlacement, int selectedIndex) {
+            }
         });
         //-------------------------------------------------------------
-        
+
         setLayout(new GridLayout(1, 1));    //areenan muotoiluja      
         add(areena);
-          
+
         areena.addTab("     Käsittele viitteitä     ", listausPaneeli);
         areena.addTab("     Lisää uusi viite     ", lisaysPaneeli);
-        
-        
+
         //areena.addTab("Muokkaa viitteitä", muokkausPaneeli);
         
         //------------------tehdään paneelit-------------------------------------------
@@ -46,9 +55,8 @@ public class UserWindow extends JPanel {
         listausPaneeli.setOpaque(false);
         muokkausPaneeli.setLayout(null);
         muokkausPaneeli.setOpaque(false);
-        
+
         //------------------------------------------------------------------------------
-        
         LisaysPaneeli lisaysOlio = new LisaysPaneeli();
         lisaysOlio.piirra();
         ListausPaneeli listausOlio = new ListausPaneeli();
@@ -57,12 +65,14 @@ public class UserWindow extends JPanel {
         muokkausOlio.piirra();
     }
 
-        
 //-----------------------------------------------------------------------------------------------------------------------
-    public void paint (Graphics g){
-        super.paint(g);
-        //setBackground(new Color(0x00,0x00,0x00,255));        
+    public void paint(Graphics g) {
+        super.paint(g);        
     }
 //-------------------------------------------------------------------------------------------------------------------------
-
+        public void paintComponent (Graphics g){
+        
+        super.paintComponent(g);
+        g.drawImage(taustakuva, 0, 0, 850, 750, this);        
+    }
 }
