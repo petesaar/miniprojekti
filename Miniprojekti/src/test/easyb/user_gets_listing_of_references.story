@@ -9,7 +9,7 @@ description 'User get a listing of references'
 scenario "user can get a list of references", {
     given 'some successfully created references', {
        io = new StubIO("book", "ref", "A. Kivi", "Seitsemän veljestä", "1870", "pub", "", "", "",
-                       "article", "ref", "Joku media", "Seiska", "2011", "5", "Nykänen taas jurrissa", "", "", 
+                       "article", "ref2", "Joku media", "Seiska", "2011", "5", "Nykänen taas jurrissa", "", "", 
                        "list", "quit")
        app = new Console(io, new Kontrolleri())
     }
