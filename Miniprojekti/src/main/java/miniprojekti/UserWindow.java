@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.InputStream;
@@ -22,6 +24,8 @@ public class UserWindow extends JPanel {
     static JPanel lisaysPaneeli = new JPanel();     //paneeli viitteen lisäämiseen
     static JPanel listausPaneeli = new JPanel();     //paneeli, jossa voi katsoa kaikkia viitteitä
     static JPanel muokkausPaneeli = new JPanel();     //paneeli, jossa voi käsitellä viitteitä
+    JLabel tab0 = new JLabel();
+    JLabel tab1 = new JLabel();
 
     private BufferedImage taustakuva;    
     
@@ -39,12 +43,25 @@ public class UserWindow extends JPanel {
             }
         });
         //-------------------------------------------------------------
-
+        tab0.setPreferredSize(new Dimension(270, 40));
+        tab0.setText("        Käsittele viitteitä     ");
+        tab0.setBackground(new Color(205,133,63));
+        tab0.setFont(new Font("Verdana", Font.BOLD, 16));
+        
+        tab1.setPreferredSize(new Dimension(270, 40));
+        tab1.setText("           Lisää uusi viite     ");
+        tab1.setBackground(new Color(205,133,63));
+        tab1.setFont(new Font("Verdana", Font.BOLD, 16));
+        
         setLayout(new GridLayout(1, 1));    //areenan muotoiluja      
-        add(areena);
-
+        add(areena);        
+        
         areena.addTab("     Käsittele viitteitä     ", listausPaneeli);
-        areena.addTab("     Lisää uusi viite     ", lisaysPaneeli);
+        areena.addTab("     Lisää uusi viite     ", lisaysPaneeli);        
+        areena.setBackground(new Color(156,196,222));
+        
+        areena.setTabComponentAt(0, tab0);
+        areena.setTabComponentAt(1, tab1);
 
         //areena.addTab("Muokkaa viitteitä", muokkausPaneeli);
         
@@ -63,6 +80,15 @@ public class UserWindow extends JPanel {
         listausOlio.piirra();
         MuokkausPaneeli muokkausOlio = new MuokkausPaneeli();
         muokkausOlio.piirra();
+        
+        areena.addChangeListener(new ChangeListener() {
+        public void stateChanged(ChangeEvent e) {
+            //System.out.println("Tab: " + areena.getSelectedIndex());
+            ListausPaneeli.paivita.doClick();
+        }
+    });
+
+
     }
 
 //-----------------------------------------------------------------------------------------------------------------------

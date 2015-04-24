@@ -20,7 +20,7 @@ public class ListausPaneeli {
     int viitteita = 0;
     JButton tallennaBib = new JButton();               //tallennuspainike bibtex-tiedostolle
     JButton tallennaJson = new JButton();               //tallennuspainike bibtex-tiedostolle
-    JButton paivita = new JButton();                    //katso tallennetut viitteet
+    static JButton paivita = new JButton();                    //katso tallennetut viitteet
     JTextPane lukualue = new JTextPane();           //tekstialue viitteille
     JScrollPane luku = new JScrollPane(lukualue);    //scrollaava tekstialue
     JLabel sinullaOn = new JLabel("Viitteitä yhteensä: "+viitteita);
@@ -37,20 +37,21 @@ public class ListausPaneeli {
         sinullaOn.setFont(new Font("Verdana", Font.BOLD, 16));
         sinullaOn.setForeground(Color.white);
 
-        paivita.setBounds(600, 120, 220, 40);
+        paivita.setBounds(600, 320, 220, 40);
         paivita.setText("Päivitä luettelo");
         paivita.setFont(new Font("Verdana", Font.BOLD, 13));
         paivita.setBackground(new Color(144,238,144));
+        paivita.setVisible(false);
         
-        tallennaBib.setBounds(600, 500, 220, 40);
-        tallennaBib.setText("Tallenna BIB-tiedosto");
-        tallennaBib.setFont(new Font("Verdana", Font.BOLD, 13));
-        tallennaBib.setBackground(new Color(128,128,0));
-        
-        tallennaJson.setBounds(600, 200, 220, 40);
+        tallennaJson.setBounds(600, 120, 220, 40);
         tallennaJson.setText("Tallenna JSON-tiedosto");
         tallennaJson.setFont(new Font("Verdana", Font.BOLD, 13));
-        tallennaJson.setBackground(new Color(175,238,238));
+        tallennaJson.setBackground(new Color(144,238,144));        
+        
+        tallennaBib.setBounds(600, 200, 220, 40);
+        tallennaBib.setText("Tallenna BIB-tiedosto");
+        tallennaBib.setFont(new Font("Verdana", Font.BOLD, 13));
+        tallennaBib.setBackground(new Color(175,238,238));
         
         luku.setBounds(20, 20, 550, 650);
         luku.setFont(new Font("Verdana", Font.BOLD, 13));
@@ -91,7 +92,7 @@ public class ListausPaneeli {
         tallennaJson.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //UserWindow.ohjausOlio.tallennaViitteet();
+                //Tähän toiminto, jolla tallennetaan JSON-tiedosto
             }
         });
         

@@ -52,7 +52,7 @@ public class LisaysPaneeli {
 
     public void piirra() {
 
-        lisaa.setBounds(50, 510, 120, 40);
+        lisaa.setBounds(50, 580, 120, 40);
         lisaa.setText("Lisää viite");
         lisaa.setFont(new Font("Verdana", Font.BOLD, 14));
         lisaa.setBackground(Color.green);
@@ -69,7 +69,7 @@ public class LisaysPaneeli {
         otsikko_vapaavalintaiset.setFont(new Font("Verdana", Font.BOLD, 18));
         otsikko_vapaavalintaiset.setForeground(Color.white);
 
-        tyyppi_boksi.setBounds(40, 570, 150, 30);
+        tyyppi_boksi.setBounds(40, 520, 150, 30);
         tyyppi_boksi.setSelectedIndex(0);
         tyyppi_boksi.setBackground(new Color(220, 220, 220));
 
@@ -157,11 +157,11 @@ public class LisaysPaneeli {
         journal_kentta.setFont(new Font("Verdana", Font.BOLD, 13));
         journal_kentta.setForeground(Color.black);      
 
-        ilm.setBounds(240, 520, 500, 80);
+        ilm.setBounds(240, 520, 500, 130);
         ilm.setFont(new Font("Verdana", Font.BOLD, 13));
         ilm.setForeground(Color.black);
 
-        ilmoitusalue.setBounds(240, 520, 500, 80);
+        ilmoitusalue.setBounds(240, 520, 500, 130);
         ilmoitusalue.setFont(new Font("Verdana", Font.BOLD, 13));
         ilmoitusalue.setForeground(Color.black);
         ilmoitusalue.setText("Valitse ensin viitteen tyyppi pudotusvalikosta");
