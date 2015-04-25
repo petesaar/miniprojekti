@@ -74,17 +74,17 @@ public class Kontrolleri {
     
     // poistaa yksittäisen viitteen
     public void poistaViite(String indeksi) {
-        
-        String[] osat = indeksi.split(" ");
-        String tunniste = osat[1]; 
-        //System.out.println("poistetaanko "+tunniste);
-        Viite poistettava = null;
-        for (Viite viite : kirjaviitteet.getViitteet()) {
-            if (viite.getBibtexkey().equals(tunniste)) {
-                poistettava = viite;
+
+            String[] osat = indeksi.split(" ");
+            String tunniste = osat[1]; 
+            //System.out.println("poistetaanko "+tunniste);
+            Viite poistettava = null;
+            for (Viite viite : kirjaviitteet.getViitteet()) {
+                if (viite.getBibtexkey().equals(tunniste)) {
+                    poistettava = viite;
+                }
             }
-        }
-        kirjaviitteet. remove(poistettava);
+            kirjaviitteet.remove(poistettava);
     }
     
 

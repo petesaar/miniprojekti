@@ -46,7 +46,9 @@ public class Console {
                 tallennaViitteet();
             } else if (input.equals("bibtex")) {
                 tulostaBibtexMuodossa();
-            } 
+            } else if (input.contains("delete")) {
+                deletoi("Poista "+input.substring(7));
+            }
         }
     }
     
@@ -118,6 +120,10 @@ public class Console {
         } else {
             io.print("Viitteiden tallennus ei onnistunut");
         }
+    }
+    
+    private void deletoi(String indeksi) {
+        kontrolleri.poistaViite(indeksi); 
     }
 
     private void tulostaBibtexMuodossa() {

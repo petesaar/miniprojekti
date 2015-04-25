@@ -105,19 +105,4 @@ public final class BibtexMuunnosTest {
                 + "}\n";
         assertEquals(expected, result);
     }
-    
-    @Test
-    public void testbibtexkeytUniikkeja() {
-        Viite kirja = luoViite(luoMap("Martin, Robert",
-                "Clean Code: A Handbook of Agile Software Craftsmanship",
-                "Prentice Hall",
-                "2008"), "Martin09", "book");
-        Viite toinenkirja = luoViite(luoMap("Martin, Don",
-                "Kootut",
-                "Semic",
-                "2009"), "Martin09", "book");
-        String result = toinenkirja.getBibtexkey();
-        String expected = "Martin09";
-        assertEquals(expected, result);
-    }
 }
