@@ -40,6 +40,12 @@ public class ViitejoukkoImpl implements ViiteJoukko{
         viitteet.add(viite);
         return true;
     }
+    
+    @Override
+    public boolean remove(Viite viite){
+        viitteet.remove(viite);
+        return true;
+    }
 
     @Override
     public ArrayList<Viite> getViitteet() {

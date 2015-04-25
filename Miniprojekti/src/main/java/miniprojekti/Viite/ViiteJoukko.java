@@ -12,6 +12,8 @@ public interface ViiteJoukko {
     
     boolean save(Viite viite);
     
+    boolean remove(Viite viite);
+    
     ArrayList<Viite> getViitteet();
     
     String[] getErrors();

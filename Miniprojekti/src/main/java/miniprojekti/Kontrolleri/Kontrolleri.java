@@ -72,11 +72,21 @@ public class Kontrolleri {
         return true;
     }
     
-    /* keskeneräinen toiminto, joka poistaa yksittäisen viitteen
-    public poistaViite(String indeksi) {
-        kirjaviitteet.remove(indeksi);
+    // poistaa yksittäisen viitteen
+    public void poistaViite(String indeksi) {
+        
+        String[] osat = indeksi.split(" ");
+        String tunniste = osat[1]; 
+        //System.out.println("poistetaanko "+tunniste);
+        Viite poistettava = null;
+        for (Viite viite : kirjaviitteet.getViitteet()) {
+            if (viite.getBibtexkey().equals(tunniste)) {
+                poistettava = viite;
+            }
+        }
+        kirjaviitteet. remove(poistettava);
     }
-    */
+    
 
     // listaa viitteet kÃ¤yttÃ¶liittymÃ¤Ã¤ ja tallennusta varten
     // VANHA VERSIO: public List<KirjaviiteRajapinta> listaaViitteet () {

@@ -53,11 +53,11 @@ public class ListausPaneeli {
         tallennaBib.setFont(new Font("Verdana", Font.BOLD, 13));
         tallennaBib.setBackground(new Color(175,238,238));
         
-        luku.setBounds(20, 20, 550, 650);
+        luku.setBounds(20, 20, 550, 630);
         luku.setFont(new Font("Verdana", Font.BOLD, 13));
         luku.setForeground(Color.black);
         
-        lukualue.setBounds(20, 20, 550, 650);
+        lukualue.setBounds(20, 20, 550, 630);
         lukualue.setFont(new Font("Verdana", Font.BOLD, 13));
         lukualue.setForeground(Color.black);
         lukualue.setText("Lukualue");
@@ -69,18 +69,7 @@ public class ListausPaneeli {
         UserWindow.listausPaneeli.add(tallennaBib); 
         UserWindow.listausPaneeli.add(tallennaJson); 
         
-        //-----------------------kuuntelija katselupainikkeelle----------------------------------
-        /*
-        paivita.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                StringBuilder sb = new StringBuilder();
-                for (Viite viite : UserWindow.ohjausOlio.listaaViitteet()) {
-                    sb.append(viite.toString()).append("\n");
-                }
-                lukualue.setText(sb.toString());
-            }
-        });        
-        */
+        //---------------------------------------------------------------------
         
         tallennaBib.addActionListener(new ActionListener() {
             @Override
@@ -103,37 +92,36 @@ public class ListausPaneeli {
                 sinullaOn.setText("Viitteitä yhteensä: "+viitteita);
                 lukualue.setText("");
                 viiteLista.clear();
-                JButton[] poistoNappi = new JButton[viitteita];
-                //JButton[] muokkaaNappi = new JButton[UserWindow.ohjausOlio.listaaViitteet().size()];
+                JButton[] poistoNappi = new JButton[viitteita];                
                 int j = 0;
 
                 //lisätään viitteiden tekstiesitykset ja luodaan nappeja niiden bibtexkeyn mukaan nimettyinä
                 for (Viite viite : UserWindow.ohjausOlio.listaaViitteet()) {
                     viiteLista.add(viite.toString());
-                    poistoNappi[j] = new JButton("Poista " + viite.getRefrence());
-                    //muokkaaNappi[j] = new JButton("Muokkaa " + viite.getRefrence());
+                    poistoNappi[j] = new JButton("Poista " + viite.getRefrence());                    
                     j++;
                 }
 
                 try {
                     for (int i = 0; i < viiteLista.size(); i++) {
                         doku.insertString(doku.getLength(), viiteLista.get(i), muotoiluja);
-                        poistoNappi[i].addActionListener(this);
-                        //muokkaaNappi[i].addActionListener(this);
-                        lukualue.insertComponent(poistoNappi[i]);
-                        //doku.insertString(doku.getLength(), "  ", muotoiluja);
-                        //lukualue.insertComponent(muokkaaNappi[i]);
+                        poistoNappi[i].addActionListener(this);                       
+                        lukualue.insertComponent(poistoNappi[i]);                        
                         doku.insertString(doku.getLength(), "\n\n", muotoiluja);                        
                     }
 
                 } catch (BadLocationException ex) {
                 }
 
-                System.out.println(e.getActionCommand());
-                //nyt tulostaa vain terminaaliin, mitä nappia painettiin
-                //tähän viesti kontrollerille, joka hoitelee jatkotoimet
+                
+                //jos painettu Poista x -nappia, kontrollerille komentopyyntö:
+                String klikattuNappula = e.getActionCommand();
+                if(klikattuNappula.contains("Poista")){
+                    //System.out.println("Painoit nappulaa "+klikattuNappula);
+                    UserWindow.ohjausOlio.poistaViite(klikattuNappula);
+                    ListausPaneeli.paivita.doClick();
+                }                
             }
-
         });
     }
 
