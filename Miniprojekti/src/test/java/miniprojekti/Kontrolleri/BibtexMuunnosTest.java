@@ -90,22 +90,23 @@ public final class BibtexMuunnosTest {
 
     @Test
     public void testmuunnaViiteUTF8() {
-        String author = "ÅPSEATA?S E=?R\"#¤? SAÄ ÄDÖ*f n.n,fgJH;FTY";
-        String title = "asdå¨åp788¨6¨578ä'75¨8ÅÄÖÅ6578¨'8765-*-*/*/-/*6 5,+";
+        String author = "start äÄöÖåÅ end";
+        String expectedAuthor = "start \\\"{a}\\\"{A}\\\"{o}\\\"{O}\\r{a}\\r{A} end";
+        String title = "test";
         Viite kirja = luoViite(luoMap(author,
                 title,
                 "Prentice Hall",
                 "2008"), "Martin09", "book");
         String result = muuntaja.muunnaViite(kirja);
         String expected = "@book{Martin09,\n"
-                + "author = {" + author + "},\n"
+                + "author = {" + expectedAuthor + "},\n"
                 + "title = {" + title + "},\n"
                 + "year = {2008},\n"
                 + "publisher = {Prentice Hall},\n"
                 + "}\n";
         assertEquals(expected, result);
     }
-    
+
     @Test
     public void testbibtexkeytUniikkeja() {
         Viite kirja = luoViite(luoMap("Martin, Robert",
