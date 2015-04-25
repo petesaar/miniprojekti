@@ -19,7 +19,7 @@ scenario "user can review a reference in bibtex format", {
     then 'a reference is printed in bibtex format', {
        io.getPrints().shouldHave("@book{ref,")
        io.getPrints().shouldHave("author = {A. Kivi},")
-       io.getPrints().shouldHave("title = {Seitsem\"{a}n veljest\"{a}},")
+       io.getPrints().shouldHave("title = {Seitsem\\\"{a}n veljest\\\"{a}},")
        io.getPrints().shouldHave("year = {1870},")
        io.getPrints().shouldHave("publisher = {pub},")
        io.getPrints().shouldHave("}")
