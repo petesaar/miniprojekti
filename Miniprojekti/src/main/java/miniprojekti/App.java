@@ -15,7 +15,7 @@ public class App extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(850, 750);
         setLocationRelativeTo(null);
-        setTitle("Viitteidenkäsittelijä");
+        setTitle("Viitteidenkäsittelijä v1.0");
         setResizable(false);
         setVisible(true);
     }

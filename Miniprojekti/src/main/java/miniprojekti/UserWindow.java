@@ -22,8 +22,7 @@ public class UserWindow extends JPanel {
     static Kontrolleri ohjausOlio = new Kontrolleri();
     static JTabbedPane areena = new JTabbedPane();  //yleinen paneeli, johon muut liitetään
     static JPanel lisaysPaneeli = new JPanel();     //paneeli viitteen lisäämiseen
-    static JPanel listausPaneeli = new JPanel();     //paneeli, jossa voi katsoa kaikkia viitteitä
-    static JPanel muokkausPaneeli = new JPanel();     //paneeli, jossa voi käsitellä viitteitä
+    static JPanel listausPaneeli = new JPanel();     //paneeli, jossa voi katsoa kaikkia viitteitä    
     JLabel tab0 = new JLabel();
     JLabel tab1 = new JLabel();
 
@@ -33,8 +32,7 @@ public class UserWindow extends JPanel {
         
         try{
             taustakuva = ImageIO.read(getClass().getClassLoader().getResource("kirjasto_2.png")); 
-        }catch(Exception e){
-                //pistä poikkeus tähän, jos siltä tuntuu...
+        }catch(Exception e){               
         }
         
         //anonyymi sisäluokka, jolla tehdään areenasta transparentti 
@@ -62,24 +60,18 @@ public class UserWindow extends JPanel {
         
         areena.setTabComponentAt(0, tab0);
         areena.setTabComponentAt(1, tab1);
-
-        //areena.addTab("Muokkaa viitteitä", muokkausPaneeli);
         
         //------------------tehdään paneelit-------------------------------------------
         lisaysPaneeli.setLayout(null);
         lisaysPaneeli.setOpaque(false);
         listausPaneeli.setLayout(null);
-        listausPaneeli.setOpaque(false);
-        muokkausPaneeli.setLayout(null);
-        muokkausPaneeli.setOpaque(false);
+        listausPaneeli.setOpaque(false);        
 
         //------------------------------------------------------------------------------
         LisaysPaneeli lisaysOlio = new LisaysPaneeli();
         lisaysOlio.piirra();
         ListausPaneeli listausOlio = new ListausPaneeli();
-        listausOlio.piirra();
-        MuokkausPaneeli muokkausOlio = new MuokkausPaneeli();
-        muokkausOlio.piirra();
+        listausOlio.piirra();        
         
         areena.addChangeListener(new ChangeListener() {
         public void stateChanged(ChangeEvent e) {
@@ -87,7 +79,6 @@ public class UserWindow extends JPanel {
             ListausPaneeli.paivita.doClick();
         }
     });
-
 
     }
 
