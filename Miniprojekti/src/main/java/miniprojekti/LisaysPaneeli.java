@@ -237,6 +237,10 @@ public class LisaysPaneeli {
                     journal_kentta.setBackground(new Color(255, 160, 122));
                     UserWindow.lisaysPaneeli.add(otsikko_number);
                     UserWindow.lisaysPaneeli.add(number_kentta);
+                    
+                    publisher_kentta.setText("");
+                    address_kentta.setText("");
+                    booktitle_kentta.setText("");
                 }
 
                 if (tyyppi.equals("Book")) {                    
@@ -264,7 +268,12 @@ public class LisaysPaneeli {
                     UserWindow.lisaysPaneeli.add(volume_kentta);
                     volume_kentta.setBackground(Color.white);                    
                     UserWindow.lisaysPaneeli.add(otsikko_number);
-                    UserWindow.lisaysPaneeli.add(number_kentta);                    
+                    UserWindow.lisaysPaneeli.add(number_kentta);
+                    
+                    booktitle_kentta.setText("");
+                    number_kentta.setText("");
+                    journal_kentta.setText("");
+                    pages_kentta.setText("");
                 }
                 
                 if (tyyppi.equals("Inproceedings")) {                    
@@ -298,6 +307,8 @@ public class LisaysPaneeli {
                     volume_kentta.setBackground(Color.white);               
                     UserWindow.lisaysPaneeli.add(otsikko_number);
                     UserWindow.lisaysPaneeli.add(number_kentta);
+                    
+                    journal_kentta.setText("");
                 }
 
                 UserWindow.lisaysPaneeli.add(ilm);
