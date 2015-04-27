@@ -67,11 +67,13 @@ public class UserWindow extends JPanel {
         listausPaneeli.setLayout(null);
         listausPaneeli.setOpaque(false);        
 
-        //------------------------------------------------------------------------------
+        //------------------------------------------------------------------------------        
+        
         LisaysPaneeli lisaysOlio = new LisaysPaneeli();
         lisaysOlio.piirra();
-        ListausPaneeli listausOlio = new ListausPaneeli();
-        listausOlio.piirra();        
+        ListausPaneeli listausOlio = new ListausPaneeli();        
+        listausOlio.piirra(); 
+        listausOlio.aloitus();
         
         areena.addChangeListener(new ChangeListener() {
         public void stateChanged(ChangeEvent e) {

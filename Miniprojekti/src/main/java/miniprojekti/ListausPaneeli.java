@@ -9,6 +9,7 @@ import javax.swing.*;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyledDocument;
+import static miniprojekti.UserWindow.ohjausOlio;
 import miniprojekti.Viite.Viite;
 
 /**
@@ -31,7 +32,7 @@ public class ListausPaneeli {
     
     
 
-    public void piirra() {
+    public void piirra() {        
         
         sinullaOn.setBounds(600, 20, 300, 40);
         sinullaOn.setFont(new Font("Verdana", Font.BOLD, 16));
@@ -61,13 +62,14 @@ public class ListausPaneeli {
         lukualue.setFont(new Font("Verdana", Font.BOLD, 13));
         lukualue.setForeground(Color.black);
         lukualue.setText("Lukualue");
-        lukualue.setBackground( new Color(220, 220, 220));
+        lukualue.setBackground( new Color(220, 220, 220));        
         
         UserWindow.listausPaneeli.add(sinullaOn);
         UserWindow.listausPaneeli.add(paivita);        
         UserWindow.listausPaneeli.add(luku); 
         UserWindow.listausPaneeli.add(tallennaBib); 
         UserWindow.listausPaneeli.add(tallennaJson); 
+        
         
         //---------------------------------------------------------------------
         
@@ -124,5 +126,7 @@ public class ListausPaneeli {
             }
         });
     }
-
+    public void aloitus(){
+        ListausPaneeli.paivita.doClick();
+    }
 }
