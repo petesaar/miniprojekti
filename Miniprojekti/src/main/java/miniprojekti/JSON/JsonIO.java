@@ -1,5 +1,6 @@
 package miniprojekti.JSON;
 
+import com.google.gson.Gson;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Map;
@@ -97,20 +98,14 @@ public class JsonIO {
     //Nämä luovat viiteolion JSONObject-oliosta.
     
     private void luoKirjaviite(ViitejoukkoImpl viitteet, JSONObject object) throws JSONException {
-        viitteet.save(new Kirjaviite(object.getString("bibtexkey"),object.getString("author"),object.getString("title"),object.getString("year"),object.getString("publisher"),
-                object.getString("booktitle"), object.getString("pages"), object.getString("address"),object.getString("volume"),object.getString("number"),
-                object.getString("journal")));
+        viitteet.save(new Gson().fromJson(object.toString(), Kirjaviite.class));
     }
 
     private void luoInproceedings(ViitejoukkoImpl viitteet, JSONObject object) throws JSONException {
-        viitteet.save(new Inproceedings(object.getString("bibtexkey"),object.getString("author"),object.getString("title"),object.getString("year"),object.getString("booktitle"),
-                object.getString("editor"),object.getString("volnum"),object.getString("series"),object.getString("pages"),object.getString("address"),
-                object.getString("month"),object.getString("organisation"),object.getString("publisher"),object.getString("note"),object.getString("key")));
+        viitteet.save(new Gson().fromJson(object.toString(), Inproceedings.class));
     }
 
     private void luoArtikkeliviite(ViitejoukkoImpl viitteet, JSONObject object) throws JSONException {
-        viitteet.save(new Artikkeliviite(object.getString("bibtexkey"),object.getString("author"),object.getString("title"),object.getString("journal"),object.getString("year"),
-                object.getString("volume"),object.getString("number"),object.getString("pages"),object.getString("month"),object.getString("note"),
-                object.getString("key")));
+        viitteet.save(new Gson().fromJson(object.toString(), Artikkeliviite.class));
     }
 }
