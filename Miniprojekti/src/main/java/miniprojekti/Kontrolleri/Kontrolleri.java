@@ -1,6 +1,5 @@
 package miniprojekti.Kontrolleri;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +7,7 @@ import java.util.Map;
 import miniprojekti.IO.FileIO;
 import miniprojekti.IO.MuuntavaTallentaja;
 import miniprojekti.IO.StreamKirjoittaja;
+import miniprojekti.JSON.JsonIO;
 import miniprojekti.Viite.Artikkeliviite;
 import miniprojekti.Viite.Inproceedings;
 import miniprojekti.Viite.Kirjaviite;
@@ -22,12 +22,22 @@ import miniprojekti.Viite.ViitejoukkoImpl;
  * @author Jeesusteippaajat
  */
 public class Kontrolleri {
-
+    
+    private final String jsonTiedostonimi = "viitteet.json";
     // 
-    private final ViiteJoukko kirjaviitteet = new ViitejoukkoImpl();
-    private final Muuntaja bibtexMuuntaja = new BibtexMuunnos();
-    private final StreamKirjoittaja tallentaja = new MuuntavaTallentaja(kirjaviitteet, bibtexMuuntaja);
+    private final ViiteJoukko kirjaviitteet;
+    private final Muuntaja bibtexMuuntaja;
+    private final StreamKirjoittaja tallentaja;
+    private final JsonIO jsonIo;
     private String virheilmoitus;
+    
+    public Kontrolleri(){
+        jsonIo = new JsonIO(jsonTiedostonimi);
+        kirjaviitteet = haeViitteet();
+        bibtexMuuntaja = new BibtexMuunnos();
+        tallentaja = new MuuntavaTallentaja(kirjaviitteet, bibtexMuuntaja);    
+        
+    }
 
     public boolean luoViite(String tyyppi, String reference, Map<String, String> kentat) {
         boolean unique = onkoBibtexkeyOlemassa(reference);
@@ -119,7 +129,16 @@ public class Kontrolleri {
     }
 
     // metodi luokkien lataamiseen levyltÃ¤
-    public List<Kirjaviite> haeViitteet() {
-        return null;
+    public ViiteJoukko haeViitteet() {
+        ViiteJoukko viitteet =  jsonIo.lataa();
+        if(viitteet == null){ 
+            virheilmoitus = "Viitteiden lataaminen epäonnistui!";
+            return new ViitejoukkoImpl();        
+        }
+        return viitteet;
+    }
+    
+    public boolean tallennaJsoniin(){
+        return jsonIo.tallenna(kirjaviitteet);
     }
 }

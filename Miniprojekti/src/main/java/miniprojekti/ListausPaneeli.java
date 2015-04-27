@@ -81,7 +81,7 @@ public class ListausPaneeli {
         tallennaJson.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Tähän toiminto, jolla tallennetaan JSON-tiedosto
+               UserWindow.ohjausOlio.tallennaJsoniin();
             }
         });
         
