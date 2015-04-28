@@ -15,17 +15,15 @@ import javax.swing.*;
  */
 public class LisaysPaneeli {
 
-    JButton lisaa = new JButton();    //lisäyspainike
-    JLabel otsikko_pakolliset = new JLabel("Pakolliset kentät:");
-    JLabel otsikko_vapaavalintaiset = new JLabel("Vapaavalintaiset kentät:");
+    JButton lisaa = new JButton();    //lisäyspainike    
     JLabel otsikko_bibtexkey = new JLabel("Bibtex Key:");
-    JLabel otsikko_author = new JLabel("Tekijät (authors):");
-    JLabel otsikko_title = new JLabel("Nimi (title):");
-    JLabel otsikko_year = new JLabel("Vuosi (year):");
-    JLabel otsikko_publisher = new JLabel("Julkaisija (publisher):");
+    JLabel otsikko_author = new JLabel("Author(s):");
+    JLabel otsikko_title = new JLabel("Title:");
+    JLabel otsikko_year = new JLabel("Year:");
+    JLabel otsikko_publisher = new JLabel("Publisher:");
     JLabel otsikko_booktitle = new JLabel("Booktitle:");
-    JLabel otsikko_pages = new JLabel("Sivut (pages):");
-    JLabel otsikko_address = new JLabel("Osoite (address):");
+    JLabel otsikko_pages = new JLabel("Pages:");
+    JLabel otsikko_address = new JLabel("Address:");
     JLabel otsikko_volume = new JLabel("Volume:");
     JLabel otsikko_number = new JLabel("Number:");
     JLabel otsikko_journal = new JLabel("Journal:");
@@ -56,19 +54,11 @@ public class LisaysPaneeli {
         lisaa.setText("Lisää viite");
         lisaa.setFont(new Font("Verdana", Font.BOLD, 14));
         lisaa.setBackground(Color.green);
-
-        otsikko_pakolliset.setBounds(40, 40, 300, 40);
-        otsikko_pakolliset.setFont(new Font("Verdana", Font.BOLD, 18));
-        otsikko_pakolliset.setForeground(Color.BLUE);
-
+        
         otsikko_bibtexkey.setBounds(40, 90, 300, 40);
         otsikko_bibtexkey.setFont(new Font("Verdana", Font.BOLD, 13));
         otsikko_bibtexkey.setForeground(Color.white);
-
-        otsikko_vapaavalintaiset.setBounds(440, 40, 300, 40);
-        otsikko_vapaavalintaiset.setFont(new Font("Verdana", Font.BOLD, 18));
-        otsikko_vapaavalintaiset.setForeground(Color.white);
-
+        
         tyyppi_boksi.setBounds(40, 520, 150, 30);
         tyyppi_boksi.setSelectedIndex(0);
         tyyppi_boksi.setBackground(new Color(220, 220, 220));
@@ -164,7 +154,7 @@ public class LisaysPaneeli {
         ilmoitusalue.setBounds(240, 520, 500, 130);
         ilmoitusalue.setFont(new Font("Verdana", Font.BOLD, 13));
         ilmoitusalue.setForeground(Color.black);
-        ilmoitusalue.setText("Valitse ensin viitteen tyyppi pudotusvalikosta");
+        ilmoitusalue.setText("Valitse ensin viitteen tyyppi pudotusvalikosta.");
         ilmoitusalue.setBackground( new Color(220, 220, 220));
 
         UserWindow.lisaysPaneeli.add(ilm);
@@ -214,7 +204,7 @@ public class LisaysPaneeli {
                 if (tyyppi.equals("Article")) {                    
                     //Required fields: author, title, journal, year, volume
                     //Optional fields: number, pages, month, note, key
-                    UserWindow.lisaysPaneeli.add(lisaa);         //lisäyspainike                    
+                    UserWindow.lisaysPaneeli.add(lisaa); 
                     UserWindow.lisaysPaneeli.add(otsikko_bibtexkey);
                     UserWindow.lisaysPaneeli.add(bibtexkey_kentta);
                     bibtexkey_kentta.setBackground(new Color(255, 160, 122));
@@ -237,12 +227,16 @@ public class LisaysPaneeli {
                     journal_kentta.setBackground(new Color(255, 160, 122));
                     UserWindow.lisaysPaneeli.add(otsikko_number);
                     UserWindow.lisaysPaneeli.add(number_kentta);
+                    
+                    publisher_kentta.setText("");
+                    address_kentta.setText("");
+                    booktitle_kentta.setText("");
                 }
 
                 if (tyyppi.equals("Book")) {                    
                     //Required fields: author/editor, title, publisher, year
                     //Optional fields: volume/number, series, address, edition, month, note, key
-                    UserWindow.lisaysPaneeli.add(lisaa);         //lisäyspainike                    
+                    UserWindow.lisaysPaneeli.add(lisaa);
                     UserWindow.lisaysPaneeli.add(otsikko_bibtexkey);
                     UserWindow.lisaysPaneeli.add(otsikko_author);
                     UserWindow.lisaysPaneeli.add(author_kentta);
@@ -264,13 +258,18 @@ public class LisaysPaneeli {
                     UserWindow.lisaysPaneeli.add(volume_kentta);
                     volume_kentta.setBackground(Color.white);                    
                     UserWindow.lisaysPaneeli.add(otsikko_number);
-                    UserWindow.lisaysPaneeli.add(number_kentta);                    
+                    UserWindow.lisaysPaneeli.add(number_kentta);
+                    
+                    booktitle_kentta.setText("");
+                    number_kentta.setText("");
+                    journal_kentta.setText("");
+                    pages_kentta.setText("");
                 }
                 
                 if (tyyppi.equals("Inproceedings")) {                    
                     //Required fields: author, title, booktitle, year
                     //Optional fields: editor, volume/number, series, pages, address, month, organization, publisher, note, key
-                    UserWindow.lisaysPaneeli.add(lisaa);         //lisÃ¤yspainike                    
+                    UserWindow.lisaysPaneeli.add(lisaa);
                     UserWindow.lisaysPaneeli.add(otsikko_bibtexkey);
                     UserWindow.lisaysPaneeli.add(bibtexkey_kentta); 
                     bibtexkey_kentta.setBackground(new Color(255, 160, 122));
@@ -298,6 +297,8 @@ public class LisaysPaneeli {
                     volume_kentta.setBackground(Color.white);               
                     UserWindow.lisaysPaneeli.add(otsikko_number);
                     UserWindow.lisaysPaneeli.add(number_kentta);
+                    
+                    journal_kentta.setText("");
                 }
 
                 UserWindow.lisaysPaneeli.add(ilm);

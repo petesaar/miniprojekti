@@ -19,6 +19,7 @@ import miniprojekti.Viite.Viite;
 public class ListausPaneeli {
     
     int viitteita = 0;
+    String ohje = "Ei viitteitä. Muistathan, että voit ladata myös aiemmin tekemäsi viitteet. Tiedoston viitteet.json tulee olla samassa hakemistossa kuin itse ohjelman.";
     JButton tallennaBib = new JButton();               //tallennuspainike bibtex-tiedostolle
     JButton tallennaJson = new JButton();               //tallennuspainike bibtex-tiedostolle
     static JButton paivita = new JButton();                    //katso tallennetut viitteet
@@ -28,9 +29,7 @@ public class ListausPaneeli {
     
     ArrayList<String> viiteLista = new ArrayList();     //kokoelma viitteitä tulostustarpeisiin
     StyledDocument doku = lukualue.getStyledDocument();     //alustana viitteiden tulostuksille ja napeille
-    SimpleAttributeSet muotoiluja = new SimpleAttributeSet();   //StyledDocument tarvii tämmöisenkin
-    
-    
+    SimpleAttributeSet muotoiluja = new SimpleAttributeSet();   //StyledDocument tarvii tämmöisenkin        
 
     public void piirra() {        
         
@@ -68,11 +67,9 @@ public class ListausPaneeli {
         UserWindow.listausPaneeli.add(paivita);        
         UserWindow.listausPaneeli.add(luku); 
         UserWindow.listausPaneeli.add(tallennaBib); 
-        UserWindow.listausPaneeli.add(tallennaJson); 
+        UserWindow.listausPaneeli.add(tallennaJson);         
         
-        
-        //---------------------------------------------------------------------
-        
+        //---------------------------------------------------------------------        
         tallennaBib.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -85,19 +82,20 @@ public class ListausPaneeli {
             public void actionPerformed(ActionEvent e) {
                UserWindow.ohjausOlio.tallennaJsoniin();
             }
-        });
-        
+        });        
         
         paivita.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 viitteita = UserWindow.ohjausOlio.listaaViitteet().size();
                 sinullaOn.setText("Viitteitä yhteensä: "+viitteita);
-                lukualue.setText("");
+                if (viitteita == 0){
+                    lukualue.setText(ohje);
+                }else lukualue.setText("");
                 viiteLista.clear();
                 JButton[] poistoNappi = new JButton[viitteita];                
                 int j = 0;
 
-                //lisätään viitteiden tekstiesitykset ja luodaan nappeja niiden bibtexkeyn mukaan nimettyinä
+                //lisätään viitteiden tekstiesitykset ja luodaan poistonapit bibtexkeyn mukaan nimettyinä
                 for (Viite viite : UserWindow.ohjausOlio.listaaViitteet()) {
                     viiteLista.add(viite.toString());
                     poistoNappi[j] = new JButton("Poista " + viite.getRefrence());                    
@@ -114,7 +112,6 @@ public class ListausPaneeli {
 
                 } catch (BadLocationException ex) {
                 }
-
                 
                 //jos painettu Poista x -nappia, kontrollerille komentopyyntö:
                 String klikattuNappula = e.getActionCommand();
