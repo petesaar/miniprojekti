@@ -199,7 +199,7 @@ public class LisaysPaneeli {
                     ilmoitusalue.setText(tuloste.toString().substring(0, tuloste.toString().length() - 2));
                     return;
                 }
-                ilmoitusalue.setText( UserWindow.ohjausOlio.haeViimeksiLisattyKirjaviite());
+                ilmoitusalue.setText( UserWindow.ohjausOlio.haeViimeksiLisattyViite());
             }
         });
 
