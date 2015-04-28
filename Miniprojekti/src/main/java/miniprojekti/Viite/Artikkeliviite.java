@@ -13,7 +13,7 @@ import miniprojekti.Viite.validaattorit.Validator;
  * @author Iiro
  */
 public class Artikkeliviite extends Viite {
-    
+     
     protected String author;
     protected String title;
     protected String journal;
@@ -28,6 +28,7 @@ public class Artikkeliviite extends Viite {
 
     public Artikkeliviite(String bibtexkey, String author, String title, String journal, String year, String volume, String number, String pages, String month, String note, String key) {
         this.bibtexkey = bibtexkey;
+        type = "article";
         setFields(author, title, journal, year, volume, number, pages, month, note, key);
     }
 
@@ -127,11 +128,6 @@ public class Artikkeliviite extends Viite {
     @Override
     public Validator getValidator() {
         return new ArtikkeliviiteValidator(this);
-    }
-
-    @Override
-    public String getType() {
-        return "article";
     }
     
     

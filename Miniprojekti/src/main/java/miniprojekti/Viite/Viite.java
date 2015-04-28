@@ -12,6 +12,7 @@ import miniprojekti.Viite.validaattorit.Validator;
 public abstract class Viite {
 
     protected String bibtexkey;
+    protected String type;
     
     public String getBibtexkey() {
         return bibtexkey;
@@ -27,7 +28,9 @@ public abstract class Viite {
     
     public abstract Validator getValidator();
     
-    public abstract String getType();
+    public String getType(){
+        return type;
+    }
     
     public Map<String, String> getFields(){
         HashMap<String, String> fields = new HashMap<String, String>();

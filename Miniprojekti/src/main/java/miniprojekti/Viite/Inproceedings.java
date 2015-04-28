@@ -30,6 +30,7 @@ public class Inproceedings extends Viite{
 
     public Inproceedings(String bibtexkey, String author, String title, String year, String booktitle, String editor, String volnum, String series, String pages, String address, String month, String organisation, String publisher, String note, String key) {
         this.bibtexkey = bibtexkey;
+        type = "inproceedings";
         setFields(author, title, year, booktitle, editor, volnum, series, pages, address, month, organisation, publisher, note, key);
     }
 
@@ -180,12 +181,5 @@ public class Inproceedings extends Viite{
     public Validator getValidator(){
         return new InproceedingsValidator(this);
     }
-
-
-    @Override
-    public String getType() {
-        return "inproceedings";
-    }
-    
     
 }

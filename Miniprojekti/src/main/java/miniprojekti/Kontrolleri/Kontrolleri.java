@@ -23,7 +23,7 @@ import miniprojekti.Viite.ViitejoukkoImpl;
  */
 public class Kontrolleri {
     
-    private final String jsonTiedostonimi = "viitteet.json";
+    protected String jsonTiedostonimi = "viitteet.json";
     // 
     private final ViiteJoukko viitteet;
     private final Muuntaja bibtexMuuntaja;

@@ -6,7 +6,7 @@ import miniprojekti.Viite.validaattorit.Validator;
 
 
 public class Kirjaviite extends Viite {
- 
+    
     protected String author;
     protected String title;
     protected String year;
@@ -20,6 +20,7 @@ public class Kirjaviite extends Viite {
 
     public Kirjaviite(String bibtexkey, String author, String title, String year, String publisher, String booktitle, String pages, String address, String volume, String number, String journal) {
         this.bibtexkey = bibtexkey;
+        type = "book";
         setFields(author, title, year, publisher, booktitle, pages, address, volume, number, journal);
     }
 
@@ -39,11 +40,6 @@ public class Kirjaviite extends Viite {
     @Override
     public Validator getValidator() {
         return new KirjaviiteValidator(this);
-    }
-
-    @Override
-    public String getType() {
-        return "book";
     }
 
     public String getAuthor() {
