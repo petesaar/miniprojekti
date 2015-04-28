@@ -25,7 +25,7 @@ public class Kontrolleri {
     
     private final String jsonTiedostonimi = "viitteet.json";
     // 
-    private final ViiteJoukko kirjaviitteet;
+    private final ViiteJoukko viitteet;
     private final Muuntaja bibtexMuuntaja;
     private final StreamKirjoittaja tallentaja;
     private final JsonIO jsonIo;
@@ -33,9 +33,9 @@ public class Kontrolleri {
     
     public Kontrolleri(){
         jsonIo = new JsonIO(jsonTiedostonimi);
-        kirjaviitteet = haeViitteet();
+        viitteet = haeViitteet();
         bibtexMuuntaja = new BibtexMuunnos();
-        tallentaja = new MuuntavaTallentaja(kirjaviitteet, bibtexMuuntaja);    
+        tallentaja = new MuuntavaTallentaja(viitteet, bibtexMuuntaja);    
         
     }
 
@@ -47,15 +47,15 @@ public class Kontrolleri {
         }
         virheilmoitus = "";
         if (tyyppi.equals("book")) {
-            return kirjaviitteet.save(new Kirjaviite(reference, kentat.get("author"), kentat.get("title"), kentat.get("year"), 
+            return viitteet.save(new Kirjaviite(reference, kentat.get("author"), kentat.get("title"), kentat.get("year"), 
                     kentat.get("publisher"), kentat.get("booktitle"), kentat.get("pages"), kentat.get("address"), kentat.get("number"), 
                     kentat.get("volume"), kentat.get("journal")));
         } else if (tyyppi.equals("article")) {
-            return kirjaviitteet.save(new Artikkeliviite(reference, kentat.get("author"), kentat.get("title"), kentat.get("journal"), 
+            return viitteet.save(new Artikkeliviite(reference, kentat.get("author"), kentat.get("title"), kentat.get("journal"), 
                     kentat.get("year"), kentat.get("volume"), kentat.get("number"), kentat.get("pages"), kentat.get("month"), 
                     kentat.get("note"), kentat.get("key")));
         } else if (tyyppi.equals("inproceedings")) {
-            return kirjaviitteet.save(new Inproceedings(reference, kentat.get("author"), kentat.get("title"), kentat.get("year"), 
+            return viitteet.save(new Inproceedings(reference, kentat.get("author"), kentat.get("title"), kentat.get("year"), 
                     kentat.get("booktitle"), kentat.get("editor"), kentat.get("volume"), kentat.get("series"), kentat.get("pages"), 
                     kentat.get("address"), kentat.get("month"), kentat.get("orgnanisation"), kentat.get("publisher"), kentat.get("note"), 
                     kentat.get("key")));
@@ -66,7 +66,7 @@ public class Kontrolleri {
     public List<String> getErrors() {
         List<String> virheilmoitukset = new ArrayList();
         if (virheilmoitus.length() > 0) virheilmoitukset.add(virheilmoitus);
-        for(String teksti: kirjaviitteet.getErrors()) {
+        for(String teksti: viitteet.getErrors()) {
             virheilmoitukset.add(teksti);
         }
         
@@ -74,7 +74,7 @@ public class Kontrolleri {
     }
 
     public boolean onkoBibtexkeyOlemassa (String bibtexkey) {
-        for (Viite viite : kirjaviitteet.getViitteet()) {
+        for (Viite viite : viitteet.getViitteet()) {
             if (viite.getBibtexkey().equals(bibtexkey)) {           
                 return false;              
             }
@@ -86,25 +86,25 @@ public class Kontrolleri {
     public void poistaViite(String indeksi) {
             String tunniste = indeksi.replace("Poista ", "");
             Viite poistettava = null;
-            for (Viite viite : kirjaviitteet.getViitteet()) {
+            for (Viite viite : viitteet.getViitteet()) {
                 if (viite.getBibtexkey().equals(tunniste)) {
                     poistettava = viite;
                 }
             }
-            kirjaviitteet.remove(poistettava);
+            viitteet.remove(poistettava);
     }
     
 
     // listaa viitteet kÃ¤yttÃ¶liittymÃ¤Ã¤ ja tallennusta varten
     // VANHA VERSIO: public List<KirjaviiteRajapinta> listaaViitteet () {
     public List<Viite> listaaViitteet() {
-        return kirjaviitteet.getViitteet();
+        return viitteet.getViitteet();
     }
 
     // palauta viimeksi lisÃ¤tty kirjaviite
-    public String haeViimeksiLisattyKirjaviite() {
-        if (!kirjaviitteet.getViitteet().isEmpty()) {
-            return bibtexMuuntaja.muunnaViite(kirjaviitteet.getViitteet().get(kirjaviitteet.getViitteet().size() - 1));
+    public String haeViimeksiLisattyViite() {
+        if (!viitteet.getViitteet().isEmpty()) {
+            return bibtexMuuntaja.muunnaViite(viitteet.getViitteet().get(viitteet.getViitteet().size() - 1));
         }
         return null;
     }
@@ -139,6 +139,6 @@ public class Kontrolleri {
     }
     
     public boolean tallennaJsoniin(){
-        return jsonIo.tallenna(kirjaviitteet);
+        return jsonIo.tallenna(viitteet);
     }
 }

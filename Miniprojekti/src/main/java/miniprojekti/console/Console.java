@@ -26,7 +26,11 @@ public class Console {
      * book: luo uuden kirjaviitteen
      * article: luo uuden artikkeliviitteen
      * inproceedings: luo uuden inproceedings-viitteen
-     * list: tulostaa kirjaviitteet
+     * list: tulostaa viitteet
+     * bibtex: tulostaa viitteet bibtex-muodossa
+     * save: tallentaa viiteet bibtex-muodossa
+     * json: tallentaa viitteet json-tiedostoon
+     * delete: poistaa indeksiin viittaavan viitteen
      * quit: lopettaa suorituksen
      */
     public void run() {
@@ -46,6 +50,8 @@ public class Console {
                 tallennaViitteet();
             } else if (input.equals("bibtex")) {
                 tulostaBibtexMuodossa();
+            } else if (input.equals("json")) {
+                tallennaJSON();
             } else if (input.contains("delete")) {
                 deletoi("Poista "+input.substring(7));
             }
@@ -127,7 +133,11 @@ public class Console {
     }
 
     private void tulostaBibtexMuodossa() {
-        io.print(kontrolleri.haeViimeksiLisattyKirjaviite());
+        io.print(kontrolleri.haeViimeksiLisattyViite());
     }
 
+    private void tallennaJSON() {
+        kontrolleri.tallennaJsoniin();
+    }
+    
 }
