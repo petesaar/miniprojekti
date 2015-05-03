@@ -7,4 +7,6 @@
 
 [Tuorein easyB-raportti](http://rawgit.com/petesaar/miniprojekti/master/Documents/easyb/easyb-report.html)
 
+[Miniprojektin loppuraportti](https://github.com/petesaar/miniprojekti/tree/master/Documents/Miniprojektin_raportti.pdf)
+
 IRC: #jeesusteippaajat
